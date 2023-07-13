@@ -1,1 +1,1 @@
-Quiroga Alejandro Patricio
+Nuestra tienda de ropa online The chill ofrece una amplia selección de prendas y accesorios de moda, desde ropa casual hasta opciones elegantes, accesibles para todo publico. Nuestro objetivo es satisfacer las necesidades de clientes que buscan calidad y variedad en su vestimenta.
