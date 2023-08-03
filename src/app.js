@@ -9,3 +9,6 @@ app.listen(8000,console.log('Listening on port 8000'));
 app.get('/', (req,res)=>{
     res.sendFile(path.join(__dirname,"/views/index.html"));
 });
+app.get('/nav', (req,res)=>{
+    res.sendFile(path.join(__dirname,"/views/navbarFooter.html"));
+});

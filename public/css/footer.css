@@ -1,0 +1,127 @@
+:root{
+    --azul-bg-color: #002B5B;
+    --crema-bg-color: #E4DCCF;
+    --rojo-bg-color: #EA5455;
+    --color-letras: #686868;
+}
+footer{
+    background-color: var(--azul-bg-color);
+    height: auto;
+}
+footer .newsletter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: var(--rojo-bg-color) ;
+}
+footer .inputMail{
+    position: relative;
+}
+footer .newsletter input{
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    border: white;
+    background: none;
+    border: 2px solid white;
+    padding: 5px 60px 5px 12px;
+    color: white;
+}
+footer .newsletter input::placeholder{
+    color: white;
+}
+footer .newsletter p{
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+}
+footer .newsletter svg{
+    width: 20px;
+    fill: white;
+    position: absolute;
+    /* margin-left: 490px; */
+    right: 10px;
+    top: 7px;
+    cursor:pointer;
+}
+footer .infoFooter{
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    padding-top:20px;
+    padding-bottom:20px;
+    line-height: 25px;
+}
+footer .infoFooter p{
+    font-weight: 200;
+    font-size: 15px;
+    cursor: pointer;
+}
+footer .infoFooter h2{
+    font-size: 17px;
+    font-weight: 500;
+}
+footer .infoFooter svg{
+    width: 35px;
+}
+footer .infoFooter .socialmedia .icons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 10px;
+}
+footer .infoFooter svg{
+    fill: white;
+    color: white;
+    cursor: pointer;
+}
+footer .line{
+    height: 1px;
+    background-color: white;
+    max-width: 960px;
+    margin: 0 auto;
+}
+footer .copyright{
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 200;
+}
+
+@media (max-width: 768px) {
+    footer .infoFooter{
+        flex-direction: column;
+    }
+    footer .infoFooter p{
+        display: none;
+    }
+    footer .newsletter{
+        flex-direction: column;
+    }
+    footer .infoFooter{
+        padding-left: 12px;
+        padding-right: 12px;
+        line-height: 35px;
+    }
+    footer .infoFooter .socialmedia .icons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        padding-top: 10px;
+    }
+    footer .newsletter{
+        gap: 10px;
+    }
+}
+
+
