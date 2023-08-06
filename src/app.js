@@ -11,6 +11,7 @@ app.get('/', (req,res)=>{
 });
 app.get('/nav', (req,res)=>{
     res.sendFile(path.join(__dirname,"/views/navbarFooter.html"));
+});
 app.get('/login', (req,res)=>{
     res.sendFile(path.join(__dirname,"/views/login.html"));
 });

@@ -99,6 +99,7 @@ form input {
     padding: 8px 30px;
     border-radius: 10px;
     border: hidden 15px #a3a3a3;
+    cursor: pointer;
 }
 
 
@@ -153,6 +154,7 @@ form input {
     font-size: 14px;
     padding: 8px 30px;
     border-radius: 10px;
+    cursor: pointer;
 }
 .contraseña{
     text-align: right;
