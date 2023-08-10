@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+
+
+    font-family:'Times New Roman', Times, serif ;
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+thead{
+    background-color: white;
+    color: #7e7d7d;
+}
+tbody{
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6)
+}
+.table {
+    background-color:#e4e4e4;
+    width: 70%;
+    border-collapse: collapse;
+    margin: 10;
+    padding: 0;
+    table-layout: fixed;
+}
+.table tr td{
+    background-color: #cecece;
+}
+.table tbody tr{
+    border-bottom: solid 1px white;   
+}
+.table th, .table td {
+    font-size: 15px;
+    padding: 8px;
+    text-align: center; 
+
+}
+.producto{
+    display: flex;
+    justify-content: space-around;
+}
+.producto p{
+    flex-grow: 3;
+}
+.table thead th{ 
+    padding: 4px; 
+}
+td img{
+    width: 5vw;
+    height: 10vh;
+    align-items: end;  
+}
+label input{
+    width: 40px;
+}
+#borde{
+    border-bottom: solid 1px white ;/*#9e9e9e*/
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 10px; 
+}
+button{
+    background-color: #cecece;/*#ebe2e2*/
+    border: transparent;
+}
+#pago{
+    background-color: rgb(36, 74, 177);
+    padding: 5px 15px;
+    font-size: 15px;
+    color: white; 
+    font-weight: bold;  
+}
+#boton{
+    margin: 7px;
+}
+.resumen{   
+    width: 20%; 
+}
+.resumen section{
+    background-color: #cecece;
+    border: 1px solid #d3d0d0;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6);
+    margin-left: 15px;  
+    margin-top: 25px;
+}
+.resumen h3{
+    text-align: center;
+}
+.resumen h3{
+    text-align: center;
+    border-bottom: solid 1px white; /*#9e9e9e*/
+    padding-left: 10px;
+    padding-top: 15px;
+    padding-right: 10px;
+}
+.producto{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.resumen .borde{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 10px;   
+    border-bottom: solid 1px white;
+
+}
+
+
+@media screen and (max-width: 600px) {
+    .container{
+        width:100%
+    }
+    .table {
+        border: 5px;
+        width: 100%;   
+        margin: 10px;
+    }
+    .table caption {
+        font-size: 22px;
+    }
+    .table thead {
+        display: none;
+    }
+    .table tbody tr {
+        margin-bottom: 0px;
+        border-bottom: 8px solid white;
+        display: block;
+        background-color: #cecece; /* #e4e4e4*/
+    }
+    .table th, .table td {
+        font-size: 12px;
+    }
+    .table td {
+        text-align: left;
+        border-left: none;
+    }
+    .table img{
+        width: 15vw;  
+    }
+    table .precio{
+        display: none;
+    }
+    table .cantidad{
+        width: 50%;   
+    }
+    table .subtotal{
+        width: 43%;
+        font-size: 16px;
+    }
+    tr .parte{
+        display: flex;
+        flex-direction: row;
+    }
+    label input{
+        width: 30px;
+    }
+    .producto p{
+        font-size: 18px;
+    }
+    .resumen {
+        width: 300px;
+    }
+    .resumen section{
+        margin: 15px;
+    }
+    .producto p{
+        margin-left: 12px;
+    }
+}
