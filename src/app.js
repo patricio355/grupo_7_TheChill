@@ -18,3 +18,6 @@ app.get('/login', (req,res)=>{
 app.get('/productodetalle', (req,res)=>{
     res.sendFile(path.join(__dirname,"/views/productDetail.html"));
 });
+app.get('/carrito', (req,res)=>{
+    res.sendFile(path.join(__dirname,"/views/productCart.html"));
+});
