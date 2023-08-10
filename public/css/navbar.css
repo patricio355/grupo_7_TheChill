@@ -5,6 +5,11 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+a{
+    color: white;
+    font-style: none;
+    text-decoration: none !important;
+}
 :root{
     --azul-bg-color: #002B5B;
     --crema-bg-color: #E4DCCF;
@@ -22,7 +27,7 @@
 .navCategories{
     background-color: var(--crema-bg-color);
     height: 35px;
-    padding-top: 8px;
+    padding-top: 5px;
     padding-left: 12px;
     padding-right: 12px;
 }
@@ -38,19 +43,23 @@
     justify-content: start;
 }
 .navCategories .menuCategories li{
-    font-weight: 300;
-    font-size: 14px;
-    color: #535353;
+    font-weight: 400;
+    font-size: 15.5px;
+    color: var(--azul-bg-color);
     cursor: pointer;
     position: relative;
+}
+.navCategories .menuCategories li:hover{
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
 }
 .navCategories .menuCategories li:before{
     content: "";
     position: absolute;
     bottom: -0px;
-    height: 1px;
+    height: 2px;
     width: 100%;
-    background:var(--color-letras);
+    background:var(--azul-bg-color);
     border-radius: 50px;
     transform: scaleX(0);
     transition: transform 0.2s linear;

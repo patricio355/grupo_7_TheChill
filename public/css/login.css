@@ -5,12 +5,19 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+  }
 main {
+    max-width: 1110px;
+    margin: 0 auto;
 }
 a{
     color: white;
     font-style: none;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .login{
     padding: 30px 20px;
@@ -50,14 +57,16 @@ a{
     fill-opacity: 0.5;
 }
 article h1 {
-    font-size: 30px;
+    font-size: 25px;
     text-align: center;
-    font-weight: bolder;
-    opacity: 0.7;
+    font-weight: 200;
+    opacity: 1;
 }
 article h4 {
     text-align: center;
     padding-bottom: 5px;
+    font-weight: 300;
+    opacity: 0.8;
 }
 .user-icon {
     padding: 50px;
@@ -68,13 +77,14 @@ article h4 {
 }
 form input {
     border-color: #D9D9D9;
-    padding: 10px 50px 10px 7px;
+    padding-left: 10px;
+    padding-top: 10px;
     border-radius: 10px;
 }
 .ingresar{
     color: #fff;
-    font-weight:bolder;
-    margin: 10px 0px 5px 90px;
+    /*  */
+    margin: 10px 0px 5px 0px;
     background-color: #002B5B;
     font-size: 14px;
     padding: 8px 30px;
@@ -98,7 +108,7 @@ form input {
 }
 .registrate {
     background-color: #D9D9D9;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     width: fit-content;
     margin: auto;
     padding: 8px 30px;
@@ -131,7 +141,7 @@ form input {
     article h1 {
     font-size: 30px;
     text-align: center;
-    font-weight: bolder;
+    /* font-weight: bolder; */
     opacity: 0.7;
     }
     article h4 {
@@ -153,8 +163,8 @@ form input {
 }
 .ingresar{
     color: #fff;
-    font-weight:bolder;
-    margin: 10px 0px 5px 90px;
+    
+    margin: 10px 0px 5px 0px;
     background-color: #002B5B;
     font-size: 14px;
     padding: 8px 30px;
@@ -210,7 +220,7 @@ form input {
     article h1 {
         font-size: 30px;
         text-align: center;
-        font-weight: bolder;
+        /* font-weight: bolder; */
         opacity: 0.7;
     }
     article h4 {
@@ -234,8 +244,8 @@ form input {
     }
     .ingresar{
         color: #fff;
-        font-weight:bolder;
-        margin: 10px 0px 5px 90px;
+        
+        margin: 10px 0px 5px 0px;
         background-color: #002B5B;
         font-size: 14px;
         padding: 8px 30px;
@@ -305,9 +315,9 @@ form input {
         font-size: 16px;
     }
     article h1 {
-        font-size: 50px;
+        font-size: 40px;
         text-align: center;
-        font-weight: bolder;
+        /* font-weight: bolder; */
         opacity: 0.7;
     }
     article h4 {
@@ -327,21 +337,28 @@ form input {
     }
     form input {
         border-color: #D9D9D9;
-        padding: 15px 200px 15px 7px;
+        padding: 15px 35px 15px 7px;
         border-radius: 10px;
+        width: 420px;
     }
     .ingresar{
         color: #fff;
-        font-weight:bolder;
-        margin: 10px 0px 5px 90px;
+        margin: 10px 0px 5px 0px;
         background-color: #002B5B;
-        font-size: 15px;
+        font-size: 21px;
+        font-weight: 300;
         padding: 13px 50px;
         border-radius: 10px;
+        cursor:pointer;
     }
     .contraseña{
         text-align: right;
         font-size: 14px;
+        color: #4e4e4e;
+    }
+    .contraseña:hover{
+        text-decoration: underline;
+        
     }
     .registro {
         background-color: #F3F3F3;
@@ -356,7 +373,7 @@ form input {
     }
     .registrate {
         background-color: #D9D9D9;
-        font-weight: bolder;
+        /* font-weight: bolder; */
         font-size: 15px;
         width: fit-content;
         margin: auto;
