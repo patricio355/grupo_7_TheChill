@@ -16,3 +16,7 @@ mercadolibre.com.ar :Diseño e interfraz amigable para el usuario.
 galponderopa.com : Diseño del header.  
 yagmour.com.ar : Posicionamiento de imagenes.
 castellanas.com.ar : Paginas de inicio de sesion y de registro.
+
+
+Enlace al TABLERO DE TRABAJO
+https://trello.com/b/wOjrRaEU/trabajo-final-dh-g7-2023

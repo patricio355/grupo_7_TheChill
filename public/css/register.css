@@ -11,31 +11,57 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
   }
 main {
-    max-width: 1110px;
     margin: 0 auto;
+    background-color: #F9F5EB;
+    display: flex;
+    width: 100%;
+}
+.mainregister {
+    width: 100%;
 }
 a{
-    color: white;
+    /* color: white; */
     font-style: none;
     text-decoration: none !important;
 }
 .login{
     padding: 30px 20px;
-    background-color: #F3F3F3;
-    margin: 10px;
+    /* background-color: #F3F3F3; */
+    /* margin: 10px; */
+}
+.nombrePersona{
+    display: flex;
+    gap: 20px;
 }
 .user {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    /* gap: 30px; */
+    width: fit-content;
+    margin: 0 auto;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    background-color: white !important;
+    /* padding-bottom: 25px; */
 }
 .user-ingreso{
     display: flex;
     flex-direction: column;
+    padding: 0px 30px 10px 30px; 
+}
+.email-input{
+    display: flex;
+    flex-direction: column;
+}
+.password-input{
+    display: flex;
+    flex-direction: column;
+    /* font-size: 21px; */
 }
 .user-input{
-    position: relative;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
 }
 .user-input svg {
     position: absolute;
@@ -59,42 +85,58 @@ a{
 article h1 {
     font-size: 25px;
     text-align: center;
-    font-weight: 200;
-    opacity: 1;
+    font-weight: 300;
+    opacity: 0.9;
+    padding-top: 30px;
 }
 article h4 {
     text-align: center;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     font-weight: 300;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 .user-icon {
-    padding: 50px;
-    background-color: #b3b3b3;
-    width: fit-content;
-    border-radius: 100%;
-    height: fit-content;
+    height: 600px;
+    background-color: #002B5B;
+    /* width: fit-content; */
+    /* border-radius: 100%; */
+    /* height: fit-content; */
+    display: flex;
+    align-items: center;
+}
+.user-icon img{
+    max-width: 350px;
+    padding-bottom: 30px;
 }
 form input {
     border-color: #D9D9D9;
     padding-left: 10px;
     padding-top: 10px;
-    border-radius: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    margin-top: 3px;
+    /* border-radius: 10px; */
+    border-style: none;
+    border: #a3a3a3 1px solid;
 }
 .ingresar{
     color: #fff;
     /*  */
     margin: 10px 0px 5px 0px;
-    background-color: #002B5B;
-    font-size: 14px;
+    background-color: #1259c3;
+    font-size: 16px;
     padding: 8px 30px;
-    border-radius: 10px;
+    border-style: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.ingresar:hover{
+    background-color:#002B5B;
 }
 .contraseña{
     text-align: right;
-}
-.contraseña {
     font-size: 14px;
+    color: #1a1a1a;
 }
 .registro {
     background-color: #F3F3F3;
@@ -115,6 +157,54 @@ form input {
     border-radius: 10px;
     border: hidden 15px #a3a3a3;
     cursor: pointer;
+}
+input:focus{
+    outline-color: #1259c3;
+    transition: all 0.1s ease-in-out;
+}
+label{
+    opacity: 0.9;
+}
+
+@media(max-width:767px){
+    .user{
+        flex-direction: column;
+        width: 100%;
+    }
+    .user-icon{
+        width: 100%;
+        justify-content: center;
+        height: 160px;
+    }
+    .user-icon img{
+        height: 240px;
+        margin: 0;
+        padding: 0;
+    }
+    .user-ingreso{
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .user-ingreso .user-input{
+        width: 100%;
+    }
+}
+@media (max-width:474px){
+    .user-ingreso .nombrePersona{
+        flex-direction: column;
+        gap: 0;
+    }
+    .user-icon{
+        width: 100%;
+        justify-content: center;
+        height: 120px;
+    }
+    .user-icon img{
+        height: 190px;
+        margin: 0;
+        padding: 0;
+    }
 }
 
 

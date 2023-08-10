@@ -11,31 +11,52 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
   }
 main {
-    max-width: 1110px;
     margin: 0 auto;
+    background-color: #F9F5EB;
 }
 a{
-    color: white;
+    /* color: white; */
     font-style: none;
     text-decoration: none !important;
 }
 .login{
     padding: 30px 20px;
-    background-color: #F3F3F3;
-    margin: 10px;
+    /* background-color: #F3F3F3; */
+    /* margin: 10px; */
+}
+.nombrePersona{
+    display: flex;
+    gap: 20px;
 }
 .user {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    /* gap: 30px; */
+    width: fit-content;
+    margin: 0 auto;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
+    background-color: white !important;
+    /* padding-bottom: 25px; */
 }
 .user-ingreso{
     display: flex;
     flex-direction: column;
+    padding: 0px 20px;
+}
+.email-input{
+    display: flex;
+    flex-direction: column;
+}
+.password-input{
+    display: flex;
+    flex-direction: column;
+    /* font-size: 21px; */
 }
 .user-input{
-    position: relative;
+    /* position: relative; */
+    display: flex;
+    flex-direction: column;
 }
 .user-input svg {
     position: absolute;
@@ -59,42 +80,61 @@ a{
 article h1 {
     font-size: 25px;
     text-align: center;
-    font-weight: 200;
-    opacity: 1;
+    font-weight: 300;
+    opacity: 0.9;
+    padding-top: 30px;
 }
 article h4 {
     text-align: center;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     font-weight: 300;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 .user-icon {
-    padding: 50px;
-    background-color: #b3b3b3;
-    width: fit-content;
-    border-radius: 100%;
-    height: fit-content;
+    height: 600px;
+    background-color: #002B5B;
+    /* width: fit-content; */
+    /* border-radius: 100%; */
+    /* height: fit-content; */
+    display: flex;
+    align-items: center;
+}
+.user-icon img{
+    max-width: 350px;
+    padding-bottom: 30px;
 }
 form input {
     border-color: #D9D9D9;
     padding-left: 10px;
     padding-top: 10px;
-    border-radius: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    margin-top: 3px;
+    /* border-radius: 10px; */
+    border-style: none;
+    border: #a3a3a3 1px solid;
 }
 .ingresar{
     color: #fff;
     /*  */
     margin: 10px 0px 5px 0px;
-    background-color: #002B5B;
-    font-size: 14px;
+    background-color: #1259c3;
+    font-size: 16px;
     padding: 8px 30px;
-    border-radius: 10px;
+    border-style: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.ingresar:hover{
+    background-color:#002B5B;
 }
 .contraseña{
     text-align: right;
-}
-.contraseña {
     font-size: 14px;
+    color: #1a1a1a;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-right: 3px;
 }
 .registro {
     background-color: #F3F3F3;
@@ -116,272 +156,50 @@ form input {
     border: hidden 15px #a3a3a3;
     cursor: pointer;
 }
+input:focus{
+    outline-color: #1259c3;
+    transition: all 0.1s ease-in-out;
+}
+label{
+    opacity: 0.9;
+}
 
-
-@media (max-width: 481px){
-    main {
-    font-family: roboto;
-
+@media(max-width:767px){
+    .user{
+        flex-direction: column-reverse;
+        width: 100%;
     }
-    .login{
-    padding: 30px 20px;
-    background-color: #F3F3F3;
-    margin: 10px;
+    .user-icon{
+        width: 100%;
+        justify-content: center;
+        height: 160px;
     }
-    .user {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 30px;
+    .user-icon img{
+        height: 240px;
+        margin: 0;
+        padding: 0;
     }
     .user-ingreso{
-    display: flex;
-    flex-direction: column;
+        width: 100%;
     }
-    article h1 {
-    font-size: 30px;
-    text-align: center;
-    /* font-weight: bolder; */
-    opacity: 0.7;
+    .user-ingreso .user-input{
+        width: 100%;
     }
-    article h4 {
-    text-align: center;
-    padding-bottom: 5px;
+}
+@media (max-width:474px){
+    .user{
+        flex-direction: column-reverse;
     }
-    .user-icon {
-    display: none;
-    /* padding: 50px;
-    background-color: #b3b3b3;
-    width: fit-content;
-    border-radius: 100%;
-    height: fit-content; */
-}
-form input {
-    border-color: #D9D9D9;
-    padding: 10px 50px 10px 7px;
-    border-radius: 10px;
-}
-.ingresar{
-    color: #fff;
-    
-    margin: 10px 0px 5px 0px;
-    background-color: #002B5B;
-    font-size: 14px;
-    padding: 8px 30px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-.contraseña{
-    text-align: right;
-}
-.contraseña {
-    font-size: 14px;
-}
-.registro {
-    background-color: #F3F3F3;
-    padding: 10px 0px;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    font-size: 15px;
-    margin: 10px;
-}
-.registrate {
-    background-color: #D9D9D9;
-    font-weight: bolder;
-    width: fit-content;
-    margin: auto;
-    padding: 8px 30px;
-    border-radius: 10px;
-    border: hidden 15px #a3a3a3;
-}
-}
-
-@media (min-width: 768px){
-    main {
-        font-family: roboto;
-    }
-    .login{
-        padding: 30px 20px;
-        background-color: #F3F3F3;
-        margin: 10px;
-    }
-    .user {
-        display: flex;
-        align-items: center;
+    .user-icon{
+        width: 100%;
         justify-content: center;
-        gap: 30px;
+        height: 120px;
     }
-    .user-ingreso{
-        display: flex;
-        flex-direction: column;
-    }
-    article h1 {
-        font-size: 30px;
-        text-align: center;
-        /* font-weight: bolder; */
-        opacity: 0.7;
-    }
-    article h4 {
-        text-align: center;
-        padding-bottom: 5px;
-    }
-    .user-icon {
-        display: inline-block;
-        padding: 60px 50px;
-        background-color: #b3b3b3;
-        width: fit-content;
-        font-size: 25px;
-        border-radius: 100%;
-        height: fit-content;
-        margin: 0 10 40;
-    }
-    form input {
-        border-color: #D9D9D9;
-        padding: 10px 50px 10px 7px;
-        border-radius: 10px;
-    }
-    .ingresar{
-        color: #fff;
-        
-        margin: 10px 0px 5px 0px;
-        background-color: #002B5B;
-        font-size: 14px;
-        padding: 8px 30px;
-        border-radius: 10px;
-    }
-    .contraseña{
-        text-align: right;
-    }
-    .contraseña {
-        font-size: 14px;
-    }
-    .registro {
-        background-color: #F3F3F3;
-        padding: 10px 0px;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-        font-size: 15px;
-        margin: 10px;
-    }
-    .registrate {
-        background-color: #D9D9D9;
-        font-weight: bolder;
-        width: fit-content;
-        margin: auto;
-        padding: 8px 30px;
-        border-radius: 10px;
-        border: hidden 15px #a3a3a3;
+    .user-icon img{
+        height: 190px;
+        margin: 0;
+        padding: 0;
     }
 }
 
-@media (min-width: 1279px){
-    main {
-        font-family: roboto;
-    
-    }
-    .login{
-        padding: 30px 20px;
-        background-color: #F3F3F3;
-        margin: 10px;
-    }
-    .user {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 50px;
-        margin: 20px;
-    }
-    .user-ingreso{
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-    .user-input svg{
-        width: 25px;
-        right: 12px;
-        top: 12px;
-    }
-    .password-input svg {
-        width: 25px;
-        right: 12px;
-        top: 12px;
-    }
-    .user-input input::placeholder, .password-input input::placeholder {
-        padding-left: 3px;
-        font-size: 16px;
-    }
-    article h1 {
-        font-size: 40px;
-        text-align: center;
-        /* font-weight: bolder; */
-        opacity: 0.7;
-    }
-    article h4 {
-        text-align: center;
-        font-size: 20px;
-        padding-bottom: 5px;
-    }
-    .user-icon {
-        display: inline-block;
-        padding: 60px 45 60;;
-        margin: 10 10 90;
-        background-color: #b3b3b3;
-        font-size: 35px;
-        width: fit-content;
-        border-radius: 100%;
-        height: fit-content;
-    }
-    form input {
-        border-color: #D9D9D9;
-        padding: 15px 35px 15px 7px;
-        border-radius: 10px;
-        width: 420px;
-    }
-    .ingresar{
-        color: #fff;
-        margin: 10px 0px 5px 0px;
-        background-color: #002B5B;
-        font-size: 21px;
-        font-weight: 300;
-        padding: 13px 50px;
-        border-radius: 10px;
-        cursor:pointer;
-    }
-    .contraseña{
-        text-align: right;
-        font-size: 14px;
-        color: #4e4e4e;
-    }
-    .contraseña:hover{
-        text-decoration: underline;
-        
-    }
-    .registro {
-        background-color: #F3F3F3;
-        padding: 30px 0px;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        text-align: center;
-        font-size: 15px;
-        margin: 10px;
-        gap: 10px;
-    }
-    .registrate {
-        background-color: #D9D9D9;
-        /* font-weight: bolder; */
-        font-size: 15px;
-        width: fit-content;
-        margin: auto;
-        padding: 13px 70px;
-        border-radius: 10px;
-        border: hidden 15px #a3a3a3;
-    }
-    .registro-ult-parrafo{
-        font-size: 14px;
-    }
-}
+
