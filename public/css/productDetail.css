@@ -76,9 +76,10 @@ main{
 }
 
 .ls img{
-    width: 50%;
+    width: 100%;
+    max-width: 90px;
     margin: 0.5px;
-    margin-left: 30px;
+    /* margin-left: 30px; */
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);
     border: 1px solid #ebebeb;
 }
@@ -343,6 +344,52 @@ article{
     color: #777;
     text-align: left;
 }
+@media(max-width:1080px){
+    .ls{
+        padding-left: 30px;
+    }
+    .ls ul{
+        list-style:none;
+    }
+    .ls ul img{
+        width: 100%;
+    }
+}
+@media (max-width: 480px) {
+    .conteiner{
+        flex-direction: column-reverse;
+        width: 100%;
+        justify-content: center;
+    }
+    .conteiner .imagen{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    .conteiner .imagen img{
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+        box-shadow: none;
+    }
+    .ls ul{
+        display: flex;
+        list-style: none;
+        padding-left: 20px;
+    }
+    .ls{
+        width: 100%;
+    }
+    .ls ul li{
+        padding-right: 8px;
+        padding-top: 10px;
+    }
+    .ls img{
+        max-width: 80px;
+        width: 100%;
+        margin-left: 0;
+    }
+}
 
 @media (min-width:768px){
 
@@ -388,7 +435,7 @@ article{
 }
 
 .conteiner{
-        width: 60%;
+    width: 100%;
 }
 
 .ls{
@@ -412,7 +459,7 @@ article{
 .imagen img{
     width: 100%;
     margin-top: 20px;
-    height: 400px;
+    height: auto;
 }
 
 .contenedor-compra{
@@ -477,6 +524,7 @@ article{
 }
 
 @media(min-width:1080px){
+
 .descripcion{
     font-size: 15px;
     padding-left: 30px;
@@ -499,9 +547,10 @@ article{
      width: 100%;
     }
 
-    .ls{
-        width: 60%;
-    }
+    .ls {
+    width: 100%;
+    max-width: 90px;
+   }
     
     .ls img{
         width: 60%;

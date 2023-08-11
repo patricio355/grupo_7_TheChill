@@ -134,11 +134,12 @@ margin: 0;
 
   .subtitulo{
     font-family: 'Poppins', sans-serif; 
-    font-weight: 500;
-    font-size: 40px;
+    font-weight: 300;
+    font-size: 25px;
     color: #000000;
     margin: 15px;
     margin-left: 80px;
+    opacity: 0.8;
 }
   
 body{
