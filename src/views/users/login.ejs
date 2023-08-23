@@ -1,0 +1,46 @@
+<html lang="en">
+
+<head>
+    <%- include ("../partials/head.ejs")  %>
+    <title>Registrate! - The Chill</title>
+    <link rel="stylesheet" href="css\login.css">
+</head>
+
+<body>
+  <%- include ("../partials/navbar.ejs") %>
+
+
+    <!-- CONTENIDO PRINCIPAL DEL REGISTER -->
+    <main>
+        <section>
+            <article class="login">
+                <div class="user">
+                    <form action="" method="post" class="user-ingreso">
+                        <h1>¡Bienvenido!</h1>
+                        <h4>Ingresa con tu usuario y contraseña</h4>
+                        
+                        <div class="password-input">
+                            <label for="pass">Usuario</label>
+                            <input type="text" name="pass" id="pass" placeholder="Usuario">
+                        </div>
+                        <div class="password-input">
+                            <label for="pass">Contraseña</label>
+                            <input type="password" name="pass" id="pass" placeholder="password">
+                        </div>
+                        
+                        <button type="submit" class="ingresar">INGRESAR</button>
+                        
+                        <a href="/register" class="contraseña">¿No tienes una cuenta?</a>
+                    </form>
+                    <div class="user-icon">
+                        <img src="images/logoFinal.png" alt="">
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <%- include ("../partials/footer.ejs") %>
+</body>
+
+</html>

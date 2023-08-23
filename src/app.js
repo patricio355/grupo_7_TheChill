@@ -2,25 +2,29 @@ const express = require('express')
 const app = express()
 const path = require('path')
 
+// USANDO RUTAS
+
+const mainRoutes = require("../src/routes/mainRoutes.js")
+const usersRoutes = require("../src/routes/usersRoutes.js")
+const productRoutes = require("../src/routes/productRoutes.js")
+const adminRoutes = require("../src/routes/adminRoutes.js")
+app.use(mainRoutes)
+app.use(usersRoutes)
+app.use(productRoutes)
+app.use(adminRoutes)
+
+
+// USANDO ARCHIVOS ESTATICOS
 app.use(express.static("public"));
+
+// USO DE EXPRESS
+app.set("view engine", "ejs");
+app.set("views", "./src/views");
 
 app.listen(8000,console.log('Listening on port 8000'));
 
-app.get('/', (req,res)=>{
-    res.sendFile(path.join(__dirname,"/views/index.html"));
-});
-app.get('/nav', (req,res)=>{
-    res.sendFile(path.join(__dirname,"/views/navbarFooter.html"));
-});
-app.get('/login', (req,res)=>{
-    res.sendFile(path.join(__dirname,"/views/login.html"));
-});
-app.get('/register', (req,res)=>{
-    res.sendFile(path.join(__dirname,"/views/register.html"));
-});
-app.get('/productodetalle', (req,res)=>{
-    res.sendFile(path.join(__dirname,"/views/productDetail.html"));
-});
-app.get('/carrito', (req,res)=>{
-    res.sendFile(path.join(__dirname,"/views/productCart.html"));
-});
+
+// LEGACY NAVBAR
+// app.get('/nav', (req,res)=>{
+//     res.render(path.join(__dirname,"/views/navbarFooter.ejs"));
+// });

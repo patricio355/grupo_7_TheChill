@@ -1,0 +1,65 @@
+<html lang="en">
+
+<head>
+    <%- include ("../partials/head.ejs")  %>
+    <title>Registrate! - The Chill</title>
+    <link rel="stylesheet" href="css\register.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <%- include ("../partials/navbar.ejs") %>
+
+    <!-- CONTENIDO PRINCIPAL DEL REGISTER -->
+    <main>
+        <section class="mainregister">
+            <article class="login">
+                <div class="user">
+                    <div class="user-icon">
+                        <img src="images/logoFinal.png" alt="">
+                    </div>
+                    <form action="" method="post" class="user-ingreso">
+                        <h1>Registrarte</h1>
+                        <h4>Es rápido y fácil</h4>
+                        <div class="nombrePersona">
+                            <div class="user-input">
+                                <label for="usuario">Nombre</label>
+                                <input type="text" name="usuario" id="usuario" placeholder="Juan Carlos">
+                            </div>
+                            <div class="user-input">
+                                <label for="usuario">Apellido</label>
+                                <input type="text" name="usuario" id="usuario" placeholder="Pérez">
+                            </div>
+                        </div>
+                        <div class="emailPerson">
+                            <div class="email-input">
+                                <label for="pass">E-mail</label>
+                                <input type="text" name="pass" id="pass" placeholder="example@gmail.com">
+                            </div>
+                            <div class="email-input">
+                                <label for="pass">Confirmar E-mail</label>
+                                <input type="text" name="pass" id="pass" placeholder="example@gmail.com">
+                            </div>
+                        </div>
+                        <div class="password-input">
+                            <label for="pass">Contraseña</label>
+                            <input type="password" name="pass" id="pass" placeholder="password">
+                        </div>
+                        <div class="password-input">
+                            <label for="pass">Confirmar contraseña</label>
+                            <input type="password" name="pass" id="pass" placeholder="password">
+                        </div>
+
+                        <button type="submit" class="ingresar">REGISTRARSE</button>
+
+                        <a href="/login" class="contraseña">¿Ya estás registrado?</a>
+                    </form>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <%- include ("../partials/footer.ejs") %>
+</body>
+
+</html>

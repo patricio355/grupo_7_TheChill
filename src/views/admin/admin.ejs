@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include ("../partials/head.ejs") %>
+        <title>Panel Administrador</title>
+        <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <section class="admin-navbar">
+            <img src="/images/logoFinal.png" width="200px" alt="">
+            <div class="admin-title">
+                <p style="font-weight: 200; font-size: 28px;">PANEL ADMINISTRADOR - THE CHILL</p>
+            </div>
+            <div class="admin-icons">
+                <i class="fas fa-user"></i>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </section>
+        <section class="admin-navigate-menu">
+            <p>/home/products</p>
+        </section>
+        <section class="admin-main-section">
+            <div class="admin-user">
+                <div class="admin-name">
+                    <div class="admin-username">
+                        <p>User Name</p>
+                        <p>Profile</p>
+                    </div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="admin-dropdown">
+                    <p>Datos del comprador</p>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="admin-dropdown">
+                    <p>Negocio</p>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="admin-dropdown">
+                    <p>Categorías</p>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <div class="admin-products">
+                <div class="header-products">
+                    <div class="buttons">
+                        <a href="/admin/create"><button  style="cursor: pointer;" class="add-product"><i class="fas fa-plus-circle"></i> Añadir Nuevo </button></a>
+                        <button class="upload-product"><i class="fas fa-upload"></i> <i
+                                class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="products-per-page">
+                        <p>Resultados / pág.:</p>
+                        <input type="number" name="" id="" placeholder="5">
+                    </div>
+                </div>
+                <div class="custom-table">
+                    <table class="blueTable">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Titulo</th>
+                                <th>Precio</th>
+                                <th>Descripcion</th>
+                                <th>Opciones</th>
+                                <th>Ver</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a
+                                            href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center;"><img src="/images/buzo.jpg" width="40px" alt=""></td>
+                                <td>Buzo Akatsuki</td>
+                                <td>$ 6.000</td>
+                                <td>IMPORTANTE buzos...</td>
+                                <td>
+                                    <button><i class="fas fa-edit"></i></button>
+                                    <button><i class="fas fa-trash"></i></button>
+                                </td>
+                                <td><button><i class="fas fa-external-link-alt"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><img src="/images/buzo.jpg" width="40px" alt=""></td>
+                                <td>Buzo Akatsuki</td>
+                                <td>$ 6.000</td>
+                                <td>IMPORTANTE buzos...</td>
+                                <td>
+                                    <button><i class="fas fa-edit"></i></button>
+                                    <button><i class="fas fa-trash"></i></button>
+                                </td>
+                                <td><button><i class="fas fa-external-link-alt"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><img src="/images/buzo.jpg" width="40px" alt=""></td>
+                                <td>Buzo Akatsuki</td>
+                                <td>$ 6.000</td>
+                                <td>IMPORTANTE buzos...</td>
+                                <td>
+                                    <button><i class="fas fa-edit"></i></button>
+                                    <button><i class="fas fa-trash"></i></button>
+                                </td>
+                                <td><button><i class="fas fa-external-link-alt"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><img src="/images/buzo.jpg" width="40px" alt=""></td>
+                                <td>Buzo Akatsuki</td>
+                                <td>$ 6.000</td>
+                                <td>IMPORTANTE buzos...</td>
+                                <td>
+                                    <button><i class="fas fa-edit"></i></button>
+                                    <button><i class="fas fa-trash"></i></button>
+                                </td>
+                                <td><button><i class="fas fa-external-link-alt"></i></button></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;"><img src="/images/buzo.jpg" width="40px" alt=""></td>
+                                <td>Buzo Akatsuki</td>
+                                <td>$ 6.000</td>
+                                <td>IMPORTANTE buzos...</td>
+                                <td>
+                                    <button><i class="fas fa-edit"></i></button>
+                                    <button><i class="fas fa-trash"></i></button>
+                                </td>
+                                <td><button><i class="fas fa-external-link-alt"></i></button></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>

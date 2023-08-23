@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include ("../partials/head.ejs") %>
+        <title>Panel Administrador</title>
+        <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <section class="admin-navbar">
+            <img src="/images/logoFinal.png" width="200px" alt="">
+            <div class="admin-title">
+                <p style="font-weight: 200; font-size: 28px;">PANEL ADMINISTRADOR - THE CHILL</p>
+            </div>
+            <div class="admin-icons">
+                <i class="fas fa-user"></i>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </section>
+        <section class="admin-navigate-menu">
+            <p>/home/products/create</p>
+        </section>
+        <section class="admin-create-section">
+            <div class="admin-create-title">
+                <a href="/admin"><button class="back-button" style="cursor: pointer;"><i class="fas fa-long-arrow-alt-left"></i></button></a>
+                <div class="title-create">
+                    <p>Volver a la lista de productos</p>
+                    <h3>Creando un nuevo producto...</h3>
+                </div>
+            </div>
+            <form action="" class="admin-create-product">
+                <div class="admin-create-parent">
+                    <div class="create-description">
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <label for="productName">Nombre de producto</label>
+                                <input type="text" id="productName" placeholder="Ingrese el nombre del producto...">
+                            </div>
+                            <div class="generic-input-label">
+                                <label for="productDescription">Descripción del producto</label>
+                                <textarea type="text" id="productDescription"
+                                    placeholder="Ingrese descripción..."></textarea>
+                            </div>
+                        </div>
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <label for="productCategory">Categoría de producto</label>
+                                <select name="perfil" id="productCategory">
+                                    <option value="T-Shirt">T-Shirt</option>
+                                    <option value="Remeras">Remeras</option>
+                                    <option value="Zapatillas">Zapatillas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <label for="Quantity">Stock</label>
+                                <input type="text" id="Quantity" placeholder="Ingrese el stock disponible...">
+                            </div>
+
+                            <div class="generic-input-label">
+                                <label for="productID">ID de producto</label>
+                                <input type="text" id="productID" placeholder="Ingrese ID del producto...">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="product-details">
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <h4>Imagenes del producto</h4>
+                                <input type="file" id="productImages">
+                                <div class="product-image">
+                                    <img src="" alt="">
+                                    <div class="product-image-duo">
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <h4>Envío y entrega</h4>
+                                <label for="shipping">Seleccione tipo de envío</label>
+                                <select name="perfil" id="shipping">
+                                    <option value="Gratis">Gratis</option>
+                                    <option value="A retirar por domicilio">A retirar por domicilio</option>
+                                    <option value="A cargo del comprador">A cargo del comprador</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="create-section">
+                            <h4>Precio</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="price">Precio Unitario</label>
+                                    <input type="text" id="price" placeholder="Ingrese precio por unidad...">
+                                </div>
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="tax">Impuesto</label>
+                                    <input type="text" id="tax" placeholder="Impuesto sobre el valor...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="create-section">
+                            <div class="generic-input-label" style="width: 100%;">
+                                <label for="color">Colores disponibles</label>
+                                <input type="color" id="color" style="padding: none; height: 20px;" value="#000">
+                            </div>
+                        </div>
+                        <div class="admin-create-buttons">
+                            <a href="/"><button>Añadir Producto</button></a>
+                            <a href="/"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
+                            <a href="/"><button><i class="far fa-clock"></i></button></a>
+                            <a href=""><button><input class="reset-class" type="reset" value="Restablecer"></button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+
+</html>
