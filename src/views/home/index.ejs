@@ -46,7 +46,7 @@
           <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
         </svg>
       </div>
-      <div class="card">
+      <!-- <div class="card">
         <a href="/productodetalle">
           <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
           <div class="detalle">
@@ -110,8 +110,24 @@
             </div>
           </div>
         </a>
+      </div> -->
+      <% products.map(p => { %>
+      <div class="card">
+        <a href="/productodetalle">
+          <img src="images/<%= p.image %>" style="max-width:200px; overflow: hidden;" alt="Wolverine" />
+          <div class="detalle">
+            <p><%= p.name %></p>
+            <p>$<%= p.price %></p>
+            <div class="estrellas">
+              <div class="ima">
+                <img src="images/clasificacion.png" alt="" />
+                <p> 2589</p>
+              </div>
+            </div>
+          </div>
+        </a>
       </div>
-
+      <% }) %>
   </section>
 
   <div class="cen">
@@ -137,6 +153,8 @@
         <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
       </svg>
     </div>
+
+    
     <div class="card">
       <a href="/productodetalle">
         <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
