@@ -10,7 +10,7 @@
         "color": "Azul y blanco",
         "gender": "Hombre",
         "type": "Camisa",
-        "model-name": "Clásica"
+        "model": "Clásica"
     },
     {
         "id": 2,
@@ -23,7 +23,7 @@
         "color": "Negro",
         "gender": "Unisex",
         "type": "Shorts",
-        "model-name": "Activo"
+        "model": "Activo"
     },
     {
         "id": 3,
@@ -36,7 +36,7 @@
         "color": "Multicolor",
         "gender": "Mujer",
         "type": "Vestido",
-        "model-name": "Verano"
+        "model": "Verano"
     },
     {
         "id": 4,
@@ -49,7 +49,7 @@
         "color": "Negro",
         "gender": "Hombre",
         "type": "Chaqueta",
-        "model-name": "Elegante"
+        "model": "Elegante"
     },
     {
         "id": 5,
@@ -62,7 +62,7 @@
         "color": "Azul oscuro",
         "gender": "Hombre",
         "type": "Jeans",
-        "model-name": "Ajustado"
+        "model": "Ajustado"
     },
     {
         "id": 6,
@@ -75,7 +75,7 @@
         "color": "Gris",
         "gender": "Unisex",
         "type": "Sudadera",
-        "model-name": "Moderna"
+        "model": "Moderna"
     },
     {
         "id": 7,
@@ -88,7 +88,7 @@
         "color": "Rosado",
         "gender": "Mujer",
         "type": "Blusa",
-        "model-name": "Casual"
+        "model": "Casual"
     },
     {
         "id": 8,
@@ -101,7 +101,7 @@
         "color": "Beige",
         "gender": "Unisex",
         "type": "Pantalones",
-        "model-name": "Clásico"
+        "model": "Clásico"
     },
     {
         "id": 9,
@@ -114,7 +114,7 @@
         "color": "Negro",
         "gender": "Mujer",
         "type": "Vestido",
-        "model-name": "Elegancia"
+        "model": "Elegancia"
     },
     {
         "id": 10,
@@ -127,7 +127,7 @@
         "color": "Turquesa",
         "gender": "Hombre",
         "type": "Bermudas",
-        "model-name": "Playa"
+        "model": "Playa"
     },
     {
         "id": 11,
@@ -140,7 +140,7 @@
         "color": "Gris oscuro",
         "gender": "Hombre",
         "type": "Blazer",
-        "model-name": "Formal"
+        "model": "Formal"
     },
     {
         "id": 12,
@@ -153,7 +153,7 @@
         "color": "Rojo",
         "gender": "Mujer",
         "type": "Vestido",
-        "model-name": "Fiesta"
+        "model": "Fiesta"
     },
     {
         "id": 13,
@@ -166,7 +166,7 @@
         "color": "Negro",
         "gender": "Unisex",
         "type": "Sudadera",
-        "model-name": "Estampado"
+        "model": "Estampado"
     },
     {
         "id": 14,
@@ -179,7 +179,7 @@
         "color": "Blanco",
         "gender": "Hombre",
         "type": "Polo",
-        "model-name": "Clásico"
+        "model": "Clásico"
     },
     {
         "id": 15,
@@ -192,6 +192,6 @@
         "color": "Azul marino",
         "gender": "Hombre",
         "type": "Chaqueta",
-        "model-name": "Invierno"
+        "model": "Invierno"
     }
 ]

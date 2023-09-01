@@ -113,7 +113,7 @@
       </div> -->
       <% products.map(p => { %>
       <div class="card">
-        <a href="/productodetalle">
+        <a href="/productDetail/<%= p.id %>">
           <img src="images/<%= p.image %>" style="max-width:200px; overflow: hidden;" alt="Wolverine" />
           <div class="detalle">
             <p><%= p.name %></p>

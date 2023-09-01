@@ -3,7 +3,7 @@
 
 <head>
     <%- include ("../partials/head.ejs")  %>
-    <link rel="stylesheet" href="css/productDetail.css">
+    <link rel="stylesheet" href="/css/productDetail.css">
     <title>Detalle - THE CHILL</title>
 </head>
 <!-- <header>
@@ -29,26 +29,26 @@
 
     <main>
         <div class="descripcion">
-            <span>Puesto en venta en la categoria: Top > Buzos > Con capucha</span>
+            <span>Puesto en venta en la categoria: Top > <%= product.name %> > <%= product.type %></span>
         </div>
         <div class="contenedor-global">
             <div class="conteiner">
                 <div class="ls">
                     <ul>
-                        <li><img src="images/buzo.jpg" alt=""></li>
-                        <li><img src="images/buzo.jpg" alt=""></li>
-                        <li><img src="images/buzo.jpg" alt=""></li>
+                        <li><img src="/images/<%= product.image %>" alt=""></li>
+                        <li><img src="/images/<%= product.image %>" alt=""></li>
+                        <li><img src="/images/<%= product.image %>" alt=""></li>
                     </ul>
                 </div>
                 <div class="imagen">
-                    <img src="images/buzo.jpg" class="diffumine" alt="">
+                    <img src="/images/<%= product.image %>" class="diffumine" alt="">
                 </div>
             </div>
             <div class="detail">
                 <div class="detalles">
                     <div class="titulo">
-                        <p>Buzo Canguro Frisa Naruto Akatsuki
-                            Anime. Habibis
+                        <p>
+                            <%= product.name %>
                         </p>
                     </div>
                     <div class="calificacion">
@@ -66,7 +66,7 @@
                 <div class="row">
                     <label for="">Color:</label>
                     <select name="" id="color" class="color">
-                        <option value="">Rojo</option>
+                        <option value=""><%= product.color %></option>
                         <option value="">Azul</option>
                         <option value="">Amarillo</option>
                         <option value="">Negro</option>
@@ -96,7 +96,7 @@
                         <div class="row">
                             <div class="precio">
                                 <label for="">Precio:</label>
-                                <span>$6000</span>
+                                <span>$<%= product.price %></span>
                             </div>
                         </div>
                     </div>
@@ -120,19 +120,19 @@
                     <table>
                         <tr>
                             <td>Marca</td>
-                            <td>Habibis Indumentaria</td>
+                            <td><%= product.brand %></td>
                         </tr>
                         <tr>
                             <td>Modelo</td>
-                            <td>Naruto Akatsuki</td>
+                            <td><%= product.model %></td>
                         </tr>
                         <tr>
                             <td>Género</td>
-                            <td>Sin género</td>
+                            <td><%= product.gender %></td>
                         </tr>
                         <tr>
                             <td>Tipo de prenda</td>
-                            <td>Hoodie</td>
+                            <td><%= product.type %></td>
                         </tr>
                     </table>
                 </div>
@@ -202,10 +202,7 @@
         </div>
         <article>
             <h4>Descripcíon</h4>
-            IMPORTANTE buzos canguros.Frisa calidad premium. Capucha Forrada. Con cordon ajustable
-            y costura reforzadas.Chequea tu talle con la tabla de medidas publicada en la ultima foto.
-            Comparala con uno de tus buzos favoritos.
-            Si el articulo está activo, tenemos stock!
+            <%= product.description %>
         </article>
         <article>
             ---------¿POR QUÉ ELEGIRNOS?---------
