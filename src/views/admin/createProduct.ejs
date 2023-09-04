@@ -32,39 +32,51 @@
                     <h3>Creando un nuevo producto...</h3>
                 </div>
             </div>
-            <form action="" class="admin-create-product">
+            <form action="/" method="post" enctype="multipart/form-data" class="admin-create-product">
                 <div class="admin-create-parent">
                     <div class="create-description">
                         <div class="create-section">
                             <div class="generic-input-label">
-                                <label for="productName">Nombre de producto</label>
-                                <input type="text" id="productName" placeholder="Ingrese el nombre del producto...">
+                                <label for="productName"><h3>Nombre de producto</h3></label>
+                                <input type="text" id="name" name="name" placeholder="Ingrese el nombre del producto...">
                             </div>
                             <div class="generic-input-label">
-                                <label for="productDescription">Descripción del producto</label>
-                                <textarea type="text" id="productDescription"
+                                <label for="productDescription"><h4>Descripción del producto</h4></label>
+                                <textarea type="text" id="description" name="description"
                                     placeholder="Ingrese descripción..."></textarea>
                             </div>
                         </div>
                         <div class="create-section">
                             <div class="generic-input-label">
-                                <label for="productCategory">Categoría de producto</label>
-                                <select name="perfil" id="productCategory">
-                                    <option value="T-Shirt">T-Shirt</option>
-                                    <option value="Remeras">Remeras</option>
-                                    <option value="Zapatillas">Zapatillas</option>
+                                <label for="category"><h4>Categoría de producto</h4></label>
+                                <select name="category" id="category">
+                                    <option value="Deporte">Deporte</option>
+                                    <option value="Interior">Interior</option>
+                                    <option value="Jeans">Jeans</option>
+                                    <option value="Formal">Formal</option>
+                                    <option value="Vestido">Vestido</option>
+                                    <option value="Remera">Remeras</option>
+                                    <option value="Zapatilla">Zapatillas</option>
                                 </select>
                             </div>
                         </div>
                         <div class="create-section">
                             <div class="generic-input-label">
-                                <label for="Quantity">Stock</label>
-                                <input type="text" id="Quantity" placeholder="Ingrese el stock disponible...">
+                                <label for="stock"><h4>Stock</h4></label>
+                                <input type="number" id="stock" name="stock" placeholder="Ingrese el stock disponible...">
                             </div>
 
                             <div class="generic-input-label">
-                                <label for="productID">ID de producto</label>
-                                <input type="text" id="productID" placeholder="Ingrese ID del producto...">
+                                <label for="size"><h4>Tamaño</h4></label>
+                                    <select name="size" id="size">
+                                        <option value="XS">XS (Extra Pequeño)</option>
+                                        <option value="S">S (Pequeño)</option>
+                                        <option value="M">M (Mediano)</option>
+                                        <option value="L">L (Grande)</option>
+                                        <option value="XL">XL (Extra Grande)</option>
+                                        <option value="XXL">XXL (Doble Extra Grande)</option>
+                                        <option value="XXXL">XXXL (Triple Extra Grande)</option>
+                                    </select>
                             </div>
                         </div>
 
@@ -73,17 +85,18 @@
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <h4>Imagenes del producto</h4>
-                                <input type="file" id="productImages">
-                                <div class="product-image">
+                                <input type="file" id="productImages" name="productImage">
+                                <!-- <div class="product-image">
                                     <img src="" alt="">
                                     <div class="product-image-duo">
                                         <img src="" alt="">
                                         <img src="" alt="">
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
-                        <div class="create-section">
+                        
+                        <!-- <div class="create-section">
                             <div class="generic-input-label">
                                 <h4>Envío y entrega</h4>
                                 <label for="shipping">Seleccione tipo de envío</label>
@@ -93,28 +106,50 @@
                                     <option value="A cargo del comprador">A cargo del comprador</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="create-section">
                             <h4>Precio</h4>
                             <div style="display: flex; gap: 10px;">
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="price">Precio Unitario</label>
-                                    <input type="text" id="price" placeholder="Ingrese precio por unidad...">
+                                    <input type="number" id="price" name="price" placeholder="Ingrese precio por unidad...">
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
-                                    <label for="tax">Impuesto</label>
-                                    <input type="text" id="tax" placeholder="Impuesto sobre el valor...">
+                                    <label for="tax">Descuento</label>
+                                    <input type="number" id="discount" name="discount" placeholder="Ingrese descuento...">
                                 </div>
                             </div>
                         </div>
                         <div class="create-section">
-                            <div class="generic-input-label" style="width: 100%;">
-                                <label for="color">Colores disponibles</label>
-                                <input type="color" id="color" style="padding: none; height: 20px;" value="#000">
+                            <h4>Datos de Producto</h4>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="brand">Marca</label>
+                                    <input type="text" id="brand" name="brand" placeholder="Ingrese marca...">
+                                </div>
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="gender">Género</label>
+                                    <select name="gender" id="gender">
+                                        <option value="Hombre">Hombre</option>
+                                        <option value="Mujer">Mujer</option>
+                                        <option value="Unisex">Unisex</option>
+                                    </select>
+                                </div>
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="tax">Modelo</label>
+                                    <input type="text" id="model_name"  name="model_name" placeholder="Ingrese modelo...">
+                                </div>
+                                <div class="generic-input-label" style="width: 100%;">
+                                    <label for="color">Color</label>
+                                    <input type="color" id="color" name="color" style="padding: none; height: 40px;" value="#000">
+                                </div>
                             </div>
                         </div>
+
+
+                
                         <div class="admin-create-buttons">
-                            <a href="/"><button>Añadir Producto</button></a>
+                            <a href="/"><button class="btn btn-success" type="submit">Añadir Producto</button></a>
                             <a href="/"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
                             <a href="/"><button><i class="far fa-clock"></i></button></a>
                             <a href=""><button><input class="reset-class" type="reset" value="Restablecer"></button></a>
