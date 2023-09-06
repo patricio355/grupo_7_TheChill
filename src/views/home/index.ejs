@@ -5,9 +5,8 @@
   <%- include ("../partials/head.ejs")  %>
   <link rel="stylesheet" href="css/index.css">
   <title>Home - THE CHILL</title>
-  <script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
-  <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
 </head>
 
@@ -30,305 +29,91 @@
     </div>
   </section>
 
+  <script type="module">
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs'
+  
+    const swiper = new Swiper('.swiper', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
 
-
-
-
-  <div class="swiffy-slider">
-    <ul class="slider-container">
-       
-        <li>
-          <div class="lista">
-          <div class="card">
-          <a href="/productodetalle">
-            <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-            <div class="detalle">
-              <p>Buzo Akatsuki</p>
-              <p>US$ 500</p>
-              <div class="estrellas">
-                <div class="ima">
-                  <img src="images/clasificacion.png" alt="" />
-                  <p> 2589</p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-      
-      
-        <div class="card">
-          <a href="/productodetalle">
-            <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-            <div class="detalle">
-              <p>Buzo Akatsuki</p>
-              <p>US$ 500</p>
-              <div class="estrellas">
-                <div class="ima">
-                  <img src="images/clasificacion.png" alt="" />
-                  <p> 2589</p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-
-        <div class="card">
-          <a href="/productodetalle">
-            <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-            <div class="detalle">
-              <p>Buzo Akatsuki</p>
-              <p>US$ 500</p>
-              <div class="estrellas">
-                <div class="ima">
-                  <img src="images/clasificacion.png" alt="" />
-                  <p> 2589</p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="card">
-          <a href="/productodetalle">
-            <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-            <div class="detalle">
-              <p>Buzo Akatsuki</p>
-              <p>US$ 500</p>
-              <div class="estrellas">
-                <div class="ima">
-                  <img src="images/clasificacion.png" alt="" />
-                  <p> 2589</p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <div class="card">
-          <a href="/productodetalle">
-            <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-            <div class="detalle">
-              <p>Buzo Akatsuki</p>
-              <p>US$ 500</p>
-              <div class="estrellas">
-                <div class="ima">
-                  <img src="images/clasificacion.png" alt="" />
-                  <p> 2589</p>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-
-      </div>
-      </li>
-        <li>
-          <div class="lista">
-
-       
-          <div class="card">
-            <a href="/productodetalle">
-              <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-              <div class="detalle">
-                <p>Buzo Akatsuki</p>
-                <p>US$ 500</p>
-                <div class="estrellas">
-                  <div class="ima">
-                    <img src="images/clasificacion.png" alt="" />
-                    <p> 2589</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="card">
-            <a href="/productodetalle">
-              <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-              <div class="detalle">
-                <p>Buzo Akatsuki</p>
-                <p>US$ 500</p>
-                <div class="estrellas">
-                  <div class="ima">
-                    <img src="images/clasificacion.png" alt="" />
-                    <p> 2589</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="card">
-            <a href="/productodetalle">
-              <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-              <div class="detalle">
-                <p>Buzo Akatsuki</p>
-                <p>US$ 500</p>
-                <div class="estrellas">
-                  <div class="ima">
-                    <img src="images/clasificacion.png" alt="" />
-                    <p> 2589</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="card">
-            <a href="/productodetalle">
-              <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-              <div class="detalle">
-                <p>Buzo Akatsuki</p>
-                <p>US$ 500</p>
-                <div class="estrellas">
-                  <div class="ima">
-                    <img src="images/clasificacion.png" alt="" />
-                    <p> 2589</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <div class="card">
-            <a href="/productodetalle">
-              <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-              <div class="detalle">
-                <p>Buzo </p>
-                <p>US$ 500</p>
-                <div class="estrellas">
-                  <div class="ima">
-                    <img src="images/clasificacion.png" alt="" />
-                    <p> 2589</p>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-        </div>
-        </li>
-    </ul>
-
-    <button type="button" class="slider-nav"></button>
-    <button type="button" class="slider-nav slider-nav-next"></button>
-
-    <div class="slider-indicators">
-        <button class="active"></button>
-        <button></button>
-        <button></button>
-    </div>
-</div>
-
-  <section>
-
-    <div class="lista">
-      <div class=" flechita">
-        <?xml version="1.0" ?>
-        <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
-          id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"
-          xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
-        </svg>
-      </div>
-      <div class=" flechitaL">
-        <?xml version="1.0" ?>
-        <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
-          id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"
-          xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
-        </svg>
-      </div>
-      <!-- <div class="card">
-        <a href="/productodetalle">
-          <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-          <div class="detalle">
-            <p>Buzo Akatsuki</p>
-            <p>US$ 500</p>
-            <div class="estrellas">
-              <div class="ima">
-                <img src="images/clasificacion.png" alt="" />
-                <p> 2589</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="card">
-        <a href="/productodetalle">
-          <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-          <div class="detalle">
-            <p>Buzo Akatsuki</p>
-            <p>US$ 500</p>
-            <div class="estrellas">
-              <div class="ima">
-                <img src="images/clasificacion.png" alt="" />
-                <p> 2589</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      
-
-      <div class="card">
-        <a href="/productodetalle">
-          <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-          <div class="detalle">
-            <p>Buzo Akatsuki</p>
-            <p>US$ 500</p>
-            <div class="estrellas">
-              <div class="ima">
-                <img src="images/clasificacion.png" alt="" />
-                <p> 2589</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
+    slidesPerView: 5,
+  
+   
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  
+    // And if we need scrollbar
     
+  });
+
+  const swiper2 = new Swiper('.swiper2', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+
+    slidesPerView: 5,
+  
+   
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  
+    // And if we need scrollbar
+    
+  });
+
+  function updateSlidesPerView() {
+  // Obtén el ancho de la ventana
+  var windowWidth = window.innerWidth;
+
+  // Actualiza el número de slides a mostrar en función del ancho de la ventana
+  if (windowWidth <= 768) { // Cambia a 2 slides en pantallas más pequeñas
+    swiper.params.slidesPerView = 2;
+    swiper2.params.slidesPerView = 2;
+  }else if(windowWidth <= 1000){ 
+    swiper.params.slidesPerView = 3;
+    swiper2.params.slidesPerView = 3;
+  } 
+  
+  else { // Vuelve a 3 slides en pantallas más grandes
+    swiper.params.slidesPerView = 5;
+    swiper2.params.slidesPerView = 5;
+  }
+
+  // Actualiza el Swiper
+  swiper.update();
+  swiper2.update();
+}
+
+// Llama a la función para actualizar slidesPerView cuando se carga la página
+window.addEventListener('load', updateSlidesPerView);
+
+// Detecta el cambio en el tamaño de la ventana
+window.addEventListener('resize', updateSlidesPerView);
+
+  </script>
 
 
 
-      <div class="card hidden1">
-        <a href="/productodetalle">
-          <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-          <div class="detalle">
-            <p>Buzo Akatsuki</p>
-            <p>US$ 500</p>
-            <div class="estrellas">
-              <div class="ima">
-                <img src="images/clasificacion.png" alt="" />
-                <p> 2589</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="card hidden2">
-        <a href="/productodetalle">
-          <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-          <div class="detalle">
-            <p>Buzo Akatsuki</p>
-            <p>US$ 500</p>
-            <div class="estrellas">
-              <div class="ima">
-                <img src="images/clasificacion.png" alt="" />
-                <p> 2589</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div> -->
-      <% products.map(p => { %>
+<!-- Slider main container -->
+<div class="swiper-container swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <% products.map(p => { %>
+    <div class="swiper-slide"> 
+      
       <div class="card">
         <a href="/productodetalle">
-          <img src="images/<%= p.image %>" style="max-width:200px; overflow: hidden;" alt="Wolverine" />
+          <img src="images/<%= p.image %>"  alt="Wolverine" />
           <div class="detalle">
             <p><%= p.name %></p>
             <p>$<%= p.price %></p>
@@ -341,8 +126,20 @@
           </div>
         </a>
       </div>
+      </div>
       <% }) %>
-  </section>
+   
+    ...
+  </div>
+  
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  
+</div>
+
+
 
   <div class="cen">
     <div class=" line"></div>
@@ -350,7 +147,43 @@
 
   <h5 class="subtitulo">Basado en tu última visita</h5>
 
-  <section class="lista">
+  
+<!-- Slider main container -->
+<div class="swiper-container swiper2">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <% products.map(p => { %>
+    <div class="swiper-slide"> 
+      
+      <div class="card">
+        <a href="/productodetalle">
+          <img src="images/<%= p.image %>"  alt="Wolverine" />
+          <div class="detalle">
+            <p><%= p.name %></p>
+            <p>$<%= p.price %></p>
+            <div class="estrellas">
+              <div class="ima">
+                <img src="images/clasificacion.png" alt="" />
+                <p> 2589</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      </div>
+      <% }) %>
+   
+    ...
+  </div>
+  
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  
+</div>
+  <!-- <section class="lista">
     <div class=" flechita">
       <?xml version="1.0" ?>
       <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
@@ -433,14 +266,14 @@
       </a>
     </div>
 
-  </section>
+  </section> -->
 
   <div class="cen">
     <div class=" line"></div>
   </div>
 
   <h5 class="subtitulo">Ofertas</h5>
-  <section class="lista">
+  <!-- <section class="lista">
     <div class=" flechita">
       <?xml version="1.0" ?>
       <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
@@ -521,7 +354,7 @@
       </a>
     </div>
 
-  </section>
+  </section> -->
 
 
   <%- include ("../partials/footer.ejs") %>
