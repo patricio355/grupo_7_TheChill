@@ -6,6 +6,40 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.carousel-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.carousel-frame {
+    display: flex;
+    overflow: hidden;
+    width: 600px; /* Ancho del carrusel visible */
+    margin: 10px;
+    border: 1px solid #ccc;
+}
+
+.carousel-content {
+    display: flex;
+    gap: 20px; /* Espacio entre tarjetas */
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+
+
 .fondo{
     display: flex;
     background:rgb(250, 250, 250);
@@ -29,45 +63,6 @@ margin: 0;
     justify-content: space-evenly;
 }
 
-.comprar-boton {
-    background-color: rgb(0, 0, 0); 
-    color: #fff; 
-    font-size: 18px; 
-    font-weight: bold;
-    padding: 10px 20px; 
-    cursor: pointer; 
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.comprar-boton:hover {
-    background-color: rgb(255, 255, 255); 
-    color: #000000; 
-    font-size: 18px; 
-    font-weight: bold;
-    padding: 10px 20px; 
-    cursor: pointer; 
-    box-shadow: 5px 7px 4px rgba(0, 0, 0, 0.1);
-   
-}
-
-.textoney{
-    /* font-family: 'Poppins', sans-serif; */
-    font-size: 75px;
-    text-align:left;
-    margin-bottom: 0px;
-}
-
-.textone{
-    /* font-family: 'Poppins', sans-serif;  */
-    font-weight:100;
-    font-size: 60px;
-    margin: 50px;
-    margin-top: 4%;
-    margin-bottom: 3%;
-    margin-left: 0;
-}
-
-
 .line {
     border-top: 3px solid #d4d3d3; 
     width: 90%; 
@@ -82,8 +77,8 @@ margin: 0;
 }
 
 .card {
-    display: block;
-    width: auto;
+    width: 500px;
+    height: auto; /* Esto mantendrá la proporción de la imagen */
     font-size: 1.2rem;
     border: 2px solid #f3f3f3;
     border-radius: 1px;
@@ -249,11 +244,11 @@ display: none;
     width: 100%;
 }
 
-section {
+/* section {
     position: relative;
    
     overflow: hidden;
-}
+} */
 @media (min-width: 1060px){
     .imgpc {
         display: block;
@@ -268,29 +263,10 @@ section {
 }
 @media (max-width: 1060px){
 
-    .hidden1{
+    /* .hidden1{
         display: none;
-    }
-    .textoney{
-        font-family: 'Poppins', sans-serif; 
-        font-size: 30px;
-        text-align:center;
-        margin: 0;
-        
-    }
-    .comprar-boton {
-        background-color: rgb(0, 0, 0); 
-        color: #fff; 
-        font-size: 23px; 
-        font-weight: bold;
-        padding: 3px 10px; 
-        cursor: pointer; 
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-     
-    }
-    .textone{
-        display: none;
-    }
+    } */
+
     .subtitulo{
         font-family: 'Poppins', sans-serif;  
         font-weight: 300;
@@ -366,42 +342,16 @@ section {
 
     .imgpc {
         display: none;
-        /* display: block;
-            width: 100%;
-            height: 330px;
-            background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(249 ,245 ,235 ,0.25) 81%, rgba(249 ,245 ,235 , 1) 100%),url(../images/banerNey.jpeg);
-            background-size: cover; */
-        
     }
     .imgmobile img{
         display: block;
         width: 100%;;
      }
-    .hidden2{
+    /* .hidden2{
         display: none;
-    }
+    } */
    
-    .textoney{
-        /* font-family: 'Poppins', sans-serif; */
-        font-size: 15px;
-        text-align:center;
-        margin: 0;
-        
-    }
-    .comprar-boton {
-        background-color: rgb(0, 0, 0); 
-        color: #fff; 
-        font-size: 10px; 
-        font-weight: bold;
-        padding: 3px 10px; 
-        cursor: pointer; 
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    }
-    .textone{
-        display: none;
-    }
     .subtitulo{
-        /* font-family: 'Poppins', sans-serif;  */
         font-weight: 300;
         font-size: 15px;
         color: #6e6e6e;
@@ -418,7 +368,6 @@ section {
     }
 
     .card p {
-        /* font-family: 'Poppins', sans-serif;  */
         font-weight: 300;
         font-size: 18px;
         color: #000000;
@@ -429,7 +378,6 @@ section {
 
         color: rgb(155, 7, 7);
         text-align: end;
-        /* margin-top: 10%; */
         font-size: 12px;
         
     }
