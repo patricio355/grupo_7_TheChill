@@ -6,6 +6,40 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.carousel-button {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.carousel-frame {
+    display: flex;
+    overflow: hidden;
+    width: 600px; /* Ancho del carrusel visible */
+    margin: 10px;
+    border: 1px solid #ccc;
+}
+
+.carousel-content {
+    display: flex;
+    gap: 20px; /* Espacio entre tarjetas */
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+
+
 .fondo{
     display: flex;
     background:rgb(250, 250, 250);
