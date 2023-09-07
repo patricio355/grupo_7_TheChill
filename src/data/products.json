@@ -30,21 +30,6 @@
         "discount": 0
     },
     {
-        "id": 3,
-        "name": "Vestido floral",
-        "image": "prenda13.jpeg",
-        "size": "S",
-        "description": "Vestido floral de verano para mujeres",
-        "price": 39.99,
-        "brand": "Marca C",
-        "color": "Multicolor",
-        "gender": "Mujer",
-        "category": "Vestido",
-        "model_name": "Verano",
-        "stock": 8,
-        "discount": 10
-    },
-    {
         "id": 4,
         "name": "Chaqueta de cuero",
         "image": "prenda12.webp",
@@ -106,18 +91,18 @@
     },
     {
         "id": 8,
-        "name": "Pantalones chinos",
-        "image": "prenda4.jpg",
-        "size": "S",
+        "name": "Pantalones Editados",
+        "image": "products_1694098410382.webp",
+        "size": "XS",
         "description": "Pantalones chinos cómodos y versátiles",
-        "price": 37.99,
+        "price": "37.99",
         "brand": "Marca H",
-        "color": "Beige",
-        "gender": "Unisex",
-        "category": "Pantalones",
+        "color": "#000000",
+        "gender": "Hombre",
+        "category": "Deporte",
         "model_name": "Clásico",
-        "stock": 14,
-        "discount": 7
+        "stock": "14",
+        "discount": "7"
     },
     {
         "id": 9,

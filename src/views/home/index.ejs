@@ -148,41 +148,6 @@ window.addEventListener('resize', updateSlidesPerView);
   <h5 class="subtitulo">Basado en tu última visita</h5>
 
   
-<!-- Slider main container -->
-<div class="swiper2">
-  <!-- Additional required wrapper -->
-  <div class="swiper-wrapper">
-    <!-- Slides -->
-    <% products.map(p => { %>
-    <div class="swiper-slide"> 
-      
-      <div class="card">
-        <a href="/productDetail/<%= p.id %>">
-          <img src="images/<%= p.image %>" style="max-width:200px; overflow: hidden;" alt="Wolverine" />
-          <div class="detalle">
-            <p><%= p.name %></p>
-            <p>$<%= p.price %></p>
-            <div class="estrellas">
-              <div class="ima">
-                <img src="images/clasificacion.png" alt="" />
-                <p> 2589</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      </div>
-      <% }) %>
-   
-    ...
-  </div>
-  
-  <!-- If we need navigation buttons -->
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-
-  
-</div>
   <!-- <section class="lista">
     <div class=" flechita">
       <?xml version="1.0" ?>
@@ -355,7 +320,28 @@ window.addEventListener('resize', updateSlidesPerView);
     </div>
 
   </section> -->
-
+  <div class="lista">
+  <% products.map(p => { %>
+    <div class="swiper-slide"> 
+      
+      <div class="card">
+        <a href="/productDetail/<%= p.id %>">
+          <img src="images/<%= p.image %>"  alt="Wolverine" />
+          <div class="detalle">
+            <p><%= p.name %></p>
+            <p>$<%= p.price %></p>
+            <div class="estrellas">
+              <div class="ima">
+                <img src="images/clasificacion.png" alt="" />
+                <p> 2589</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      </div>
+      <% }) %>
+    </div>
 
   <%- include ("../partials/footer.ejs") %>
   

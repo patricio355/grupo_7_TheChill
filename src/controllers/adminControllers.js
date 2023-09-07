@@ -36,6 +36,41 @@ const adminControllers = {
         fs.writeFileSync(productsFilePath, JSON.stringify(products));
         res.redirect("/");
     },
+    destroy: (req, res) => {
+        const id = req.params.id;
+        const leftProducts = products.filter((product) => product.id != id);
+        fs.writeFileSync(productsFilePath, JSON.stringify(leftProducts));
+        res.redirect("/");
+    },
+    edit: (req, res) => {
+        const id = req.params.id;
+        const product = products.find((product) => product.id == id);
+        res.render(path.join(__dirname, "../views/admin/editProduct.ejs"), { productToEdit: product });
+    },
+    update: (req, res) => {
+        // Do the magic
+        const id = req.params.id;
+        const editProduct = req.body;
+        const index = products.findIndex((product) => product.id == id);
+        console.log(editProduct);
+        products[index].price = editProduct.price;
+        products[index].name = editProduct.name;
+        products[index].discount = editProduct.discount;
+        products[index].category = !editProduct.category
+            ? products[index].category
+            : editProduct.category;
+        products[index].description = editProduct.description;
+        products[index].brand = editProduct.brand;
+        products[index].model_name = editProduct.model_name;
+        products[index].size = editProduct.size;
+        products[index].color = editProduct.color;
+        products[index].stock = editProduct.stock;
+        products[index].gender = editProduct.gender;
+       
+        products[index].image = req.file.filename;
+        fs.writeFileSync(productsFilePath, JSON.stringify(products));
+        res.redirect("/");
+    },
 }
 
 module.exports = adminControllers;
