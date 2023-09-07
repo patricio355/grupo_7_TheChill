@@ -104,7 +104,7 @@ window.addEventListener('resize', updateSlidesPerView);
 
 
 <!-- Slider main container -->
-<div class="swiper-container swiper">
+<div class="swiper">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
@@ -112,7 +112,7 @@ window.addEventListener('resize', updateSlidesPerView);
     <div class="swiper-slide"> 
       
       <div class="card">
-        <a href="/productodetalle">
+        <a href="/productDetail/<%= p.id %>">
           <img src="images/<%= p.image %>"  alt="Wolverine" />
           <div class="detalle">
             <p><%= p.name %></p>
@@ -129,7 +129,7 @@ window.addEventListener('resize', updateSlidesPerView);
       </div>
       <% }) %>
    
-    ...
+    
   </div>
   
   <!-- If we need navigation buttons -->
@@ -149,7 +149,7 @@ window.addEventListener('resize', updateSlidesPerView);
 
   
 <!-- Slider main container -->
-<div class="swiper-container swiper2">
+<div class="swiper2">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
