@@ -104,6 +104,10 @@
                         <div class="acciones">
                             <button>Comprar ahora</button>
                             <button>Agregar al carrito <i class="fa-sharp fa-solid fa-cart-shopping"></i></button>
+                            <form action="/delete/<%= product.id %>" method="POST">
+                            <button type="submit">Eliminar</button></form>
+                            <a href="/edit/<%= product.id %>">Editar</a>
+                            
                         </div>
                         <a class="similar" href="#">Ver más producto similares</a>
                     </div>

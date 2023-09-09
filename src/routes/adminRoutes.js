@@ -23,5 +23,8 @@ adminRoutes.get('/admin', adminControllers.admin);
 adminRoutes.get('/admin/create', adminControllers.createEdit);
 adminRoutes.post("/", uploadFile.single("productImage"), adminControllers.store);
 
+adminRoutes.post('/delete/:id', adminControllers.destroy);
+adminRoutes.get('/edit/:id', adminControllers.edit);
+adminRoutes.post('/edit/:id',uploadFile.single("productImage") ,adminControllers.update);
 
 module.exports = adminRoutes;

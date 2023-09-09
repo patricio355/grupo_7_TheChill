@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include ("../partials/head.ejs") %>
+        <title>Panel Administrador</title>
+        <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <section class="admin-navbar">
+            <img src="/images/logoFinal.png" width="200px" alt="">
+            <div class="admin-title">
+                <p style="font-weight: 200; font-size: 28px;">PANEL ADMINISTRADOR - THE CHILL</p>
+            </div>
+            <div class="admin-icons">
+                <i class="fas fa-user"></i>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </section>
+        <section class="admin-navigate-menu">
+            <p>/home/products/create</p>
+        </section>
+        <section class="admin-create-section">
+            <div class="admin-create-title">
+                <a href="/admin"><button class="back-button" style="cursor: pointer;"><i class="fas fa-long-arrow-alt-left"></i></button></a>
+                <div class="title-create">
+                    <p>Volver a la lista de productos</p>
+                    <h3>Creando un nuevo producto...</h3>
+                </div>
+            </div>
+            <form action="/edit/<%= productToEdit.id %>" method="post" enctype="multipart/form-data" class="admin-create-product">
+                <div class="admin-create-parent">
+                    <div class="create-description">
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <label for="productName"><h3>Nombre de producto</h3></label>
+                                <input value="<%= productToEdit.name%>" type="text" id="name" name="name" placeholder="Ingrese el nombre del producto...">
+                            </div>
+                            <div class="generic-input-label">
+                                <label for="productDescription"><h4>Descripción del producto</h4></label>
+                                <input value="<%= productToEdit.description%>" type="text" id="description" name="description"
+                                    placeholder="Ingrese descripción...">
+                            </div>
+                        </div>
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <label for="category"><h4>Categoría de producto</h4></label>
+                                <select value="<%= productToEdit.category%>" name="category" id="category">
+                                    <option value="Deporte">Deporte</option>
+                                    <option value="Interior">Interior</option>
+                                    <option value="Jeans">Jeans</option>
+                                    <option value="Formal">Formal</option>
+                                    <option value="Vestido">Vestido</option>
+                                    <option value="Remera">Remeras</option>
+                                    <option value="Zapatilla">Zapatillas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <label for="stock"><h4>Stock</h4></label>
+                                <input value="<%= productToEdit.stock%>" type="number" id="stock" name="stock" placeholder="Ingrese el stock disponible...">
+                            </div>
+
+                            <div class="generic-input-label">
+                                <label for="size"><h4>Tamaño</h4></label>
+                                    <select value="<%= productToEdit.size%>" name="size" id="size">
+                                        <option value="XS">XS (Extra Pequeño)</option>
+                                        <option value="S">S (Pequeño)</option>
+                                        <option value="M">M (Mediano)</option>
+                                        <option value="L">L (Grande)</option>
+                                        <option value="XL">XL (Extra Grande)</option>
+                                        <option value="XXL">XXL (Doble Extra Grande)</option>
+                                        <option value="XXXL">XXXL (Triple Extra Grande)</option>
+                                    </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="product-details">
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <h4>Imagenes del producto</h4>
+                                <input value="<%= productToEdit.image%>"  type="file" id="productImages" name="productImage">
+                                <!-- <div class="product-image">
+                                    <img src="" alt="">
+                                    <div class="product-image-duo">
+                                        <img src="" alt="">
+                                        <img src="" alt="">
+                                    </div>
+                                </div> -->
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="create-section">
+                            <div class="generic-input-label">
+                                <h4>Envío y entrega</h4>
+                                <label for="shipping">Seleccione tipo de envío</label>
+                                <select name="perfil" id="shipping">
+                                    <option value="Gratis">Gratis</option>
+                                    <option value="A retirar por domicilio">A retirar por domicilio</option>
+                                    <option value="A cargo del comprador">A cargo del comprador</option>
+                                </select>
+                            </div>
+                        </div> -->
+                        <div class="create-section">
+                            <h4>Precio</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="price">Precio Unitario</label>
+                                    <input value="<%= productToEdit.price%>" type="number" id="price" name="price" placeholder="Ingrese precio por unidad...">
+                                </div>
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="tax">Descuento</label>
+                                    <input value="<%= productToEdit.discount%>" type="number" id="discount" name="discount" placeholder="Ingrese descuento...">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="create-section">
+                            <h4>Datos de Producto</h4>
+                            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="brand">Marca</label>
+                                    <input value="<%= productToEdit.brand%>"  type="text" id="brand" name="brand" placeholder="Ingrese marca...">
+                                </div>
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="gender">Género</label>
+                                    <select value="<%= productToEdit.gender%>" name="gender" id="gender">
+                                        <option value="Hombre">Hombre</option>
+                                        <option value="Mujer">Mujer</option>
+                                        <option value="Unisex">Unisex</option>
+                                    </select>
+                                </div>
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="tax">Modelo</label>
+                                    <input value="<%= productToEdit.model_name%>" type="text" id="model_name"  name="model_name" placeholder="Ingrese modelo...">
+                                </div>
+                                <div class="generic-input-label" style="width: 100%;">
+                                    <label for="color">Color</label>
+                                    <input value="<%= productToEdit.color%>" type="color" id="color" name="color" style="padding: none; height: 40px;" value="#000">
+                                </div>
+                            </div>
+                        </div>
+
+
+                
+                        <div class="admin-create-buttons">
+                            <button class="btn btn-success" type="submit">Añadir Producto</button>
+                            <a href="/"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
+                            <a href="/"><button><i class="far fa-clock"></i></button></a>
+                            <a href=""><button><input class="reset-class" type="reset" value="Restablecer"></button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+
+</html>
