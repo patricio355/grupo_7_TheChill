@@ -52,7 +52,7 @@ const adminControllers = {
         const id = req.params.id;
         const editProduct = req.body;
         const index = products.findIndex((product) => product.id == id);
-        console.log(editProduct);
+        //console.log(editProduct);
         products[index].price = editProduct.price;
         products[index].name = editProduct.name;
         products[index].discount = editProduct.discount;
@@ -66,8 +66,10 @@ const adminControllers = {
         products[index].color = editProduct.color;
         products[index].stock = editProduct.stock;
         products[index].gender = editProduct.gender;
-       
-        products[index].image = req.file.filename;
+        if (req.file && req.file.filename) {
+            products[index].image = req.file.filename;
+        }
+    
         fs.writeFileSync(productsFilePath, JSON.stringify(products));
         res.redirect("/");
     },

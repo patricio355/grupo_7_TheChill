@@ -42,7 +42,9 @@
                 </div>
                 <div class="imagen">
                     <img src="/images/<%= product.image %>" class="diffumine" alt="">
+                    <h4 class="caracteristica-titulo"><%= product.description%></h4>
                 </div>
+               
             </div>
             <div class="detail">
                 <div class="detalles">
@@ -65,21 +67,14 @@
                 </div>
                 <div class="row">
                     <label for="">Color:</label>
-                    <select name="" id="color" class="color">
-                        <option value=""><%= product.color %></option>
-                        <option value="">Azul</option>
-                        <option value="">Amarillo</option>
-                        <option value="">Negro</option>
-                        <option value="">Blanco</option>
-                    </select>
+                    <button><span><%= product.color %></span></button>
+                       
                 </div>
                 <div class="row">
                     <div class="talles">
                         <span>Talle:</span>
-                        <button>S/38</button>
-                        <button>M/40</button>
-                        <button>L/42</button>
-                        <button>XL/44</button>
+                        <button> <span><%= product.size %></span></button>
+                      
                     </div>
                 </div>
                 <div class="row">
@@ -90,7 +85,7 @@
                         <div class="row">
                             <div class="cantidad">
                                 <label for="">Cantidad:</label>
-                                <input type="number" value="2">
+                                <span><%= product.stock %></span>
                             </div>
                         </div>
                         <div class="row">
@@ -106,7 +101,7 @@
                             <button>Agregar al carrito <i class="fa-sharp fa-solid fa-cart-shopping"></i></button>
                             <form action="/delete/<%= product.id %>" method="POST">
                             <button type="submit">Eliminar</button></form>
-                            <a href="/edit/<%= product.id %>">Editar</a>
+                            <a style="color: black;" href="/edit/<%= product.id %>">Editar</a>
                             
                         </div>
                         <a class="similar" href="#">Ver más producto similares</a>
@@ -128,15 +123,15 @@
                         </tr>
                         <tr>
                             <td>Modelo</td>
-                            <td><%= product.model %></td>
+                            <td><%= product.model_name %></td>
                         </tr>
                         <tr>
                             <td>Género</td>
                             <td><%= product.gender %></td>
                         </tr>
                         <tr>
-                            <td>Tipo de prenda</td>
-                            <td><%= product.type %></td>
+                            <td>Categoria</td>
+                            <td><%= product.category %></td>
                         </tr>
                     </table>
                 </div>

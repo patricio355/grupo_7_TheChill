@@ -30,9 +30,13 @@
   </section>
 
   <script type="module">
+   
     import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs'
-  
-    const swiper = new Swiper('.swiper', {
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Crear y configurar el objeto Swiper
+  const swiper = new Swiper('.swiper', {
+   
     // Optional parameters
     direction: 'horizontal',
     loop: true,
@@ -46,59 +50,40 @@
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-  
-    // And if we need scrollbar
-    
   });
 
-  const swiper2 = new Swiper('.swiper2', {
-    // Optional parameters
-    direction: 'horizontal',
-    loop: true,
+  updateSlidesPerView();
 
-    slidesPerView: 5,
-  
-   
-  
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  
-    // And if we need scrollbar
+
+window.addEventListener('resize', function() {
+  updateSlidesPerView();
+});
+
+ 
+
+
+function updateSlidesPerView() {
+console.log("hola")
+  if (swiper) {
+    var windowWidth = window.innerWidth;
+
+    if (windowWidth <= 768) {
+      swiper.params.slidesPerView = 2;
+    } else if (windowWidth <= 1000) {
+      swiper.params.slidesPerView = 3;
+    } else {
+      swiper.params.slidesPerView = 5;
+    }
+
     
-  });
-
-  function updateSlidesPerView() {
-  // Obtén el ancho de la ventana
-  var windowWidth = window.innerWidth;
-
-  // Actualiza el número de slides a mostrar en función del ancho de la ventana
-  if (windowWidth <= 768) { // Cambia a 2 slides en pantallas más pequeñas
-    swiper.params.slidesPerView = 2;
-    swiper2.params.slidesPerView = 2;
-  }else if(windowWidth <= 1000){ 
-    swiper.params.slidesPerView = 3;
-    swiper2.params.slidesPerView = 3;
-  } 
-  
-  else { // Vuelve a 3 slides en pantallas más grandes
-    swiper.params.slidesPerView = 5;
-    swiper2.params.slidesPerView = 5;
+    swiper.update();
   }
+  
+  
 
-  // Actualiza el Swiper
-  swiper.update();
-  swiper2.update();
+
 }
-
-// Llama a la función para actualizar slidesPerView cuando se carga la página
-window.addEventListener('load', updateSlidesPerView);
-
-// Detecta el cambio en el tamaño de la ventana
-window.addEventListener('resize', updateSlidesPerView);
-
+});
   </script>
 
 
@@ -147,202 +132,15 @@ window.addEventListener('resize', updateSlidesPerView);
 
   <h5 class="subtitulo">Basado en tu última visita</h5>
 
-  
-  <!-- <section class="lista">
-    <div class=" flechita">
-      <?xml version="1.0" ?>
-      <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
-        id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
-      </svg>
-    </div>
-    <div class=" flechitaL">
-      <?xml version="1.0" ?>
-      <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
-        id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
-      </svg>
-    </div>
-
-    
-    <div class="card">
-      <a href="/productodetalle">
-        <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-        <div class="detalle">
-          <p>Buzo Akatsuki</p>
-          <p>US$ 500</p>
-          <div class="estrellas">
-            <div class="ima">
-              <img src="images/clasificacion.png" alt="" />
-              <p> 2589</p>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="card">
-      <a href="/productodetalle">
-        <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-        <div class="detalle">
-          <p>Buzo Akatsuki</p>
-          <p>US$ 500</p>
-          <div class="estrellas">
-            <div class="ima">
-              <img src="images/clasificacion.png" alt="" />
-              <p> 2589</p>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="card hidden1">
-      <a href="/productodetalle">
-        <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-        <div class="detalle">
-          <p>Buzo Akatsuki</p>
-          <p>US$ 500</p>
-          <div class="estrellas">
-            <div class="ima">
-              <img src="images/clasificacion.png" alt="" />
-              <p> 2589</p>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="card hidden2">
-      <a href="/productodetalle">
-        <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-        <div class="detalle">
-          <p>Buzo Akatsuki</p>
-          <p>US$ 500</p>
-          <div class="estrellas">
-            <div class="ima">
-              <img src="images/clasificacion.png" alt="" />
-              <p> 2589</p>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-  </section> -->
+ 
 
   <div class="cen">
     <div class=" line"></div>
   </div>
 
   <h5 class="subtitulo">Ofertas</h5>
-  <!-- <section class="lista">
-    <div class=" flechita">
-      <?xml version="1.0" ?>
-      <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
-        id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
-      </svg>
-    </div>
-    <div class=" flechitaL">
-      <?xml version="1.0" ?>
-      <!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
-        id="Layer_1" style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
-        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <polygon points="160,115.4 180.7,96 352,256 180.7,416 160,396.7 310.5,256 " />
-      </svg>
-    </div>
-    <div class="card">
-      <a href="/productodetalle">
-        <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-        <div class="detalle">
-          <p>Buzo Akatsuki</p>
-          <p>US$ 500</p>
-          <div class="estrellas">
-            <div class="ima">
-              <img src="images/clasificacion.png" alt="" />
-              <p> 2589</p>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
 
-    <div class="card">
-      <a href="/productodetalle">
-        <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-        <div class="detalle">
-          <p>Buzo Akatsuki</p>
-          <p>US$ 500</p>
-          <div class="estrellas">
-            <div class="ima">
-              <img src="images/clasificacion.png" alt="" />
-              <p> 2589</p>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="card hidden1">
-      <a href="/productodetalle">
-        <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-        <div class="detalle">
-          <p>Buzo Akatsuki</p>
-          <p>US$ 500</p>
-          <div class="estrellas">
-            <div class="ima">
-              <img src="images/clasificacion.png" alt="" />
-              <p> 2589</p>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="card hidden2">
-      <a href="/productodetalle">
-        <img src="images/buzoA.jpeg" width="200px" alt="Wolverine" />
-        <div class="detalle">
-          <p>Buzo Akatsuki</p>
-          <p>US$ 500</p>
-          <div class="estrellas">
-            <div class="ima">
-              <img src="images/clasificacion.png" alt="" />
-              <p> 2589</p>
-            </div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-  </section> -->
-  <div class="lista">
-  <% products.map(p => { %>
-    <div class="swiper-slide"> 
-      
-      <div class="card">
-        <a href="/productDetail/<%= p.id %>">
-          <img src="images/<%= p.image %>"  alt="Wolverine" />
-          <div class="detalle">
-            <p><%= p.name %></p>
-            <p>$<%= p.price %></p>
-            <div class="estrellas">
-              <div class="ima">
-                <img src="images/clasificacion.png" alt="" />
-                <p> 2589</p>
-              </div>
-            </div>
-          </div>
-        </a>
-      </div>
-      </div>
-      <% }) %>
-    </div>
-
+  
   <%- include ("../partials/footer.ejs") %>
   
 </body>

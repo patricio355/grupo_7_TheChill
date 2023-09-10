@@ -26,29 +26,36 @@
         </section>
         <section class="admin-create-section">
             <div class="admin-create-title">
-                <a href="/admin"><button class="back-button" style="cursor: pointer;"><i class="fas fa-long-arrow-alt-left"></i></button></a>
+                <a href="/admin"><button class="back-button" style="cursor: pointer;"><i
+                            class="fas fa-long-arrow-alt-left"></i></button></a>
                 <div class="title-create">
                     <p>Volver a la lista de productos</p>
-                    <h3>Creando un nuevo producto...</h3>
+                    <h3>Edición producto...</h3>
                 </div>
             </div>
-            <form action="/edit/<%= productToEdit.id %>" method="post" enctype="multipart/form-data" class="admin-create-product">
+            <form action="/edit/<%= productToEdit.id %>" method="post" enctype="multipart/form-data"
+                class="admin-create-product">
                 <div class="admin-create-parent">
                     <div class="create-description">
                         <div class="create-section">
                             <div class="generic-input-label">
-                                <label for="productName"><h3>Nombre de producto</h3></label>
-                                <input value="<%= productToEdit.name%>" type="text" id="name" name="name" placeholder="Ingrese el nombre del producto...">
+                                <label for="productName">
+                                    <h3>Nombre de producto</h3>
+                                </label>
+                                <input value="<%= productToEdit.name%>" type="text" id="name" name="name"
+                                    placeholder="Ingrese el nombre del producto...">
                             </div>
                             <div class="generic-input-label">
-                                <label for="productDescription"><h4>Descripción del producto</h4></label>
-                                <input value="<%= productToEdit.description%>" type="text" id="description" name="description"
-                                    placeholder="Ingrese descripción...">
+                                <label for="productDescription">
+                                    <h4>Descripción del producto</h4>
+                                </label>
+                                <input value="<%= productToEdit.description%>" type="text" id="description"
+                                    name="description" placeholder="Ingrese descripción...">
                             </div>
                         </div>
                         <div class="create-section">
                             <div class="generic-input-label">
-                                <label for="category"><h4>Categoría de producto</h4></label>
+                                <!-- <label for="category"><h4>Categoría de producto</h4></label>
                                 <select value="<%= productToEdit.category%>" name="category" id="category">
                                     <option value="Deporte">Deporte</option>
                                     <option value="Interior">Interior</option>
@@ -57,17 +64,39 @@
                                     <option value="Vestido">Vestido</option>
                                     <option value="Remera">Remeras</option>
                                     <option value="Zapatilla">Zapatillas</option>
+                                </select> -->
+                                <label for="category">
+                                    <h4>Categoría de producto</h4>
+                                </label>
+                                <select name="category" id="category">
+                                    <option value="Deporte" <%=productToEdit.category==="Deporte" ? "selected" : "" %>
+                                        >Deporte</option>
+                                    <option value="Interior" <%=productToEdit.category==="Interior" ? "selected" : "" %>
+                                        >Interior</option>
+                                    <option value="Jeans" <%=productToEdit.category==="Jeans" ? "selected" : "" %>>Jeans
+                                    </option>
+                                    <option value="Formal" <%=productToEdit.category==="Formal" ? "selected" : "" %>
+                                        >Formal</option>
+                                    <option value="Vestido" <%=productToEdit.category==="Vestido" ? "selected" : "" %>
+                                        >Vestido</option>
+                                    <option value="Remera" <%=productToEdit.category==="Remera" ? "selected" : "" %>
+                                        >Remeras</option>
+                                    <option value="Zapatilla" <%=productToEdit.category==="Zapatilla" ? "selected" : ""
+                                        %>>Zapatillas</option>
                                 </select>
                             </div>
                         </div>
                         <div class="create-section">
                             <div class="generic-input-label">
-                                <label for="stock"><h4>Stock</h4></label>
-                                <input value="<%= productToEdit.stock%>" type="number" id="stock" name="stock" placeholder="Ingrese el stock disponible...">
+                                <label for="stock">
+                                    <h4>Stock</h4>
+                                </label>
+                                <input value="<%= productToEdit.stock%>" type="number" id="stock" name="stock"
+                                    placeholder="Ingrese el stock disponible...">
                             </div>
 
                             <div class="generic-input-label">
-                                <label for="size"><h4>Tamaño</h4></label>
+                                <!-- <label for="size"><h4>Tamaño</h4></label>
                                     <select value="<%= productToEdit.size%>" name="size" id="size">
                                         <option value="XS">XS (Extra Pequeño)</option>
                                         <option value="S">S (Pequeño)</option>
@@ -76,7 +105,41 @@
                                         <option value="XL">XL (Extra Grande)</option>
                                         <option value="XXL">XXL (Doble Extra Grande)</option>
                                         <option value="XXXL">XXXL (Triple Extra Grande)</option>
-                                    </select>
+                                    </select> -->
+                                <label for="size">
+                                    <h4>Tamaño</h4>
+                                </label>
+                                <select name="size" id="size">
+                                    <option value="XS" <%=productToEdit.size==="XS" ? "selected" : "" %>>XS (Extra
+                                        Pequeño)</option>
+                                    <option value="S" <%=productToEdit.size==="S" ? "selected" : "" %>>S (Pequeño)
+                                    </option>
+                                    <option value="M" <%=productToEdit.size==="M" ? "selected" : "" %>>M (Mediano)
+                                    </option>
+                                    <option value="L" <%=productToEdit.size==="L" ? "selected" : "" %>>L (Grande)
+                                    </option>
+                                    <option value="XL" <%=productToEdit.size==="XL" ? "selected" : "" %>>XL (Extra
+                                        Grande)</option>
+                                    <option value="XXL" <%=productToEdit.size==="XXL" ? "selected" : "" %>>XXL (Doble
+                                        Extra Grande)</option>
+                                    <option value="XXXL" <%=productToEdit.size==="XXXL" ? "selected" : "" %>>XXXL
+                                        (Triple Extra Grande)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="create-section">
+                            <h4>Precio</h4>
+                            <div style="display: flex; gap: 10px;">
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="price">Precio Unitario</label>
+                                    <input value="<%= productToEdit.price%>" type="number" id="price" name="price"
+                                        placeholder="Ingrese precio por unidad...">
+                                </div>
+                                <div class="generic-input-label" style="width: 50%;">
+                                    <label for="tax">Descuento</label>
+                                    <input value="<%= productToEdit.discount%>" type="number" id="discount"
+                                        name="discount" placeholder="Ingrese descuento...">
+                                </div>
                             </div>
                         </div>
 
@@ -84,8 +147,11 @@
                     <div class="product-details">
                         <div class="create-section">
                             <div class="generic-input-label">
-                                <h4>Imagenes del producto</h4>
-                                <input value="<%= productToEdit.image%>"  type="file" id="productImages" name="productImage">
+                                <h4>Imagen del producto</h4>
+                                <img src="/images/<%= productToEdit.image %>"  width="200px" height="200px" alt="">
+                               
+                                <input type="file" id="productImages" name="productImage"> 
+
                                 <!-- <div class="product-image">
                                     <img src="" alt="">
                                     <div class="product-image-duo">
@@ -95,7 +161,7 @@
                                 </div> -->
                             </div>
                         </div>
-                        
+
                         <!-- <div class="create-section">
                             <div class="generic-input-label">
                                 <h4>Envío y entrega</h4>
@@ -107,52 +173,52 @@
                                 </select>
                             </div>
                         </div> -->
-                        <div class="create-section">
-                            <h4>Precio</h4>
-                            <div style="display: flex; gap: 10px;">
-                                <div class="generic-input-label" style="width: 50%;">
-                                    <label for="price">Precio Unitario</label>
-                                    <input value="<%= productToEdit.price%>" type="number" id="price" name="price" placeholder="Ingrese precio por unidad...">
-                                </div>
-                                <div class="generic-input-label" style="width: 50%;">
-                                    <label for="tax">Descuento</label>
-                                    <input value="<%= productToEdit.discount%>" type="number" id="discount" name="discount" placeholder="Ingrese descuento...">
-                                </div>
-                            </div>
-                        </div>
+                       
                         <div class="create-section">
                             <h4>Datos de Producto</h4>
                             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="brand">Marca</label>
-                                    <input value="<%= productToEdit.brand%>"  type="text" id="brand" name="brand" placeholder="Ingrese marca...">
+                                    <input value="<%= productToEdit.brand%>" type="text" id="brand" name="brand"
+                                        placeholder="Ingrese marca...">
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
-                                    <label for="gender">Género</label>
+                                    <!-- <label for="gender">Género</label>
                                     <select value="<%= productToEdit.gender%>" name="gender" id="gender">
                                         <option value="Hombre">Hombre</option>
                                         <option value="Mujer">Mujer</option>
                                         <option value="Unisex">Unisex</option>
+                                    </select> -->
+                                    <label for="gender">Género</label>
+                                    <select name="gender" id="gender">
+                                        <option value="Hombre" <%=productToEdit.gender==="Hombre" ? "selected" : "" %>
+                                            >Hombre</option>
+                                        <option value="Mujer" <%=productToEdit.gender==="Mujer" ? "selected" : "" %>
+                                            >Mujer</option>
+                                        <option value="Unisex" <%=productToEdit.gender==="Unisex" ? "selected" : "" %>
+                                            >Unisex</option>
                                     </select>
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="tax">Modelo</label>
-                                    <input value="<%= productToEdit.model_name%>" type="text" id="model_name"  name="model_name" placeholder="Ingrese modelo...">
+                                    <input value="<%= productToEdit.model_name%>" type="text" id="model_name"
+                                        name="model_name" placeholder="Ingrese modelo...">
                                 </div>
                                 <div class="generic-input-label" style="width: 100%;">
                                     <label for="color">Color</label>
-                                    <input value="<%= productToEdit.color%>" type="color" id="color" name="color" style="padding: none; height: 40px;" value="#000">
+                                    <input value="<%= productToEdit.color%>" type="color" id="color" name="color"
+                                        style="padding: none; height: 40px;" value="#000">
                                 </div>
                             </div>
                         </div>
 
 
-                
+
                         <div class="admin-create-buttons">
-                            <button class="btn btn-success" type="submit">Añadir Producto</button>
+                            <button class="btn btn-success" type="submit">Guardar cambios</button>
                             <a href="/"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
-                            <a href="/"><button><i class="far fa-clock"></i></button></a>
-                            <a href=""><button><input class="reset-class" type="reset" value="Restablecer"></button></a>
+                            
+                            
                         </div>
                     </div>
                 </div>
