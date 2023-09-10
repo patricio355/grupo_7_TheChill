@@ -7,7 +7,9 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
 const adminControllers = {
     admin: (req, res) => {
-        res.render(path.join(__dirname, "../views/admin/admin.ejs"));
+        const productsFilePath = path.join(__dirname, "../data/products.json");
+        const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+        res.render("../views/admin/admin.ejs",{ products });
     },
     createEdit: (req, res) => {
         res.render(path.join(__dirname, "../views/admin/createProduct.ejs"));
@@ -41,6 +43,13 @@ const adminControllers = {
         const leftProducts = products.filter((product) => product.id != id);
         fs.writeFileSync(productsFilePath, JSON.stringify(leftProducts));
         res.redirect("/");
+    },
+    destroyAdmin: (req, res) => {
+        const id = req.params.id;
+        console.log(id)
+        const leftProducts = products.filter((product) => product.id != id);
+        fs.writeFileSync(productsFilePath, JSON.stringify(leftProducts));
+        res.redirect("/admin");
     },
     edit: (req, res) => {
         const id = req.params.id;

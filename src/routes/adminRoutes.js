@@ -24,6 +24,7 @@ adminRoutes.get('/admin/create', adminControllers.createEdit);
 adminRoutes.post("/", uploadFile.single("productImage"), adminControllers.store);
 
 adminRoutes.post('/delete/:id', adminControllers.destroy);
+adminRoutes.post('/deleteA/:id', adminControllers.destroyAdmin);
 adminRoutes.get('/edit/:id', adminControllers.edit);
 adminRoutes.post('/edit/:id',uploadFile.single("productImage") ,adminControllers.update);
 
