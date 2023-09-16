@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const User = {
-    filename: "./database/users.json",
+    filename: "../data/user.json",
   
     generateId: function () {
       let allUsers = this.findAll();

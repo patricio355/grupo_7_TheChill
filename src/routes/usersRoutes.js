@@ -9,8 +9,9 @@ const usersControllers = require("../controllers/usersControllers.js");
 
 
 userRoutes.get('/login', usersControllers.login);
-userRoutes.get('/register', usersControllers.register);
 
+
+userRoutes.get('/register', usersControllers.register);
 userRoutes.post("/register", validations, usersControllers.register, usersControllers.processRegister);
 
 
