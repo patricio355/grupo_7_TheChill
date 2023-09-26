@@ -1,7 +1,8 @@
 const fs = require("fs");
+const path = require("path");
 
 const User = {
-    filename: "../data/user.json",
+    filename: path.join(__dirname,"../data/users.json"),
   
     generateId: function () {
       let allUsers = this.findAll();
@@ -36,6 +37,7 @@ const User = {
         id: this.generateId(),
         ...userData,
       };
+      console.log(newUser);
       allUsers.push(newUser);
       fs.writeFileSync(this.filename, JSON.stringify(allUsers), null, " ");
       return newUser;
@@ -47,5 +49,7 @@ const User = {
       return true;
     },
   };
+  // User.create({name: 'lean',last:"mm"})
+  // User.delete(16)
   
   module.exports = User;

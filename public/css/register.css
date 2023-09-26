@@ -162,6 +162,10 @@ input:focus{
     outline-color: #1259c3;
     transition: all 0.1s ease-in-out;
 }
+.inputError{
+    border-color: #EA5455;
+    transition: all 0.1s ease-in-out;
+}
 label{
     opacity: 0.9;
 }

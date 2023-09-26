@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const path = require('path')
+// const multer = require('./middlewares/multerMiddleware');
 
 // USANDO RUTAS
 
@@ -12,6 +13,8 @@ app.use( mainRoutes)
 app.use(usersRoutes)
 app.use(productRoutes)
 app.use(adminRoutes)
+
+// app.use()
 
 
 // USANDO ARCHIVOS ESTATICOS
