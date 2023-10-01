@@ -93,8 +93,14 @@
                                 <% } %>
                             </div>
                             <div class="password-input">
-                                <label for="confirmed-pass">Confirmar contraseña</label>
-                                <input type="password" name="confirmed-pass" id="confirmed-pass" placeholder="password">
+                                <label for="confirmedPass">Confirmar contraseña</label>
+                                <input type="password" name="confirmedPass" id="confirmedPass" placeholder="password" 
+                                class="<%= locals.errors && errors.firstname ? 'inputError' : null %>">
+                                <% if (locals.errors && errors.confirmedPass) { %>
+                                    <div style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                        <%= errors.confirmedPass.msg %>
+                                    </div>
+                                <% } %>
                             </div>
 
                             <button type="submit" class="ingresar">REGISTRARSE</button>

@@ -37,7 +37,6 @@ const User = {
         id: this.generateId(),
         ...userData,
       };
-      console.log(newUser);
       allUsers.push(newUser);
       fs.writeFileSync(this.filename, JSON.stringify(allUsers), null, " ");
       return newUser;
@@ -51,5 +50,4 @@ const User = {
   };
   // User.create({name: 'lean',last:"mm"})
   // User.delete(16)
-  
   module.exports = User;

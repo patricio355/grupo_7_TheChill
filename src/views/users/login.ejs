@@ -2,7 +2,7 @@
 
 <head>
     <%- include ("../partials/head.ejs")  %>
-    <title>Registrate! - The Chill</title>
+    <title>Ingresa! - The Chill</title>
     <link rel="stylesheet" href="css\login.css">
 </head>
 
@@ -10,24 +10,34 @@
   <%- include ("../partials/navbar.ejs") %>
 
 
-    <!-- CONTENIDO PRINCIPAL DEL REGISTER -->
+    <!-- CONTENIDO PRINCIPAL DEL LOGIN -->
     <main>
         <section>
             <article class="login">
                 <div class="user">
-                    <form action="" method="post" class="user-ingreso">
+                    <form action="../login" method="post" enctype="multipart/form-data" class="user-ingreso">
                         <h1>¡Bienvenido!</h1>
                         <h4>Ingresa con tu usuario y contraseña</h4>
-                        
-                        <div class="password-input">
-                            <label for="pass">Usuario</label>
-                            <input type="text" name="pass" id="pass" placeholder="Usuario">
+                        <div class="email-input">
+                            <label for="email">Usuario</label>
+                            <input type="text" name="email" id="email" placeholder="Usuario"
+                            value="<%= locals.oldData ? oldData.email : null %>"
+                            class="<%= locals.errors && errors.firstname ? 'inputError' : null %>">
                         </div>
+                        <% if (locals.errors && errors.email) { %>
+                            <div style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                <%= errors.email.msg %>
+                            </div>
+                        <% } %>
                         <div class="password-input">
                             <label for="pass">Contraseña</label>
-                            <input type="password" name="pass" id="pass" placeholder="password">
+                            <input type="password" name="password" id="pass" placeholder="password">
                         </div>
-                        
+                        <% if (locals.errors && errors.password) { %>
+                            <div style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                <%= errors.password.msg %>
+                            </div>
+                        <% } %>
                         <button type="submit" class="ingresar">INGRESAR</button>
                         
                         <a href="/register" class="contraseña">¿No tienes una cuenta?</a>

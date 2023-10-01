@@ -88,12 +88,29 @@ a{
     align-items: center;
     gap: 50px;
 }
-
 .nav .contentNav .menu svg{
     width: 35px;
     margin: auto;
     fill: white;
     color: white;
+}
+.nav .contentNav .userOptions {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.nav .contentNav .userOptions a {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.nav .contentNav .userOptions img{
+    width: 38px;
+    height: 38px;
+    margin: auto;
+    border-radius: 20px;
+    /* fill: white;
+    color: white; */
 }
 .nav .contentNav .userOptions svg{
     width: 28px;
@@ -156,8 +173,5 @@ a{
     .navCategories{
         padding-left: 12px;
         padding-right: 12px;
-    }
-    body{
-        
     }
 }

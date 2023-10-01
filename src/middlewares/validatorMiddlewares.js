@@ -12,6 +12,7 @@ const validations = [
     .isEmail()
     .withMessage("Debes escribir un formato de correo válido"),
   body("password").notEmpty().withMessage("Tienes que escribir una contraseña"),
+  body("confirmedPass").notEmpty().withMessage("Tienes que confirmar tu contraseña"),
   // body("country").notEmpty().withMessage("Tienes que elegir un país"),
   body("avatar").custom((value, { req }) => {
     let file = req.file;

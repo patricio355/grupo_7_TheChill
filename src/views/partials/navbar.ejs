@@ -1,5 +1,6 @@
 <!-- NAVBAR -->
 <header>
+  <% console.log(locals.isLogged, locals.userLogged) %>
     <div class="nav">
       <div class="contentNav">
         <div class="menu">
@@ -26,6 +27,12 @@
           </div>
         </div>
         <div class="userOptions">
+          <% if(locals.isLogged){ %>
+            <a href="/profile">
+              Hi <%= locals.userLogged.firstname %>
+              <img src="images/profilephotos/<%= locals.userLogged.avatar %>"" alt="">
+              </a>
+          <% }else{%>   
           <a href="/login">
             <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
               <title />
@@ -36,6 +43,7 @@
               </g>
             </svg>
           </a>
+          <% } %>
           <a href="/carrito">
             <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
               <rect fill="none" height="256" width="256" />

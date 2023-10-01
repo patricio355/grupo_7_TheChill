@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+    <%- include ("../partials/head.ejs")  %>
+    <title> Mi Perfil - The Chill</title>
+    <link rel="stylesheet" href="css\profile.css">
+</head>
+
+<body>
+  <%- include ("../partials/navbar.ejs") %>
+
+
+    <!-- CONTENIDO PRINCIPAL DEL LOGIN -->
+    <main>
+      <section>
+        <article class="login">
+          <div class="user">
+                    <h1> Hola <%= userData.firstname%></h1>
+                    <img src="images/profilephotos/<%= userData.avatar %>" alt="img-del-Perfil" class="img-profile">
+                    <div class="email"><%= userData.email %></div>
+                    <form action="../logout" method="get">
+                      <button type="submit" class="ingresar">Cerrar Sesion</button>
+                    </form>
+          </div>
+        </article>
+    </section>
+    </main>
+
+    <%- include ("../partials/footer.ejs") %>
+</body>
+
+</html>
