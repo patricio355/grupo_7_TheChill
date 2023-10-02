@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const session = require("express-session")
+const cookies = require('cookie-parser')
 const path = require('path')
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware.js');
 // const multer = require('./middlewares/multerMiddleware');
@@ -14,6 +15,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }));
+
+app.use(cookies());
 app.use(userLoggedMiddleware);
 
 app.listen(8000,console.log('Listening on port 8000'));
