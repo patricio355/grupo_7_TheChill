@@ -49,6 +49,7 @@ const usersControllers = {
             delete userFound.password;
             delete userFound.confirmedPass;
             req.session.userLogged = userFound;
+            res.cookie("userEmail",req.session.userLogged.email,{maxAge:(1000*60)*5});
             // console.log(req.session);
             res.redirect("/profile");
           }else{
@@ -81,6 +82,7 @@ const usersControllers = {
     logOut: (req, res)=>{
       req.session.destroy();
       console.log("se destruyo la session");
+      res.clearCookie("userEmail");
       res.redirect("/");
     }
 };
