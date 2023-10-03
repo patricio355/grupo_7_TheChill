@@ -21,7 +21,7 @@
                         <div class="email-input">
                             <label for="email">Usuario</label>
                             <input type="text" name="email" id="email" placeholder="Usuario"
-                            value="<%= locals.oldData ? oldData.email : null %>"
+                            value="leo@gmail.com"
                             class="<%= locals.errors && errors.firstname ? 'inputError' : null %>">
                         </div>
                         <% if (locals.errors && errors.email) { %>
@@ -31,7 +31,7 @@
                         <% } %>
                         <div class="password-input">
                             <label for="pass">Contraseña</label>
-                            <input type="password" name="password" id="pass" placeholder="password">
+                            <input type="password" name="password" id="pass" placeholder="password" value="181222">
                         </div>
                         <% if (locals.errors && errors.password) { %>
                             <div style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
