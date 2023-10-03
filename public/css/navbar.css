@@ -175,17 +175,29 @@ a{
     border-style: none;
     display: flex;
     align-items: center;
-    gap: 15px;
     color: #b00202;
     fill: #b00202;
     cursor: pointer;
     font-size: 15px;
     transition: all .2s;
-    margin-left: 10px;
     background-color: #fff;
 }
 .logoutButtonNav:hover{
+
     border-left: #b00202 4px solid;
+}
+.logoutButtonNav button{
+    border-style: none;
+    background-color: #fff;
+    cursor: pointer;
+    color: #000;
+    opacity: 0.6;
+}
+.logoutButtonNav button:hover{
+    color: #b00202;
+    opacity: 1;
+    font-weight: 500;   
+
 }
 
 .menu-dropdown {
@@ -197,8 +209,8 @@ a{
     position: absolute;
     border: 1px solid #ccc;
     list-style: none;
-    margin-top: 220px;
-    margin-left: -5px;
+    margin-top: 225px;
+    margin-left: -10px;
     width: 137px;
     z-index: 100;
     padding-left: 0;    
