@@ -2,20 +2,70 @@ const express = require('express');
 const path = require('path');
 const fs = require('fs');
 
+const db = require("../../database/models");
+
+const { Result } = require('express-validator');
+const { error } = require('console');
+const Product = require('../../database/models/Product');
+
 const productsFilePath = path.join(__dirname, "../data/products.json");
 const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
 const adminControllers = {
-    admin: (req, res) => {
+    /*admin: (req, res) => {
         const productsFilePath = path.join(__dirname, "../data/products.json");
         const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
         res.render("../views/admin/admin.ejs",{ products });
-    },
-    createEdit: (req, res) => {
+    },*/
+
+    admin: (req, res) =>{
+        db.Product.findAll({ raw:true}).then((result) =>{
+            res.render("../views/admin/admin.ejs",{ products:result });
+        })
+        .catch((error)=> res.send(error));
+       },
+
+
+    /*createEdit: (req, res) => {
         res.render(path.join(__dirname, "../views/admin/createProduct.ejs"));
+    },*/
+
+    createProduct: (req, res) =>{
+            res.render("../views/admin/createProduct.ejs");
+        },
+
+    createProductDB: (req, res) => {
+
+        if (req.file ) {
+            var productImage = req.file.filename
+        } else {
+            var productImage = "producto.png"
+        }
+
+
+        const newProduct = req.body;
+        db.Product.create({
+            name: newProduct.name,
+            image: newProduct.image,
+            size: newProduct.size,
+            description: newProduct.description,
+            price: newProduct.price,
+            brand: newProduct.brand,
+            color: newProduct.color,
+            gender: newProduct.gender,
+            category: newProduct.category,
+            model_name: newProduct.model_name,
+            stock: newProduct.stock,
+            discount: newProduct.discount
+        })
+
+
+        .then(res.redirect("/"))
+        .catch((error) => res.send(error));
     },
+
     // Create -  Method to store
-    store: (req, res) => {
+    /*store: (req, res) => {
         // Do the magic
         const data = req.body;
         const index = products[products.length - 1].id;
@@ -37,7 +87,7 @@ const adminControllers = {
         products.push(newProduct);
         fs.writeFileSync(productsFilePath, JSON.stringify(products));
         res.redirect("/");
-    },
+    },*/
     destroy: (req, res) => {
         const id = req.params.id;
         const leftProducts = products.filter((product) => product.id != id);
@@ -51,12 +101,38 @@ const adminControllers = {
         fs.writeFileSync(productsFilePath, JSON.stringify(leftProducts));
         res.redirect("/admin");
     },
-    edit: (req, res) => {
+    /*edit: (req, res) => {
         const id = req.params.id;
         const product = products.find((product) => product.id == id);
         res.render(path.join(__dirname, "../views/admin/editProduct.ejs"), { productToEdit: product });
+    },*/
+
+    editProduct: (req, res) => {
+        const id = req.params.id;
+        db.Product.findByPk(id, {raw:true})
+        .then((result) => {
+            res.render("../views/admin/editProduct.ejs", { productToEdit: result });
+        })
+        .catch((error) => res.send(error));
     },
-    update: (req, res) => {
+
+    editProductDB: (req, res) => {
+        db.Product.update(
+        {
+            ...req.body,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+        )
+        .then((result) => res.redirect("/"))
+        .catch((error) => console.log(error));
+    },
+
+
+    /*update: (req, res) => {
         // Do the magic
         const id = req.params.id;
         const editProduct = req.body;
@@ -81,7 +157,9 @@ const adminControllers = {
     
         fs.writeFileSync(productsFilePath, JSON.stringify(products));
         res.redirect("/");
-    },
+    },*/
 }
+
+
 
 module.exports = adminControllers;

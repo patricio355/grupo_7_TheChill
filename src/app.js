@@ -30,6 +30,7 @@ const mainRoutes = require("../src/routes/mainRoutes.js")
 const usersRoutes = require("../src/routes/usersRoutes.js")
 const productRoutes = require("../src/routes/productRoutes.js")
 const adminRoutes = require("../src/routes/adminRoutes.js");
+
 app.use( mainRoutes)
 app.use(usersRoutes)
 app.use(productRoutes)

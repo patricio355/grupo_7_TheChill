@@ -19,13 +19,18 @@ const uploadFile = multer({ storage });
 
 
 
-adminRoutes.get('/admin', adminControllers.admin);
-adminRoutes.get('/admin/create', adminControllers.createEdit);
-adminRoutes.post("/", uploadFile.single("productImage"), adminControllers.store);
+adminRoutes.get("/admin", adminControllers.admin);
+adminRoutes.get('/admin/create', adminControllers.createProduct);
+//adminRoutes.post("/", uploadFile.single("productImage"), adminControllers.store);
+adminRoutes.post("/admin/create", adminControllers.createProductDB);
 
-adminRoutes.post('/delete/:id', adminControllers.destroy);
-adminRoutes.post('/deleteA/:id', adminControllers.destroyAdmin);
-adminRoutes.get('/edit/:id', adminControllers.edit);
-adminRoutes.post('/edit/:id',uploadFile.single("productImage") ,adminControllers.update);
+adminRoutes.get("/admin/edit", adminControllers.editProduct);
+adminRoutes.post("/edit/:id", adminControllers.editProductDB);
+//adminRoutes.post('/delete/:id', adminControllers.destroy);
+//adminRoutes.post('/deleteA/:id', adminControllers.destroyAdmin);
+//adminRoutes.get('/edit/:id', adminControllers.edit);
+//adminRoutes.post('/edit/:id',uploadFile.single("productImage") ,adminControllers.update);
+
+
 
 module.exports = adminRoutes;
