@@ -23,6 +23,10 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
         res.render(path.join(__dirname,"../views/products/productCart.ejs"));
     },
 
+    productCategory: (req, res) =>{
+        
+    }
+
 }
 
 

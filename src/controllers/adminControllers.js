@@ -34,35 +34,40 @@ const adminControllers = {
             res.render("../views/admin/createProduct.ejs");
         },
 
-    createProductDB: (req, res) => {
 
-        if (req.file ) {
-            var productImage = req.file.filename
+    createProductDB: async (req, res) => {
+        let productImage;
+        if (req.file) {
+            productImage = req.file.filename;
         } else {
-            var productImage = "producto.png"
+            productImage = "producto.png";
         }
-
-
-        const newProduct = req.body;
-        db.Product.create({
-            name: newProduct.name,
-            image: newProduct.image,
-            size: newProduct.size,
-            description: newProduct.description,
-            price: newProduct.price,
-            brand: newProduct.brand,
-            color: newProduct.color,
-            gender: newProduct.gender,
-            category: newProduct.category,
-            model_name: newProduct.model_name,
-            stock: newProduct.stock,
-            discount: newProduct.discount
-        })
-
-
-        .then(res.redirect("/"))
-        .catch((error) => res.send(error));
+    
+        let newProduct = req.body;
+    
+        try {
+            const createdProduct = await db.Product.create({
+                title: newProduct.title,
+                image: productImage,
+                size: newProduct.size,
+                description: newProduct.description,
+                price: newProduct.price,
+                brand: newProduct.brand,
+                colour: newProduct.colour,
+                gender: newProduct.gender,
+                category: newProduct.category,
+                model_name: newProduct.model_name,
+                quantity: newProduct.quantity,
+                discount: newProduct.discount
+            });
+    
+            console.log(newProduct);
+            res.redirect("/");
+        } catch (error) {
+            res.send(error);
+        }
     },
+    
 
     // Create -  Method to store
     /*store: (req, res) => {

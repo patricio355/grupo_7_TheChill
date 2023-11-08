@@ -22,7 +22,7 @@ const uploadFile = multer({ storage });
 adminRoutes.get("/admin", adminControllers.admin);
 adminRoutes.get('/admin/create', adminControllers.createProduct);
 //adminRoutes.post("/", uploadFile.single("productImage"), adminControllers.store);
-adminRoutes.post("/admin/create", adminControllers.createProductDB);
+adminRoutes.post("/admin/create",uploadFile.single("productImage"), adminControllers.createProductDB);
 
 adminRoutes.get("/admin/edit", adminControllers.editProduct);
 adminRoutes.post("/edit/:id", adminControllers.editProductDB);
