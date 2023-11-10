@@ -33,7 +33,7 @@
                     <h3>Edición producto...</h3>
                 </div>
             </div>
-            <form action="/editProduct/<%= productToEdit.id %>" method="post" enctype="multipart/form-data"
+            <form action="/edit/<%= productToEdit.id %>" method="post" enctype="multipart/form-data"
                 class="admin-create-product">
                 <div class="admin-create-parent">
                     <div class="create-description">
@@ -42,21 +42,21 @@
                                 <label for="productName">
                                     <h3>Nombre de producto</h3>
                                 </label>
-                                <input value="<%= productToEdit.name%>" type="text" id="name" name="name"
+                                <input value="<%= productToEdit.title%>" type="text" id="title" name="title"
                                     placeholder="Ingrese el nombre del producto...">
                             </div>
                             <div class="generic-input-label">
                                 <label for="productDescription">
                                     <h4>Descripción del producto</h4>
                                 </label>
-                                <input value="<%= productToEdit.description%>" type="text" id="description"
-                                    name="description" placeholder="Ingrese descripción...">
+                                <input value="<%= productToEdit.content%>" type="text" id="content"
+                                    name="content" placeholder="Ingrese descripción...">
                             </div>
                         </div>
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <!-- <label for="category"><h4>Categoría de producto</h4></label>
-                                <select value="<%= productToEdit.category%>" name="category" id="category">
+                                <select value="<%= productToEdit.type%>" name="category" id="category">
                                     <option value="Deporte">Deporte</option>
                                     <option value="Interior">Interior</option>
                                     <option value="Jeans">Jeans</option>
@@ -68,7 +68,7 @@
                                 <label for="category">
                                     <h4>Categoría de producto</h4>
                                 </label>
-                                <select name="category" id="category">
+                                <select name="type" id="type">
                                     <option value="Deporte" <%=productToEdit.category==="Deporte" ? "selected" : "" %>
                                         >Deporte</option>
                                     <option value="Interior" <%=productToEdit.category==="Interior" ? "selected" : "" %>
@@ -91,7 +91,7 @@
                                 <label for="stock">
                                     <h4>Stock</h4>
                                 </label>
-                                <input value="<%= productToEdit.stock%>" type="number" id="stock" name="stock"
+                                <input value="<%= productToEdit.quantity%>" type="number" id="quantity" name="quantity"
                                     placeholder="Ingrese el stock disponible...">
                             </div>
 
@@ -150,7 +150,7 @@
                                 <h4>Imagen del producto</h4>
                                 <img src="/images/<%= productToEdit.image %>"  width="200px" height="200px" alt="">
                                
-                                <input type="file" id="productImages" name="productImage"> 
+                                <input type="file" id="productToEdit" name="productToEdit"> 
 
                                 <!-- <div class="product-image">
                                     <img src="" alt="">
@@ -206,7 +206,7 @@
                                 </div>
                                 <div class="generic-input-label" style="width: 100%;">
                                     <label for="color">Color</label>
-                                    <input value="<%= productToEdit.color%>" type="color" id="color" name="color"
+                                    <input value="<%= productToEdit.colour%>" type="color" id="colour" name="colour"
                                         style="padding: none; height: 40px;" value="#000">
                                 </div>
                             </div>

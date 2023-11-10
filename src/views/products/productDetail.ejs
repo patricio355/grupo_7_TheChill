@@ -29,7 +29,7 @@
 
     <main>
         <div class="descripcion">
-            <span>Puesto en venta en la categoria: Top > <%= product.name %> > <%= product.category %></span>
+            <span>Puesto en venta en la categoria: Top > <%= product.title %> > <%= product.type %></span>
         </div>
         <div class="contenedor-global">
             <div class="conteiner">
@@ -50,7 +50,7 @@
                 <div class="detalles">
                     <div class="titulo">
                         <p>
-                            <%= product.name %>
+                            <%= product.title %>
                         </p>
                     </div>
                     <div class="calificacion">
@@ -67,7 +67,7 @@
                 </div>
                 <div class="row">
                     <label for="">Color:</label>
-                    <button><span><%= product.color %></span></button>
+                    <button><span><%= product.colour %></span></button>
                        
                 </div>
                 <div class="row">
@@ -85,7 +85,7 @@
                         <div class="row">
                             <div class="cantidad">
                                 <label for="">Cantidad:</label>
-                                <span><%= product.stock %></span>
+                                <span><%= product.quantity %></span>
                             </div>
                         </div>
                         <div class="row">
@@ -201,7 +201,7 @@
         </div>
         <article>
             <h4>Descripcíon</h4>
-            <%= product.description %>
+            <%= product.content %>
         </article>
         <article>
             ---------¿POR QUÉ ELEGIRNOS?---------
