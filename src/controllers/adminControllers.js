@@ -131,7 +131,7 @@ const adminControllers = {
        if (req.file) {
            productImage = req.file.filename;
        } else {
-           productImage = "producto.png";
+           productImage = productId.image;
        }
 
 
