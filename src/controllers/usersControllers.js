@@ -5,6 +5,8 @@ const {validationResult} = require("express-validator");
 const bcryptjs = require('bcryptjs');
 const User = require("../models/user");
 const exp = require('constants');
+let db = require('../../database/models');
+
 
 const usersControllers = {
     register:(req,res)=>{
@@ -31,9 +33,9 @@ const usersControllers = {
       const newUser = {
         ...req.body,
         password: bcryptjs.hashSync(req.body.password,10),
-        avatar: req.file.filename,
+        avatar: req.file ? req.file.filename : 'avatar.jpg',
       };
-      console.log(newUser);
+      // console.log(newUser);
       User.create(newUser);
       return res.redirect("/login");
     },
@@ -42,9 +44,13 @@ const usersControllers = {
     },
     loginProcess: (req,res)=>{
       const userToLogin = req.body;
-      const userFound =  User.findByField("email", userToLogin.email);
+      const userFound =  db.User.findOne({
+        where: {
+            email: req.body.email
+        }
+      }).then(userFound=>{
       if (userFound){
-        const okPassword = bcryptjs.compareSync(userToLogin.password, userFound.password )
+        const okPassword = bcryptjs.compareSync(userToLogin.password, userFound.passwordHash )
           if(okPassword){
             delete userFound.password;
             delete userFound.confirmedPass;
@@ -56,7 +62,7 @@ const usersControllers = {
             res.render(path.join(__dirname,"../views/users/login.ejs"), {
               errors:{
                 password:{
-                  msg: "password incorrecta"
+                  msg: "Usuario y/o contraseña incorrectos"
                 }
               }
             })
@@ -70,7 +76,8 @@ const usersControllers = {
               },
           });
         }
-      },
+      })
+    },
     profile: (req, res)=>{
       console.log("estas en profile");
       return res.render(path.join(__dirname,"../views/users/profile.ejs")

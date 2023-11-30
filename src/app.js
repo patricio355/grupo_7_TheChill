@@ -24,7 +24,7 @@ app.listen(8000,console.log('Listening on port 8000'));
 app.set("view engine", "ejs");
 app.set("views", "./src/views");
 
-
+process.env.TZ = 'America/Argentina/Buenos_Aires';
 // USANDO RUTAS
 const mainRoutes = require("../src/routes/mainRoutes.js")
 const usersRoutes = require("../src/routes/usersRoutes.js")
