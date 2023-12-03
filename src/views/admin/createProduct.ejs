@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    
     <div class="admin-container">
         <section class="admin-navbar">
             <img src="/images/logoFinal.png" width="200px" alt="">
@@ -38,12 +39,31 @@
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <label for="productName"><h3>Nombre de producto</h3></label>
-                                <input type="text" id="title" name="title" placeholder="Ingrese el nombre del producto...">
+                                <input type="text" 
+                                id="title" 
+                                name="title" 
+                                placeholder="Ingrese el nombre del producto..."
+                               
+                                >
+                             
+                                <%if(locals.errors && errors.title){ %>
+                                    <div class="text-danger" style="color: red;  font-size: 13px">
+                                        <%=errors.title.msg %>
+                                    </div>
+                                <% } %>
                             </div>
                             <div class="generic-input-label">
                                 <label for="productDescription"><h4>Descripción del producto</h4></label>
                                 <textarea type="text" id="content" name="content"
-                                    placeholder="Ingrese descripción..."></textarea>
+                                    placeholder="Ingrese descripción..."
+                                    
+                                     ></textarea>
+                                    
+                                <%if(locals.errors && errors.content){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.content.msg %>
+                                        </div>
+                                <% } %>
                             </div>
                         </div>
                         <div class="create-section">
@@ -63,7 +83,15 @@
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <label for="stock"><h4>Stock</h4></label>
-                                <input type="number" id="quantity" name="quantity" placeholder="Ingrese el stock disponible...">
+                                <input type="number" id="quantity" name="quantity" 
+                                placeholder="Ingrese el stock disponible..."
+                                
+                                >
+                                <%if(locals.errors && errors.quantity){ %>
+                                    <div class="text-danger"style="color: red; font-size: 13px">
+                                        <%=errors.quantity.msg %>
+                                    </div>
+                                <% } %>
                             </div>
 
                             <div class="generic-input-label">
@@ -85,7 +113,14 @@
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <h4>Imagenes del producto</h4>
-                                <input type="file" id="image" name="image">
+                                <input type="file" id="image" name="image"
+                                
+                                >
+                                <%if(locals.errors && errors.image){ %>
+                                    <div class="text-danger"style="color: red; font-size: 13px">
+                                        <%=errors.image.msg %>
+                                    </div>
+                                <% } %>
                                 <!-- <div class="product-image">
                                     <img src="" alt="">
                                     <div class="product-image-duo">
@@ -112,7 +147,15 @@
                             <div style="display: flex; gap: 10px;">
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="price">Precio Unitario</label>
-                                    <input type="number" id="price" name="price" placeholder="Ingrese precio por unidad...">
+                                    <input type="number" id="price" name="price" 
+                                    placeholder="Ingrese precio por unidad..."
+                                    
+                                    >
+                                    <%if(locals.errors && errors.price){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.price.msg %>
+                                        </div>
+                                    <% } %>
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="tax">Descuento</label>

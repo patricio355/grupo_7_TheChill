@@ -43,7 +43,14 @@
                                     <h3>Nombre de producto</h3>
                                 </label>
                                 <input value="<%= productToEdit.title%>" type="text" id="title" name="title"
-                                    placeholder="Ingrese el nombre del producto...">
+                                    placeholder="Ingrese el nombre del producto..."
+                                    value="<%= locals.oldData ? oldData.title : '' %> "
+                                    >
+                                    <%if(locals.errors && errors.title){ %>
+                                        <div class="text-danger"style="color: red">
+                                            <%=errors.title.msg %>
+                                        </div>
+                                    <% } %>
                             </div>
                             <div class="generic-input-label">
                                 <label for="productDescription">
@@ -51,6 +58,7 @@
                                 </label>
                                 <input value="<%= productToEdit.content%>" type="text" id="content"
                                     name="content" placeholder="Ingrese descripción...">
+                              
                             </div>
                         </div>
                         <div class="create-section">

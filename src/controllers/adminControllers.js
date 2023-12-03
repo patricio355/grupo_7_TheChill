@@ -11,6 +11,10 @@ const Product = require('../../database/models/Product');
 const productsFilePath = path.join(__dirname, "../data/products.json");
 const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
+//requerir metodo de express-validator
+const{validationResult}=require("express-validator");
+//
+
 const adminControllers = {
     /*admin: (req, res) => {
         const productsFilePath = path.join(__dirname, "../data/products.json");
@@ -38,6 +42,17 @@ const adminControllers = {
 
 
     createProduct: async (req, res) => {
+
+        //lo de express-validator
+        const resultValidation=validationResult(req);
+        if(resultValidation.errors.length > 0){
+            res.render(path.join(__dirname,"../views/admin/createProduct.ejs"),{
+                errors:resultValidation.mapped(),
+                oldData: req.body,
+            });
+        }else{
+
+
         let productImage;
         if (req.file) {
             productImage = req.file.filename;
@@ -67,9 +82,10 @@ const adminControllers = {
         } 
             catch (error) {
             res.send(error);
+        } 
         }
     },
-    
+
 
     // Create -  Method to store
     /*store: (req, res) => {
@@ -125,6 +141,7 @@ const adminControllers = {
     },
 
     updateProduct: async (req, res) => {
+
         const productId = req.params.id;
        // const productImage = req.file ? req.file.filename : "producto.png"; 
        let productImage;
@@ -160,6 +177,7 @@ const adminControllers = {
             console.log(error);
             res.send("Error al actualizar el producto");
         }
+        
     },
     
     
