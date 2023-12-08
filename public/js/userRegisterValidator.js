@@ -78,7 +78,7 @@ window.onload = function () {
             }
           }
           inputTitle.addEventListener('blur', function () {
-              validateUser(this);
+            validateUser(this);
             validate(this);
           });
           
