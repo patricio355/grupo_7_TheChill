@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 *{
     margin: 0;
     /* padding: 0;  */
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 .swiper {
@@ -111,7 +112,7 @@ margin: 0;
     margin: 1%;
     box-shadow: 6px 10px 4px rgba(0, 0, 0, 0.1);
     background:rgb(255, 255, 255);
-    
+    font-family:'Rubik', sans-serif;    
   
   }
   
@@ -138,7 +139,7 @@ margin: 0;
     
   }
   .card p {
-    font-family: 'Poppins', sans-serif; 
+    /* font-family: 'Poppins', sans-serif;  */
     font-weight: 300;
     font-size: 20px;
     color: #000000;
@@ -149,15 +150,28 @@ margin: 0;
   
   .detalle {
     padding: 15px;
-    padding-top: 0px;
-   
+    padding-top: 5px;
+
   }
 
- 
+  .detalle p{
+    font-family:'Rubik', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    padding-bottom: 8px;
+    color:#6e6e6e;
+  }
+  .detalle .currentPrice{
+    font-family:'Rubik', sans-serif;
+
+    font-size: 23px;
+    font-weight: 400;
+    color:rgb(85, 85, 85);
+  }
 
 
   .subtitulo{
-    font-family: 'Poppins', sans-serif; 
+    font-family: 'Rubik', sans-serif; 
     font-weight: 300;
     font-size: 25px;
     color: #000000;
@@ -169,6 +183,7 @@ margin: 0;
 body{
     background:rgb(249 ,245 ,235 );
     margin: 0;
+    font-family: 'Rubik', sans-serif;
 }
 
 .estrellas{
@@ -297,7 +312,7 @@ display: none;
     } */
 
     .subtitulo{
-        font-family: 'Poppins', sans-serif;  
+        font-family: 'Rubik', sans-serif;  
         font-weight: 300;
         font-size: 20px;
         color: #000000;
@@ -382,10 +397,10 @@ display: none;
    
     .subtitulo{
         font-weight: 300;
-        font-size: 15px;
-        color: #6e6e6e;
-        margin: 15px;
-        margin-left: 80px;
+        font-size: 25px;
+        color: #464646;
+        /* margin: 15px; */
+        margin-left: 30px;
     }
 
     
