@@ -20,7 +20,11 @@ const usersControllers = {
           oldData: req.body,
         });
       }
-      const userInData =  User.findByField("email", req.body.email);
+      const userInData =  db.User.findOne({
+        where: {
+            email: req.body.email
+        }
+      });
       if (userInData){
         return res.render(path.join(__dirname,"../views/users/register.ejs"), {
         errors:{
