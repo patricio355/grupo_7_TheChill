@@ -23,6 +23,18 @@ module.exports = (sequelize, DataTypes) => {
         size:{
             type: DataTypes.STRING,
         },
+        brand:{
+            type: DataTypes.STRING,
+        },
+        category:{
+            type: DataTypes.STRING,
+        },
+        gender:{
+            type: DataTypes.STRING,
+        },
+        model_name:{
+            type: DataTypes.STRING,
+        },
         colour:{
             type: DataTypes.STRING,
         },
@@ -56,11 +68,11 @@ module.exports = (sequelize, DataTypes) => {
         content:{
             type: DataTypes.TEXT,
         },
-        userId:{
-            type: DataTypes.BIGINT,
-            foreignKey: true,
-            unique: true,
-        }
+        // userId:{
+        //     type: DataTypes.BIGINT,
+        //     foreignKey: true,
+        //     unique: true,
+        // }
     },
     {
         tableName: "product",

@@ -19,7 +19,7 @@ const validations = [
     let acceptedExtensions = [".jpg", ".png", ".gif"];
 
     if (!file) {
-      throw new Error("Tienes que subir una imagen");
+      file="avatar.jpg";
     } else {
       let fileExtension = path.extname(file.originalname);
       if (!acceptedExtensions.includes(fileExtension)) {

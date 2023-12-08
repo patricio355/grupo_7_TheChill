@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+let db = require('../../database/models');
 
 const User = {
     filename: path.join(__dirname,"../data/users.json"),
@@ -32,15 +33,34 @@ const User = {
       return userFound;
     },
     create: function (userData) {
-      let allUsers = this.findAll();
-      let newUser = {
-        id: this.generateId(),
-        ...userData,
-      };
-      allUsers.push(newUser);
-      fs.writeFileSync(this.filename, JSON.stringify(allUsers), null, " ");
-      return newUser;
+      try{
+        console.log(userData);
+        db.User.create({
+          first_name: userData.firstname,
+          last_name: userData.lastname,
+          gender: userData.gender,
+          email: userData.email,
+          mobile: userData.mobile,
+          passwordHash: userData.password,
+          avatar: userData.avatar,
+          admin: false,
+          registeredAt:new Date(),
+        })
+
+      }catch (error) {
+        res.send(error);
+      }
     },
+    // create: function (userData) {
+    //   let allUsers = this.findAll();
+    //   let newUser = {
+    //     id: this.generateId(),
+    //     ...userData,
+    //   };
+    //   allUsers.push(newUser);
+    //   fs.writeFileSync(this.filename, JSON.stringify(allUsers), null, " ");
+    //   return newUser;
+    // },
     delete: function (id) {
       let allUsers = this.findAll();
       let newUsers = allUsers.filter((user) => user.id != id);

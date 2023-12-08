@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    
     <div class="admin-container">
         <section class="admin-navbar">
             <img src="/images/logoFinal.png" width="200px" alt="">
@@ -38,44 +39,71 @@
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <label for="productName"><h3>Nombre de producto</h3></label>
-                                <input type="text" id="title" name="title" placeholder="Ingrese el nombre del producto...">
+                                <input type="text" value="<%= locals.oldData && oldData.title ? oldData.title : '' %>"
+                                id="title" 
+                                name="title" 
+                                placeholder="Ingrese el nombre del producto..."
+                               
+                                >
+                             
+                                <%if(locals.errors && errors.title){ %>
+                                    <div class="text-danger" style="color: red;  font-size: 13px">
+                                        <%=errors.title.msg %>
+                                    </div>
+                                <% } %>
                             </div>
                             <div class="generic-input-label">
                                 <label for="productDescription"><h4>Descripción del producto</h4></label>
                                 <textarea type="text" id="content" name="content"
-                                    placeholder="Ingrese descripción..."></textarea>
+                                    placeholder="Ingrese descripción..."
+                                    
+                                     ><%= locals.oldData && oldData.content ? oldData.content : '' %></textarea>
+                                    
+                                <%if(locals.errors && errors.content){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.content.msg %>
+                                        </div>
+                                <% } %>
                             </div>
                         </div>
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <label for="category"><h4>Categoría de producto</h4></label>
-                                <select name="type" id="type">
-                                    <option value="Deporte">Deporte</option>
-                                    <option value="Interior">Interior</option>
-                                    <option value="Jeans">Jeans</option>
-                                    <option value="Formal">Formal</option>
-                                    <option value="Vestido">Vestido</option>
-                                    <option value="Remera">Remeras</option>
-                                    <option value="Zapatilla">Zapatillas</option>
+                                <select name="category" id="category" value="<%= locals.oldData && oldData.category ? oldData.category : '' %>">
+                                    <option value="Deporte"  <%=locals.oldData && oldData.category==="Deporte" ? "selected" : "" %>>Deporte</option>
+                                    <option value="Interior" <%=locals.oldData && oldData.category==="Interior" ? "selected" : "" %>>Interior</option>
+                                    <option value="Jeans" <%=locals.oldData && oldData.category==="Jeans" ? "selected" : "" %>>Jeans</option>
+                                    <option value="Formal" <%=locals.oldData && oldData.category==="Formal" ? "selected" : "" %>>Formal</option>
+                                    <option value="Vestido" <%=locals.oldData && oldData.category==="Vestido" ? "selected" : "" %>>Vestido</option>
+                                    <option value="Remera" <%=locals.oldData && oldData.category==="Remera" ? "selected" : "" %>>Remeras</option>
+                                    <option value="Zapatilla" <%=locals.oldData && oldData.category==="Zapatilla" ? "selected" : "" %>>Zapatillas</option>
                                 </select>
                             </div>
                         </div>
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <label for="stock"><h4>Stock</h4></label>
-                                <input type="number" id="quantity" name="quantity" placeholder="Ingrese el stock disponible...">
+                                <input type="number" id="quantity" name="quantity" value="<%= locals.oldData && oldData.quantity ? oldData.quantity : '' %>"
+                                placeholder="Ingrese el stock disponible..."
+                                
+                                >
+                                <%if(locals.errors && errors.quantity){ %>
+                                    <div class="text-danger"style="color: red; font-size: 13px">
+                                        <%=errors.quantity.msg %>
+                                    </div>
+                                <% } %>
                             </div>
 
                             <div class="generic-input-label">
                                 <label for="size"><h4>Tamaño</h4></label>
-                                    <select name="size" id="size">
-                                        <option value="XS">XS (Extra Pequeño)</option>
-                                        <option value="S">S (Pequeño)</option>
-                                        <option value="M">M (Mediano)</option>
-                                        <option value="L">L (Grande)</option>
-                                        <option value="XL">XL (Extra Grande)</option>
-                                        <option value="XXL">XXL (Doble Extra Grande)</option>
-                                        <option value="XXXL">XXXL (Triple Extra Grande)</option>
+                                    <select name="size" id="size" >
+                                        <option value="XS"  <%=locals.oldData && oldData.size==="XS" ? "selected" : "" %>>XS (Extra Pequeño)</option>
+                                        <option value="S"  <%=locals.oldData && oldData.size==="S" ? "selected" : "" %>>S (Pequeño)</option>
+                                        <option value="M" <%=locals.oldData && oldData.size==="M" ? "selected" : "" %>>M (Mediano)</option>
+                                        <option value="L" <%=locals.oldData && oldData.size==="L" ? "selected" : "" %>>L (Grande)</option>
+                                        <option value="XL" <%=locals.oldData && oldData.size==="XL" ? "selected" : "" %>>XL (Extra Grande)</option>
+                                        <option value="XXL" <%=locals.oldData && oldData.size==="XXL" ? "selected" : "" %>>XXL (Doble Extra Grande)</option>
+                                        <option value="XXXL" <%=locals.oldData && oldData.size==="XXXL" ? "selected" : "" %>>XXXL (Triple Extra Grande)</option>
                                     </select>
                             </div>
                         </div>
@@ -85,7 +113,14 @@
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <h4>Imagenes del producto</h4>
-                                <input type="file" id="image" name="image">
+                                <input type="file" id="image" name="image"
+                                
+                                >
+                                <%if(locals.errors && errors.image){ %>
+                                    <div class="text-danger"style="color: red; font-size: 13px">
+                                        <%=errors.image.msg %>
+                                    </div>
+                                <% } %>
                                 <!-- <div class="product-image">
                                     <img src="" alt="">
                                     <div class="product-image-duo">
@@ -112,11 +147,19 @@
                             <div style="display: flex; gap: 10px;">
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="price">Precio Unitario</label>
-                                    <input type="number" id="price" name="price" placeholder="Ingrese precio por unidad...">
+                                    <input type="number" id="price" name="price" value="<%= locals.oldData && oldData.price ? oldData.price : '' %>"
+                                    placeholder="Ingrese precio por unidad..."
+                                    
+                                    >
+                                    <%if(locals.errors && errors.price){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.price.msg %>
+                                        </div>
+                                    <% } %>
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="tax">Descuento</label>
-                                    <input type="number" id="discount" name="discount" placeholder="Ingrese descuento...">
+                                    <input type="number" id="discount" name="discount" value="<%= locals.oldData && oldData.discount ? oldData.discount : '' %>" placeholder="Ingrese descuento...">
                                 </div>
                             </div>
                         </div>
@@ -125,19 +168,29 @@
                             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="brand">Marca</label>
-                                    <input type="text" id="brand" name="brand" placeholder="Ingrese marca...">
+                                    <input type="text" id="brand" name="brand" value="<%= locals.oldData && oldData.brand ? oldData.brand : '' %>" placeholder="Ingrese marca...">
+                                    <%if(locals.errors && errors.brand){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.brand.msg %>
+                                        </div>
+                                    <% } %>
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="gender">Género</label>
                                     <select name="gender" id="gender">
-                                        <option value="Hombre">Hombre</option>
-                                        <option value="Mujer">Mujer</option>
-                                        <option value="Unisex">Unisex</option>
+                                        <option value="Hombre"  <%=locals.oldData && oldData.gender==="Hombre" ? "selected" : "" %>>Hombre</option>
+                                        <option value="Mujer" <%=locals.oldData && oldData.gender==="Mujer" ? "selected" : "" %>>Mujer</option>
+                                        <option value="Unisex" <%=locals.oldData && oldData.gender==="Unisex" ? "selected" : "" %>>Unisex</option>
                                     </select>
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="tax">Modelo</label>
-                                    <input type="text" id="model_name"  name="model_name" placeholder="Ingrese modelo...">
+                                    <input type="text" id="model_name"  name="model_name" value="<%= locals.oldData && oldData.model_name ? oldData.model_name : '' %>" placeholder="Ingrese modelo...">
+                                    <%if(locals.errors && errors.model_name){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.model_name.msg %>
+                                        </div>
+                                    <% } %>
                                 </div>
                                 <div class="generic-input-label" style="width: 100%;">
                                     <label for="color">Color</label>
@@ -150,13 +203,14 @@
                 
                         <div class="admin-create-buttons">
                             <a href="/"><button class="btn btn-success" type="submit">Añadir Producto</button></a>
-                            <a href="/"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
+                            <a href="/admin"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
                             <a href="/"><button><i class="far fa-clock"></i></button></a>
                             <a href=""><button><input class="reset-class" type="reset" value="Restablecer"></button></a>
                         </div>
                     </div>
                 </div>
             </form>
+            <a href="/admin"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
         </section>
     </div>
 </body>

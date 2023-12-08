@@ -11,6 +11,10 @@ const Product = require('../../database/models/Product');
 const productsFilePath = path.join(__dirname, "../data/products.json");
 const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
+//requerir metodo de express-validator
+const{validationResult}=require("express-validator");
+//
+
 const adminControllers = {
     /*admin: (req, res) => {
         const productsFilePath = path.join(__dirname, "../data/products.json");
@@ -38,6 +42,18 @@ const adminControllers = {
 
 
     createProduct: async (req, res) => {
+        
+        //lo de express-validator
+        const resultValidation=validationResult(req);
+        if(resultValidation.errors.length > 0){
+            res.render(path.join(__dirname,"../views/admin/createProduct.ejs"),{
+                errors:resultValidation.mapped(),
+                oldData: req.body,
+             
+            });
+        }else{
+
+
         let productImage;
         if (req.file) {
             productImage = req.file.filename;
@@ -57,6 +73,7 @@ const adminControllers = {
                 brand: newProduct.brand,
                 colour: newProduct.colour,
                 gender: newProduct.gender,
+                category: newProduct.category,
                 type: newProduct.type,
                 model_name: newProduct.model_name,
                 quantity: newProduct.quantity,
@@ -67,9 +84,10 @@ const adminControllers = {
         } 
             catch (error) {
             res.send(error);
+        } 
         }
     },
-    
+
 
     // Create -  Method to store
     /*store: (req, res) => {
@@ -125,8 +143,36 @@ const adminControllers = {
     },
 
     updateProduct: async (req, res) => {
+
+
+        const resultValidation=validationResult(req);
+        if(resultValidation.errors.length > 0){
+            const id = req.params.id;
+            db.Product.findByPk(id, {raw:true})
+        .then((result) => {
+            const mergedData = {
+                ...result,
+                ...req.body,
+            };
+            res.render(path.join(__dirname,"../views/admin/editProduct.ejs"),{
+                
+                
+                errors:resultValidation.mapped(),
+                oldData: req.body,
+                productToEdit : mergedData,
+                
+            });
+        })
+        }else{
+
+
+
+
+
+
         const productId = req.params.id;
        // const productImage = req.file ? req.file.filename : "producto.png"; 
+       console.log(req.body);
        let productImage;
        if (req.file) {
            productImage = req.file.filename;
@@ -134,7 +180,7 @@ const adminControllers = {
            productImage = productId.image;
        }
 
-
+       
         try {
             const editedProduct = await db.Product.update({
                 title: req.body.title,
@@ -148,7 +194,9 @@ const adminControllers = {
                 type: req.body.type,
                 model_name: req.body.model_name,
                 quantity: req.body.quantity,
-                discount: req.body.discount
+                discount: req.body.discount,
+                category: req.body.category
+                
             }, {
                 where: {
                     id: productId,
@@ -160,7 +208,8 @@ const adminControllers = {
             console.log(error);
             res.send("Error al actualizar el producto");
         }
-    },
+        
+    }},
     
     
     

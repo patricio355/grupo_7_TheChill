@@ -42,15 +42,29 @@
                                 <label for="productName">
                                     <h3>Nombre de producto</h3>
                                 </label>
-                                <input value="<%= productToEdit.title%>" type="text" id="title" name="title"
-                                    placeholder="Ingrese el nombre del producto...">
+                                <input value="<%= locals.oldData && oldData.title ? oldData.title : productToEdit.title %>" type="text" id="title" name="title"
+                                    placeholder="Ingrese el nombre del producto..."
+                                    value="<%= locals.oldData ? oldData.title : '' %> "
+                                    >
+                                    <%if(locals.errors && errors.title){ %>
+                                        <div class="text-danger"style="color: red">
+                                            <%=errors.title.msg %>
+                                        </div>
+                                    <% } %>
                             </div>
                             <div class="generic-input-label">
                                 <label for="productDescription">
                                     <h4>Descripción del producto</h4>
                                 </label>
-                                <input value="<%= productToEdit.content%>" type="text" id="content"
+                                <input value="<%= locals.oldData && oldData.content ? oldData.content : productToEdit.content %>" type="text" id="content"
                                     name="content" placeholder="Ingrese descripción...">
+
+                                    <%if(locals.errors && errors.content){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.content.msg %>
+                                        </div>
+                                <% } %>
+                              
                             </div>
                         </div>
                         <div class="create-section">
@@ -68,7 +82,7 @@
                                 <label for="category">
                                     <h4>Categoría de producto</h4>
                                 </label>
-                                <select name="type" id="type">
+                                <select name="category" id="category">
                                     <option value="Deporte" <%=productToEdit.category==="Deporte" ? "selected" : "" %>
                                         >Deporte</option>
                                     <option value="Interior" <%=productToEdit.category==="Interior" ? "selected" : "" %>
@@ -91,8 +105,13 @@
                                 <label for="stock">
                                     <h4>Stock</h4>
                                 </label>
-                                <input value="<%= productToEdit.quantity%>" type="number" id="quantity" name="quantity"
+                                <input value="<%= locals.oldData && oldData.quantity ? oldData.quantity : productToEdit.quantity %>" type="number" id="quantity" name="quantity"
                                     placeholder="Ingrese el stock disponible...">
+                                    <%if(locals.errors && errors.quantity){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.quantity.msg %>
+                                        </div>
+                                    <% } %>
                             </div>
 
                             <div class="generic-input-label">
@@ -132,12 +151,17 @@
                             <div style="display: flex; gap: 10px;">
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="price">Precio Unitario</label>
-                                    <input value="<%= productToEdit.price%>" type="number" id="price" name="price"
+                                    <input value="<%= locals.oldData && oldData.price ? oldData.price : productToEdit.price %>" type="number" id="price" name="price"
                                         placeholder="Ingrese precio por unidad...">
+                                        <%if(locals.errors && errors.price){ %>
+                                            <div class="text-danger"style="color: red; font-size: 13px">
+                                                <%=errors.price.msg %>
+                                            </div>
+                                        <% } %>
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="tax">Descuento</label>
-                                    <input value="<%= productToEdit.discount%>" type="number" id="discount"
+                                    <input value="<%= locals.oldData && oldData.discount ? oldData.discount : productToEdit.discount %>" type="number" id="discount"
                                         name="discount" placeholder="Ingrese descuento...">
                                 </div>
                             </div>
@@ -150,7 +174,7 @@
                                 <h4>Imagen del producto</h4>
                                 <img src="/images/<%= productToEdit.image %>"  width="200px" height="200px" alt="">
                                
-                                <input type="file" id="image" name="image" value="what you want"> 
+                                <input type="file" id="image" name="image" value="<%= locals.oldData && oldData.image ? oldData.image : productToEdit.image %>"> 
                                 <%= productToEdit.image %>
                                 <!-- <div class="product-image">
                                     <img src="" alt="">
@@ -179,8 +203,13 @@
                             <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="brand">Marca</label>
-                                    <input value="<%= productToEdit.brand%>" type="text" id="brand" name="brand"
+                                    <input value="<%= locals.oldData && oldData.brand ? oldData.brand : productToEdit.brand %>" type="text" id="brand" name="brand"
                                         placeholder="Ingrese marca...">
+                                        <%if(locals.errors && errors.brand){ %>
+                                            <div class="text-danger"style="color: red; font-size: 13px">
+                                                <%=errors.brand.msg %>
+                                            </div>
+                                        <% } %>
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
                                     <!-- <label for="gender">Género</label>
@@ -201,8 +230,13 @@
                                 </div>
                                 <div class="generic-input-label" style="width: 50%;">
                                     <label for="tax">Modelo</label>
-                                    <input value="<%= productToEdit.model_name%>" type="text" id="model_name"
+                                    <input value="<%= locals.oldData && oldData.model_name ? oldData.model_name : productToEdit.model_name %>" type="text" id="model_name"
                                         name="model_name" placeholder="Ingrese modelo...">
+                                        <%if(locals.errors && errors.model_name){ %>
+                                            <div class="text-danger"style="color: red; font-size: 13px">
+                                                <%=errors.model_name.msg %>
+                                            </div>
+                                        <% } %>
                                 </div>
                                 <div class="generic-input-label" style="width: 100%;">
                                     <label for="color">Color</label>
@@ -223,6 +257,7 @@
                     </div>
                 </div>
             </form>
+            <a href="/"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
         </section>
     </div>
 </body>
