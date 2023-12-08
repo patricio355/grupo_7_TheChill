@@ -28,6 +28,9 @@
                                     class="<%= locals.errors && errors.firstname ? 'inputError' : null %>"
 									value="<%= locals.oldData ? oldData.firstname : null %>"
                                     >
+                                    <div id="errorMessageContainer" style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                        <div id="errorMessage"></div>
+                                    </div>                                      
                                     <% if (locals.errors && errors.firstname) { %>
                                         <div style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
                                             <%= errors.firstname.msg %>
@@ -117,6 +120,7 @@
         </main>
 
         <%- include ("../partials/footer.ejs") %>
+    <script src="/js/userRegisterValidator.js"></script>
 </body>
 
 </html>

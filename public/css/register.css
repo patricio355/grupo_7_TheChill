@@ -119,6 +119,10 @@ form input {
     border-style: none;
     border: #a3a3a3 1px solid;
 }
+#errorMessageContainer {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
 .ingresar{
     color: #fff;
     /*  */

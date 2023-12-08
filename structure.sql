@@ -235,7 +235,6 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'campera',NULL,'',NULL,0,NULL,4000,'XS','#000000','products_1701187184718.png',22,2,NULL,NULL,NULL,NULL,NULL,NULL,'campera de deporte adidas');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
