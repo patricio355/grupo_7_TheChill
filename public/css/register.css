@@ -35,9 +35,10 @@ a{
 }
 .user {
     display: flex;
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* gap: 30px; */
+    align-items: center;
+    justify-content: center;
+    /* gap: 30px;*/
+
     width: fit-content;
     margin: 0 auto;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.3);

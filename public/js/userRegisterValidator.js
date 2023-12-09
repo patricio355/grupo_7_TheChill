@@ -46,21 +46,41 @@ window.onload = function () {
           inputLength
           inputGenre
      */
-          function validarArchivo() {
-            var inputArchivo = document.getElementById('avatar');
-            var archivo = inputArchivo.files[0];
+          function validateFile(element) {
+            var inputFile = document.getElementById('avatar');
+            var file = inputFile.files[0];
+            var errorMessageContainer = document.getElementById('errorMessageContainerAv');
+            var errorMessageElement = document.getElementById('errorMessageAv');
         
-            if (archivo) {
-              var nombreArchivo = archivo.name;
-              var extensionPermitida = ['.jpg', '.jpeg', '.png'];
+            if (file) {
+              var filename = file.name;
+              var allowedExtensions = ['.jpg', '.jpeg', '.png'];
         
-              var extension = nombreArchivo.slice(((nombreArchivo.lastIndexOf(".") - 1) >>> 0) + 2);
-              if (extensionPermitida.includes('.' + extension.toLowerCase())) {
-                console.log('Archivo válido');
+              var extension = filename.slice(filename.lastIndexOf("."))
+              if (allowedExtensions.includes(extension.toLowerCase())) {
+                element.classList.remove('inputError');
+                errorMessageElement.textContent = '';
+                errorMessageContainer.style.opacity = 0;
               } else {
-                console.log('Selecciona un archivo con una extensión válida: ' + extensionPermitida.join(', '));
-                inputArchivo.value = '';
+                element.classList.add('inputError');
+                errorMessageElement.textContent = 'Extensiones permitidas: jpg, jpeg, png';
+                errorMessageContainer.style.opacity = 1;
+                inputFile.value = '';
               }
+            }
+          }
+          function validateGender(element) {
+            var errorMessageContainer = document.getElementById('errorMessageContainerGen');
+            var errorMessageElement = document.getElementById('errorMessageGen');
+          
+            if (element.value.trim() === "") {
+              element.classList.add('inputError');
+              errorMessageElement.textContent = 'Campo obligatorio';
+              errorMessageContainer.style.opacity = 1;
+            } else {
+              element.classList.remove('inputError');
+              errorMessageElement.textContent = '';
+              errorMessageContainer.style.opacity = 0;
             }
           }
           function validatePhone(element) {
@@ -232,10 +252,16 @@ window.onload = function () {
           const inputEmail = document.querySelector('#email');
           const inputPhone = document.querySelector('#mobile');
           const inputPassword = document.querySelector('#pass');
-          const inputArchivo = document.querySelector('#avatar');
+          const inputAvatar = document.querySelector('#avatar');
           const inputConfirmPassword = document.querySelector('#confirmedPass');
+          const inputGender = document.querySelector('#gender');
 
-          inputArchivo.addEventListener('change', validarArchivo);
+          inputAvatar.addEventListener('change', function () {
+            validateFile(this);
+          });
+          inputGender.addEventListener('blur', function () {
+            validateGender(this);
+          });
           inputPhone.addEventListener('blur', function () {
             validatePhone(this);
           });
