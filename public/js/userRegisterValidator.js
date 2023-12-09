@@ -1,51 +1,7 @@
 console.log("Poniendo en marcha la validacion de userRegister")
 
 window.onload = function () {
-   
-    // const inputRating = document.querySelector('input#rating');
-    // const inputAwards = document.querySelector('input#awards');
-    // const inputReleaseDate = document.querySelector('input#release_date');
-    // const inputLength = document.querySelector('input#length');
-    // const inputGenre = document.querySelector('select#genre_id');
-  
-  
-    /**
-     * Ver las diferencias entre elemento.onEvent y addeventListener
-     */
-  
-    // codigo
-  
-      // inputTitle.onclick = function(){
-      //   console.log('primer valor')
-      // }
-  
-      // inputTitle.onclick = function(){
-      //   console.log('segundo valor')
-      // }
-  
-      // inputTitle.addEventListener('click', function(){
-      //   console.log('primer valor')
-      // });
-  
-      // inputTitle.addEventListener('click', function(){
-      //   console.log('segundo valor')
-      // })
-  
-  
-  
-    /**
-     * Si el input está vacío agregar la clase "is-invalid"
-     * sino remover is-invalid y agregar "is-valid"
-     */
-  
-    // Realizar el código
-  
-    /**
-     *   inputRating 
-          inputReleaseDate
-          inputLength
-          inputGenre
-     */
+  let thereErrors = true;
           function validateFile(element) {
             var inputFile = document.getElementById('avatar');
             var file = inputFile.files[0];
@@ -61,13 +17,16 @@ window.onload = function () {
                 element.classList.remove('inputError');
                 errorMessageElement.textContent = '';
                 errorMessageContainer.style.opacity = 0;
+                return false;
               } else {
                 element.classList.add('inputError');
                 errorMessageElement.textContent = 'Extensiones permitidas: jpg, jpeg, png';
                 errorMessageContainer.style.opacity = 1;
                 inputFile.value = '';
+                return true;
               }
             }
+            return false;
           }
           function validateGender(element) {
             var errorMessageContainer = document.getElementById('errorMessageContainerGen');
@@ -77,11 +36,14 @@ window.onload = function () {
               element.classList.add('inputError');
               errorMessageElement.textContent = 'Campo obligatorio';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else {
               element.classList.remove('inputError');
               errorMessageElement.textContent = '';
               errorMessageContainer.style.opacity = 0;
+              return false;
             }
+            return false
           }
           function validatePhone(element) {
             var errorMessageContainer = document.getElementById('errorMessageContainerT');
@@ -91,11 +53,14 @@ window.onload = function () {
               element.classList.add('inputError');
               errorMessageElement.textContent = 'Campo obligatorio';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else {
               element.classList.remove('inputError');
               errorMessageElement.textContent = '';
               errorMessageContainer.style.opacity = 0;
+              return false;
             }
+            return false;
           }
           // Name Validation
           function validateName(element) {
@@ -106,15 +71,19 @@ window.onload = function () {
               element.classList.add('inputError');
               errorMessageElement.textContent = 'Campo obligatorio';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else if (element.value.length < 2) {
               element.classList.add('inputError');
               errorMessageElement.textContent = 'Nombre muy corto';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else {
               element.classList.remove('inputError');
               errorMessageElement.textContent = '';
               errorMessageContainer.style.opacity = 0;
+              return false;
             }
+            return false;
           }
           // Lastname Validation
           function validateLastName(element) {
@@ -125,15 +94,19 @@ window.onload = function () {
               element.classList.add('inputError');
               errorMessageElement.textContent = 'Campo obligatorio';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else if (element.value.length < 2) {
               element.classList.add('inputError');
               errorMessageElement.textContent = 'Apellido muy corto';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else {
               element.classList.remove('inputError');
               errorMessageElement.textContent = '';
               errorMessageContainer.style.opacity = 0;
+              return false;
             }
+            return false;
           }
           function isValidEmail(email) {
             return email.includes('@') && email.includes('.');
@@ -147,14 +120,19 @@ window.onload = function () {
               element.classList.add('inputError');
               errorMessageElement.textContent = 'Campo obligatorio';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else if (!isValidEmail(element.value)) {
               element.classList.add('inputError');
-              errorMessageElement.textContent = 'Debes escribir un formato de correo válido';       errorMessageContainer.style.opacity = 1;
+              errorMessageElement.textContent = 'Debes escribir un formato de correo válido';
+              errorMessageContainer.style.opacity = 1;
+              return true;
             } else {
               element.classList.remove('inputError');
               errorMessageElement.textContent = '';
               errorMessageContainer.style.opacity = 0;
+              return false;
             }
+            return false;
           }
           function isValidEmail(email) {
             return email.includes('@') && email.includes('.');
@@ -216,17 +194,21 @@ window.onload = function () {
               element.classList.add('inputError');
               errorMessageElement.textContent = 'Campo obligatorio';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else if (!validationResult.isValid) {
               element.classList.add('inputError');
               errorMessageElement.innerHTML = '<ul style="margin-left:20px;margin-top:5px">' +
       validationResult.errors.map(error => `<li>${error}</li>`).join('') +
       '</ul>';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else {
               element.classList.remove('inputError');
               errorMessageElement.textContent = '';
               errorMessageContainer.style.opacity = 0;
+              return false;
             }
+            return false;
           }
           function validatePasswordRewrite(element){
             var errorMessageContainer = document.getElementById('errorMessageContainerPR');
@@ -236,15 +218,19 @@ window.onload = function () {
               element.classList.add('inputError');
               errorMessageElement.textContent = 'Campo obligatorio';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else if (element.value !== passValue) {
               element.classList.add('inputError');
               errorMessageElement.innerHTML = '<ul style="margin-left:20px;margin-top:5px;"><li>Las contraseñas no coinciden</li></ul>';
               errorMessageContainer.style.opacity = 1;
+              return true;
             } else {
               element.classList.remove('inputError');
               errorMessageElement.textContent = '';
               errorMessageContainer.style.opacity = 0;
+              return false;
             }
+            return false;
           }
 
           const inputName = document.querySelector('#firstname');
@@ -282,78 +268,26 @@ window.onload = function () {
           });
 
     /*******  Formulario ********/
+
+    function hasErrors() {
+      return (
+        validateFile(inputAvatar) ||
+        validateGender(inputGender) ||
+        validatePhone(inputPhone)||
+        validatePasswordRewrite(inputConfirmPassword)||
+        validatePassword(inputPassword)||
+        validateEmail(inputEmail)||
+        validateLastName(inputLastName)||
+        validateName(inputName)
+      );
+    }
+
     const createUser = document.querySelector('form');
 
-    createUser.addEventListener( 'submit', function(e){
-
-      const formulario = [...createUser.elements];
-
-      formulario.pop();
-
-      let thereErrors = false;
-
-    //   formulario.forEach((element) =>{
-    //     if(element.value.trim() === ""){
-    //       element.classList.add('inputError');
-    //       thereErrors = true;
-    //     }else{
-    //       element.classList.remove('inputError')
-    //       element.classList.add('inputError')
-  
-    //     }
-    //   })
-  
-      if(thereErrors === true){
+    createUser.addEventListener('submit', async function (e) {
+      // Verificar si hay errores antes de enviar el formulario
+      if (hasErrors()) {
         e.preventDefault();
       }
-  
-  
-  
-    } )
-  
-    
-    
-  }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  // createMovie.addEventListener('submit', (e) => {
-  
-  //   let formFields = [...createMovie.elements];
-  //   formFields.pop();
-  
-  //   let areErrors = false;
-  
-  //   formFields.forEach((field) => {
-  //     if (field.value.trim() === '') {
-  //       field.classList.add('is-invalid');
-  //       //   field.style.border = '1px solid red'
-  //       areErrors = false;
-  
-  //     } else {
-  //       field.classList.remove('is-invalid');
-  //       field.classList.add('is-valid');
-  
-  //     }
-  
-  //   })
-  
-  //   if (areErrors) {
-  //     console.log('Hay errores')
-  //     e.preventDefault()
-  //   }
-  
-  
-  // });
-  
-  
-  
-  
+    });
+};

@@ -35,8 +35,8 @@ a{
 }
 .user {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;
+    justify-content: center; */
     /* gap: 30px;*/
 
     width: fit-content;
