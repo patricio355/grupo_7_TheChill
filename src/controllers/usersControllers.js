@@ -29,8 +29,6 @@ const usersControllers = {
           },
         });
     
-        console.log("El objeto es:", userInData);
-    
         if (userInData) {
           return res.render(path.join(__dirname, "../views/users/register.ejs"), {
             errors: {
@@ -75,7 +73,7 @@ const usersControllers = {
             req.session.userLogged = userFound;
             res.cookie("userEmail",req.session.userLogged.email,{maxAge:(1000*60)*5});
             // console.log(req.session);
-            res.redirect("/profile");
+            res.redirect("/");
           }else{
             res.render(path.join(__dirname,"../views/users/login.ejs"), {
               errors:{
@@ -97,19 +95,63 @@ const usersControllers = {
       })
     },
     profile: (req, res)=>{
-      console.log("estas en profile");
-      return res.render(path.join(__dirname,"../views/users/profile.ejs")
+      console.log (req.session.userLogged.avatar)
+        const id = req.params.id;
+        db.User.findByPk(id, {raw:true})
+        .then((result) => {
+            res.render(path.join(__dirname,"../views/users/profile.ejs")
       ,{
         userData: req.session.userLogged,
+         userToEdit: result 
+         
       }
-      );
-    },
+      
+        )})
+        .catch((error) => res.send(error));
+    } ,
+
+
     logOut: (req, res)=>{
       req.session.destroy();
       console.log("se destruyo la session");
       res.clearCookie("userEmail");
       res.redirect("/");
-    }
+    },
+
+
+  
+
+  updateUser: async (req, res) => {
+      const userId = req.params.id;
+     // me falta agregar validacion y un par de correcciones mas
+      try {
+          const editedProduct = await db.User.update({	
+
+              first_name: req.body.first_name,
+              last_name	: req.body.last_name,
+              email: req.body.email,
+              gender: req.body.gender,
+             
+          }, {
+              where: {
+                  id: userId,
+              },
+          });
+          
+          res.redirect("/profile/" + userId );
+      } catch (error) {
+          console.log(error);
+          res.send("Error");
+      }
+      
+  }
+
+
+
+
+
+
+
 };
 
 module.exports = usersControllers;

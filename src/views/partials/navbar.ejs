@@ -16,23 +16,55 @@
         <div class="logo">
           <a href="/">THE CHILL.</a>
           <div class="navbarOptions">
+           
             <ul class="navbarCategories">
-              <li>MUJER</li>
-              <a href="#">
-                <li>HOMBRE</li>
-              </a>
-              <li><a href="/admin/create">VENDER</a></li>
-              <li>SOBRE THE CHILL</li>
+              <% if (locals.userData) { %>
+                <% if (!userData.admin) { %>
+                  
+                  <li><a href="/">HOMBRE</a></li>
+                  <li><a href="/">MUJER</a></li> 
+                  <li><a href="/">NIÑOS</a></li> 
+                  <li><a href="/">DEPORTE</a></li> 
+                  <li><a href="/">AYUDA</a></li> 
+                  <li><a href="/">SOBRE THE CHILL</a></li> 
+                <% } else { %>
+               
+                <% } %>
+            
+                <% if (userData.admin) { %>
+                  
+                  <li><a href="/admin">GESTION DE PRODUCTOS</a></li>
+                  <li><a href="/admin">GESTION DE USUARIOS</a></li>
+                  <li><a href="/admin">PANEL DE ADMINISTRADOR</a></li>
+                <% } %>
+              <% } else { %>
+                 <li><a href="/">HOMBRE</a></li> 
+                 <li><a href="/">MUJER</a></li> 
+                 <li><a href="/">CONTACTO</a></li> 
+                 <li><a href="/">SOBRE THE CHILL</a></li> 
+                 <li><a href="/">AYUDA</a></li> 
+                 <li><a href="/register">REGISTRARSE</a></li> 
+              <% } %>
+            
             </ul>
+
+
+
+
           </div>
         </div>
         <div class="userOptions">
           <% if(locals.isLogged){ %>
-            <a href="/profile" class="linkProfile">
+          
+            <a href="" class="linkProfile">
               <div class="userLogged menu-dropdown">
                 <img src="/images/profilephotos/<%= locals.userLogged.avatar %>" style="padding: 1px 0;margin: 2px;"
                   alt="">
-                <p>Hola <%= locals.userLogged.firstname %>
+                 <p> <% if (locals.userData && userData.admin) {%>
+                    Adm
+                    
+                      <% }%>
+                <%= locals.userLogged.first_name %>
                 </p>
                 <svg style="margin-left: -10px;padding-top:3px;" xmlns="http://www.w3.org/2000/svg" height="20"
                   viewBox="0 -960 960 960" width="10">
@@ -40,17 +72,47 @@
                 </svg>
                 <ul class="sub-menu">
                   <li>
-                    <a href="/profile">
+                    <a href="/profile/<%= locals.userLogged.id %>">
                       Perfil
                     </a>
                   </li>
-                  <li><a href="/profile">Favoritos</a></li>
-                  <li><a href="/profile">Compras</a></li>
-                  <li><a href="/profile">Configuraciones</a></li>
-                  <li><a href="/profile">Notificaciones</a></li>
-                  <form action="../logout" method="get" class="logoutButtonNav">
-                    <li><button type="submit">Cerrar Sesión</button></li>
-                  </form>
+
+
+                  <% if (locals.userData) { %>
+                    <% if (!userData.admin) { %>
+                      <li><a href="/profile">Favoritos</a></li>
+                      <li><a href="/carrito">Mi carrito</a></li>
+                      <li><a href="/profile/<%= locals.userLogged.id %>">Configuraciones</a></li>
+                      <li><a href="/profile">Notificaciones</a></li>
+                      <form action="../logout" method="get" class="logoutButtonNav">
+                        <li><button type="submit">Cerrar Sesión</button></li>
+                      </form>
+                   
+                    <% } else { %>
+                   
+                    <% } %>
+                
+                    <% if (userData.admin) { %>
+                      
+                      <li><a href="/profile/<%= locals.userLogged.id %>">Configuraciones</a></li>
+                      <li><a href="/">Notificaciones</a></li>
+                      <li><a href="/">Negocio</a></li>
+                      <li><a href="/">Estadisticas</a></li>
+                      <form action="../logout" method="get" class="logoutButtonNav">
+                        <li><button type="submit">Cerrar Sesión</button></li>
+                      </form>
+                      
+                    <% } %>
+                  <% } else { %>
+                    <li><a href="/profile">Favoritos</a></li>
+                    <li><a href="/carrito">Mi carrito</a></li>
+                    <li><a href="/profile/<%= locals.userLogged.id %>">Configuraciones</a></li>
+                    <li><a href="/profile">Notificaciones</a></li>
+                    <form action="../logout" method="get" class="logoutButtonNav">
+                      <li><button type="submit">Cerrar Sesión</button></li>
+                    </form>
+                  <% } %>
+                 
                 </ul>
               </div>
             </a>
@@ -66,6 +128,33 @@
                 </svg>
               </a>
               <% } %>
+
+              <% if (locals.userData) { %>
+                <% if (!userData.admin) { %>
+                  <a href="/carrito">
+                    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                      <rect fill="none" height="256" width="256" />
+                      <path d="M184,184H69.8L41.9,30.6A8,8,0,0,0,34.1,24H16" fill="none" stroke="#fff"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                      <circle cx="80" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="16" />
+                      <circle cx="184" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="16" />
+                      <path d="M62.5,144H188.1a15.9,15.9,0,0,0,15.7-13.1L216,64H48" fill="none" stroke="#fff"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                    </svg>
+                  </a>
+            
+                <% } else { %>
+               
+                <% } %>
+            
+                <% if (userData.admin) { %>
+                  
+                 
+                  
+                <% } %>
+              <% } else { %>
                 <a href="/carrito">
                   <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                     <rect fill="none" height="256" width="256" />
@@ -79,6 +168,9 @@
                       stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
                   </svg>
                 </a>
+              <% } %>
+
+
         </div>
       </div>
     </div>

@@ -24,7 +24,7 @@ const adminControllers = {
 
     admin: (req, res) =>{
         db.Product.findAll({ raw:true}).then((result) =>{
-            res.render("../views/admin/admin.ejs",{ products:result });
+            res.render("../views/admin/admin.ejs",{ products:result , userData: req.session.userLogged });
         })
         .catch((error)=> res.send(error));
        },
@@ -36,7 +36,7 @@ const adminControllers = {
 
     create: (req, res) =>{
             db.Product.findAll({ raw:true}).then((result)=>{
-                res.render("../views/admin/createProduct.ejs",{products:result});
+                res.render("../views/admin/createProduct.ejs",{products:result , userData: req.session.userLogged});
             })
         },
 
@@ -203,7 +203,7 @@ const adminControllers = {
                 },
             });
     
-            res.redirect("/");
+            res.redirect("/productDetail/"+ productId);
         } catch (error) {
             console.log(error);
             res.send("Error al actualizar el producto");

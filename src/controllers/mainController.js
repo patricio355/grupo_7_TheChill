@@ -13,7 +13,7 @@ const mainController = {
    index: async (req, res) =>{
     let products = await db.Product.findAll()
     
-    return res.render("../views/home/index.ejs",{ products });
+    return res.render("../views/home/index.ejs",{ products , userData: req.session.userLogged, });
    }
 
     /*showHome: (req,res)=>{

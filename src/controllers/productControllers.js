@@ -31,7 +31,7 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
             });
 
             if (product) {
-                res.render("../views/products/productDetail.ejs", { product });
+                res.render("../views/products/productDetail.ejs", { product , userData: req.session.userLogged });
             } else {
                 res.send('Producto no encontrado');
             }
@@ -55,7 +55,7 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
 
     productCart : (req,res)=>{
-        res.render(path.join(__dirname,"../views/products/productCart.ejs"));
+        res.render(path.join(__dirname,"../views/products/productCart.ejs") , { userData: req.session.userLogged });
     }
 };
 
