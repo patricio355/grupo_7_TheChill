@@ -36,6 +36,14 @@ app.use(usersRoutes)
 app.use(productRoutes)
 app.use(adminRoutes)
 
+
+
+//rutas 
+const apiUserRoutes= require('./routes/api/apiUser.js');
+
+app.use('/api',apiUserRoutes);
+
+
 // app.use()
 
 // LEGACY NAVBAR
