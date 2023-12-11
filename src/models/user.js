@@ -18,6 +18,9 @@ const User = {
     getData: function () {
       return JSON.parse(fs.readFileSync(this.filename, "utf-8"));
     },
+    getDataByEmail: function (find) {
+      return JSON.parse(fs.readFileSync(this.filename, "utf-8"));
+    },
   
     findAll: function () {
       return this.getData();

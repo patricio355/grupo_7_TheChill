@@ -42,3 +42,17 @@ app.use(adminRoutes)
 // app.get('/nav', (req,res)=>{
 //     res.render(path.join(__dirname,"/views/navbarFooter.ejs"));
 // });
+
+//Aquí llamo a la ruta de las api de movies
+const apiUserRouter = require('./routes/api/apiUser')
+//Aquí llamo a la ruta de las api de actors
+// const apiGenresRouter = require('./routes/api/genres')
+//Aquí llamo a la ruta de las api de actors
+// const apiActorsRouter = require('./routes/api/actors')
+
+
+
+//Aquí creo la colección de mis recursos de movies (APIs)
+app.use('/api/users',apiUserRouter);
+// app.use('/api/actors',apiActorsRouter);
+// app.use('/api/genres',apiGenresRouter);

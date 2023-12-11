@@ -3,7 +3,7 @@ const path = require('path');
 const session = require("express-session");
 const {validationResult} = require("express-validator");
 const bcryptjs = require('bcryptjs');
-const User = require("../models/user.js");
+const User = require("../models/user");
 const exp = require('constants');
 let db = require('../../database/models');
 
@@ -12,51 +12,38 @@ const usersControllers = {
     register:(req,res)=>{
         res.render(path.join(__dirname,"../views/users/register.ejs"));
     },
-    processRegister: async (req, res) => {
-      try {
-        const resultValidation = validationResult(req);
-        
-        if (resultValidation.errors.length > 0) {
-          return res.render(path.join(__dirname, "../views/users/register.ejs"), {
-            errors: resultValidation.mapped(),
-            oldData: req.body,
-          });
-        }
-    
-        const userInData = await db.User.findOne({
-          where: {
-            email: req.body.email,
-          },
+    processRegister: (req, res) => {
+      const resultValidation = validationResult(req);
+      if (resultValidation.errors.length > 0) {
+        return res.render(path.join(__dirname,"../views/users/register.ejs"), {
+          errors: resultValidation.mapped(),
+          oldData: req.body,
         });
-    
-        console.log("El objeto es:", userInData);
-    
-        if (userInData) {
-          return res.render(path.join(__dirname, "../views/users/register.ejs"), {
-            errors: {
-              email: {
-                msg: "Este email ya está registrado",
-              },
-            },
-            oldData: req.body,
-          });
-        }
-    
-        const newUser = {
-          ...req.body,
-          password: bcryptjs.hashSync(req.body.password, 10),
-          avatar: req.file ? req.file.filename : 'avatar.jpg',
-        };
-    
-        await User.create(newUser);
-    
-        return res.redirect("/login");
-      } catch (error) {
-        console.error("Error en el registro:", error);
-        return res.status(500).send("Error en el servidor");
       }
+      const userInData =  db.User.findOne({
+        where: {
+            email: req.body.email
+        }
+      });
+      console.log(userInData);
+      if (userInData){
+        return res.render(path.join(__dirname,"../views/users/register.ejs"), {
+        errors:{
+          email:{
+            msg: "Este email ya está registrado"
+          }
+        },
+        oldData: req.body,
+      })}
+      const newUser = {
+        ...req.body,
+        password: bcryptjs.hashSync(req.body.password,10),
+        avatar: req.file ? req.file.filename : 'avatar.jpg',
+      };
+      // console.log(newUser);
+      User.create(newUser);
+      return res.redirect("/login");
     },
-    
     login: (req,res)=>{
         res.render(path.join(__dirname,"../views/users/login.ejs"));
     },
@@ -98,6 +85,7 @@ const usersControllers = {
     },
     profile: (req, res)=>{
       console.log("estas en profile");
+      console.log(req.session.userLogged);
       return res.render(path.join(__dirname,"../views/users/profile.ejs")
       ,{
         userData: req.session.userLogged,
