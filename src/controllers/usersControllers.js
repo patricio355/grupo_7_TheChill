@@ -14,36 +14,41 @@ const usersControllers = {
     },
     processRegister: (req, res) => {
       const resultValidation = validationResult(req);
+    
       if (resultValidation.errors.length > 0) {
-        return res.render(path.join(__dirname,"../views/users/register.ejs"), {
+        return res.render(path.join(__dirname, "../views/users/register.ejs"), {
           errors: resultValidation.mapped(),
           oldData: req.body,
         });
       }
-      const userInData =  db.User.findOne({
+    
+      db.User.findOne({
         where: {
-            email: req.body.email
-        }
-      });
-      console.log(userInData);
-      if (userInData){
-        return res.render(path.join(__dirname,"../views/users/register.ejs"), {
-        errors:{
-          email:{
-            msg: "Este email ya está registrado"
-          }
+          email: req.body.email,
         },
-        oldData: req.body,
-      })}
-      const newUser = {
-        ...req.body,
-        password: bcryptjs.hashSync(req.body.password,10),
-        avatar: req.file ? req.file.filename : 'avatar.jpg',
-      };
-      // console.log(newUser);
-      User.create(newUser);
-      return res.redirect("/login");
-    },
+      }).then((userFound) => {
+        if (userFound) {
+          return res.render(path.join(__dirname, "../views/users/register.ejs"), {
+            errors: {
+              email: {
+                msg: "Este email ya está registrado",
+              },
+            },
+            oldData: req.body,
+          });
+        }
+    
+        const newUser = {
+          ...req.body,
+          password: bcryptjs.hashSync(req.body.password,10),
+          avatar: req.file ? req.file.filename : 'avatar.jpg',
+        };
+        delete newUser.confirmedPass;
+        // console.log(newUser);
+        User.create(newUser);
+        })
+        return res.redirect("/login");
+    },    
     login: (req,res)=>{
         res.render(path.join(__dirname,"../views/users/login.ejs"));
     },
@@ -54,6 +59,7 @@ const usersControllers = {
             email: req.body.email
         }
       }).then(userFound=>{
+        
       if (userFound){
         const okPassword = bcryptjs.compareSync(userToLogin.password, userFound.passwordHash )
           if(okPassword){

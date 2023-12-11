@@ -35,10 +35,10 @@ const User = {
       let userFound = allUsers.find((user) => user[field] == text);
       return userFound;
     },
-    create: function (userData) {
-      try{
+    create: async function (userData) {
+      try {
         console.log(userData);
-        db.User.create({
+        await db.User.create({
           first_name: userData.firstname,
           last_name: userData.lastname,
           gender: userData.gender,
@@ -47,11 +47,11 @@ const User = {
           passwordHash: userData.password,
           avatar: userData.avatar,
           admin: false,
-          registeredAt:new Date(),
-        })
-
-      }catch (error) {
-        res.send(error);
+          registeredAt: new Date(),
+        });
+      } catch (error) {
+        console.error(error);
+        throw error; // Lanzar el error para manejarlo fuera de esta función si es necesario
       }
     },
     // create: function (userData) {
