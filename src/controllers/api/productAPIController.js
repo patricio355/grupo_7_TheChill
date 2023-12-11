@@ -12,15 +12,16 @@ const User = db.User;
 
 const actorsAPIController = {
     'list': (req, res) => {
-        db.User.findAll()
-        .then(users => {
+        db.sequelize.sync()
+        db.Category.findAll({include: [{association: 'productos'}]})
+        .then(products => {
             let respuesta = {
                 meta: {
                     status : 200,
-                    total: users.length,
-                    url: 'api/users'
+                    total: products.length,
+                    url: 'api/products/all'
                 },
-                data: users
+                data: products
             }
                 res.json(respuesta);
             })

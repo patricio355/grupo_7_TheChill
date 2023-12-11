@@ -15,94 +15,198 @@ const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 const{validationResult}=require("express-validator");
 //
 
-const adminControllers = {
-    /*admin: (req, res) => {
-        const productsFilePath = path.join(__dirname, "../data/products.json");
-        const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
-        res.render("../views/admin/admin.ejs",{ products });
-    },*/
-
+const adminControllers = {    
     admin: (req, res) =>{
         db.Product.findAll({ raw:true}).then((result) =>{
             res.render("../views/admin/admin.ejs",{ products:result });
         })
         .catch((error)=> res.send(error));
-       },
-
-
-    /*createEdit: (req, res) => {
-        res.render(path.join(__dirname, "../views/admin/createProduct.ejs"));
-    },*/
-
-    create: (req, res) =>{
-            db.Product.findAll({ raw:true}).then((result)=>{
-                res.render("../views/admin/createProduct.ejs",{products:result});
-            })
-        },
-
-
-    createProduct: async (req, res) => {
-        
-        //lo de express-validator
-        const resultValidation=validationResult(req);
-        if(resultValidation.errors.length > 0){
-            res.render(path.join(__dirname,"../views/admin/createProduct.ejs"),{
-                errors:resultValidation.mapped(),
-                oldData: req.body,
-             
-            });
-        }else{
-
-
-        let productImage;
-        if (req.file) {
-            productImage = req.file.filename;
-        } else {
-            productImage = "producto.png";
-        }
-    
-        let newProduct = req.body;
-    
+    },      
+    createCat: (req, res) =>{       
+        res.render("../views/admin/createCategory.ejs");
+    },
+    createCatSuccess: async (req, res) =>{
+        let newCategory = req.body;
+        console.log("La categoria essss",req)
         try {
-            const createdProduct = await db.Product.create({
-                title: newProduct.title,
-                image: productImage,
-                size: newProduct.size,
-                content: newProduct.content,
-                price: newProduct.price,
-                brand: newProduct.brand,
-                colour: newProduct.colour,
-                gender: newProduct.gender,
-                category: newProduct.category,
-                type: newProduct.type,
-                model_name: newProduct.model_name,
-                quantity: newProduct.quantity,
-                discount: newProduct.discount
+            await db.Category.create({
+                title: newCategory.categoryName,
+                metaTitle: newCategory.categoryMetaTitle,
+                slug: newCategory.categorySlug,
+                content: newCategory.categoryDescription,
             });
-
+            
             res.redirect("/");
         } 
-            catch (error) {
+        catch (error) {
             res.send(error);
         } 
-        }
     },
-
-
-    // Create -  Method to store
-    /*store: (req, res) => {
-        // Do the magic
-        const data = req.body;
-        const index = products[products.length - 1].id;
-        const newProduct = {
-            id: index + 1,
-            name: data.name,
-            image: req.file.filename,
-            size: data.size,
-            description: data.description,
-            price: parseInt(data.price),
-            brand: data.brand,
-            color: data.color,
+    edit: (req, res) => {
+        const id = req.params.id;
+        db.Product.findByPk(id, {raw:true})
+        .then((result) => {
+            res.render("../views/admin/editProduct.ejs", { productToEdit: result });
+        })
+        .catch((error) => res.send(error));
+    },
+    updateProduct: async (req, res) => {
+        const resultValidation=validationResult(req);
+        if(resultValidation.errors.length > 0){
+            const id = req.params.id;
+            db.Product.findByPk(id, {raw:true})
+        .then((result) => {
+            const mergedData = {
+                ...result,
+                ...req.body,
+            };
+            res.render(path.join(__dirname,"../views/admin/editProduct.ejs"),{
+                errors:resultValidation.mapped(),
+                oldData: req.body,
+                productToEdit : mergedData,
+                
+            });
+        })
+        }else{
+        const productId = req.params.id;
+       // const productImage = req.file ? req.file.filename : "producto.png"; 
+       console.log(req.body);
+       let productImage;
+       if (req.file) {
+           productImage = req.file.filename;
+       } else {
+           productImage = productId.image;
+       }       
+        try {
+            const editedProduct = await db.Product.update({
+                title: req.body.title,
+                image: productImage,
+                size: req.body.size,
+                content: req.body.content,
+                price: req.body.price,
+                brand: req.body.brand,
+                colour: req.body.colour,
+                gender: req.body.gender,
+                type: req.body.type,
+                model_name: req.body.model_name,
+                quantity: req.body.quantity,
+                discount: req.body.discount,
+                category: req.body.category
+                
+            }, {
+                where: {
+                    id: productId,
+                },
+            });
+    
+            res.redirect("/");
+        } catch (error) {
+            console.log(error);
+            res.send("Error al actualizar el producto");
+        }        
+    }},
+    delete: (req, res) => {
+        db.Product.destroy({
+            where: {
+                id: req.params.id,
+            },
+        })
+        .then((result) => res.redirect("/admin"))
+        .catch((error) => console.log(error));
+    },
+    create: async (req, res) =>{
+        // db.Category.findAll({ raw:true}).then((result)=>{
+            //     res.render("../views/admin/createProduct.ejs",{products:result});
+            // })
+            try {
+                // Obtén todas las categorías
+                const categories = await db.Category.findAll();
+                
+                // Renderiza el formulario con las categorías
+                res.render(path.join(__dirname, '../views/admin/createProduct.ejs'), {
+                    categories: categories, // Pasa las categorías al formulario
+                    oldData: req.body,  
+                });
+            } catch (error) {
+                res.send(error);
+            }
+        },
+        
+        
+        createProduct: async (req, res) => {        
+            //lo de express-validator
+            const resultValidation=validationResult(req);
+            const categories = await db.Category.findAll();
+            if(resultValidation.errors.length > 0){
+                res.render(path.join(__dirname,"../views/admin/createProduct.ejs"),{
+                    errors:resultValidation.mapped(),
+                    oldData: req.body,   
+                    categories: categories,          
+                });
+            }else{
+                let productImage;
+                if (req.file) {
+                    productImage = req.file.filename;
+                } else {
+                    productImage = "producto.png";
+                }
+                
+                let newProduct = req.body;
+                console.log(newProduct)
+                
+                try {
+                    const createdProduct = await db.Product.create({
+                        title: newProduct.title,
+                        image: productImage,
+                        size: newProduct.size,
+                        content: newProduct.content,
+                        price: newProduct.price,
+                        brand: newProduct.brand,
+                        colour: newProduct.colour,
+                        gender: newProduct.gender,
+                        type: newProduct.type,
+                        model_name: newProduct.model_name,
+                        quantity: newProduct.quantity,
+                        discount: newProduct.discount,
+                        categories: req.body.categories
+                    }
+                    ,{
+                        include:"categories"
+                    }
+                    );
+                    // const selectedCategories = Array.isArray(req.body.categories) ? [req.body.categories] : [req.body.categories];
+                    // createdProduct.addCategory(selectedCategories);
+                    
+                    
+                    res.redirect("/");
+                } 
+                catch (error) {
+                    res.send(error);
+                } 
+            }
+        },
+        /*admin: (req, res) => {
+            const productsFilePath = path.join(__dirname, "../data/products.json");
+            const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
+            res.render("../views/admin/admin.ejs",{ products });
+        },*/
+        /*createEdit: (req, res) => {
+            res.render(path.join(__dirname, "../views/admin/createProduct.ejs"));
+        },*/
+        // Create -  Method to store
+        /*store: (req, res) => {
+            // Do the magic
+            const data = req.body;
+            const index = products[products.length - 1].id;
+            const newProduct = {
+                id: index + 1,
+                name: data.name,
+                image: req.file.filename,
+                size: data.size,
+                description: data.description,
+                price: parseInt(data.price),
+                brand: data.brand,
+                color: data.color,
             gender: data.gender,
             category: data.category,
             model_name: data.model_name,
@@ -133,96 +237,6 @@ const adminControllers = {
         res.render(path.join(__dirname, "../views/admin/editProduct.ejs"), { productToEdit: product });
     },*/
 
-    edit: (req, res) => {
-        const id = req.params.id;
-        db.Product.findByPk(id, {raw:true})
-        .then((result) => {
-            res.render("../views/admin/editProduct.ejs", { productToEdit: result });
-        })
-        .catch((error) => res.send(error));
-    },
-
-    updateProduct: async (req, res) => {
-
-
-        const resultValidation=validationResult(req);
-        if(resultValidation.errors.length > 0){
-            const id = req.params.id;
-            db.Product.findByPk(id, {raw:true})
-        .then((result) => {
-            const mergedData = {
-                ...result,
-                ...req.body,
-            };
-            res.render(path.join(__dirname,"../views/admin/editProduct.ejs"),{
-                
-                
-                errors:resultValidation.mapped(),
-                oldData: req.body,
-                productToEdit : mergedData,
-                
-            });
-        })
-        }else{
-
-
-
-
-
-
-        const productId = req.params.id;
-       // const productImage = req.file ? req.file.filename : "producto.png"; 
-       console.log(req.body);
-       let productImage;
-       if (req.file) {
-           productImage = req.file.filename;
-       } else {
-           productImage = productId.image;
-       }
-
-       
-        try {
-            const editedProduct = await db.Product.update({
-                title: req.body.title,
-                image: productImage,
-                size: req.body.size,
-                content: req.body.content,
-                price: req.body.price,
-                brand: req.body.brand,
-                colour: req.body.colour,
-                gender: req.body.gender,
-                type: req.body.type,
-                model_name: req.body.model_name,
-                quantity: req.body.quantity,
-                discount: req.body.discount,
-                category: req.body.category
-                
-            }, {
-                where: {
-                    id: productId,
-                },
-            });
-    
-            res.redirect("/");
-        } catch (error) {
-            console.log(error);
-            res.send("Error al actualizar el producto");
-        }
-        
-    }},
-    
-    
-    
-
-    delete: (req, res) => {
-        db.Product.destroy({
-            where: {
-                id: req.params.id,
-            },
-        })
-        .then((result) => res.redirect("/admin"))
-        .catch((error) => console.log(error));
-    },
 
     /*update: (req, res) => {
         // Do the magic

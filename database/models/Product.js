@@ -26,9 +26,9 @@ module.exports = (sequelize, DataTypes) => {
         brand:{
             type: DataTypes.STRING,
         },
-        category:{
-            type: DataTypes.STRING,
-        },
+        // category:{
+        //     type: DataTypes.STRING,
+        // },
         gender:{
             type: DataTypes.STRING,
         },
@@ -77,7 +77,14 @@ module.exports = (sequelize, DataTypes) => {
     {
         tableName: "product",
         timestamps: false,
-    }
-    )
+    });
+    
+    Product.associate = (models) => {
+        Product.belongsToMany(models.Category, {
+            as:"categories",
+            through: 'product_category',
+            
+        }); 
+    };
     return Product;
 }
