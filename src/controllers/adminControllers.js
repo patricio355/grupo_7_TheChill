@@ -18,7 +18,7 @@ const { validationResult } = require("express-validator");
 const adminControllers = {
     admin: (req, res) => {
         db.Product.findAll({ raw: true }).then((result) => {
-            res.render("../views/admin/admin.ejs", { products: result });
+            res.render("../views/admin/admin.ejs", { products: result , userData: req.session });
         })
             .catch((error) => res.send(error));
     },
