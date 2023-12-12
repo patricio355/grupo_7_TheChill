@@ -6,7 +6,7 @@ const productAPIController = require('../../controllers/api/productAPIController
 //Listado de todos los productos
 router.get('/all', productAPIController.list);
 //Detalle del producto
-// router.get('/:id', productAPIController.detail);
+router.get('/:id', productAPIController.detail);
 // //En que peliculas trabajo el actor con id tal
 // router.get('/:id/movies', productAPIController.actorMovies);
 
