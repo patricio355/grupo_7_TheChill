@@ -52,3 +52,17 @@ app.use('/api',apiUserRoutes);
 // app.get('/nav', (req,res)=>{
 //     res.render(path.join(__dirname,"/views/navbarFooter.ejs"));
 // });
+
+//Aquí llamo a la ruta de las api de products
+const apiProductRouter = require('./routes/api/apiProduct')
+//Aquí llamo a la ruta de las api de actors
+// const apiGenresRouter = require('./routes/api/genres')
+//Aquí llamo a la ruta de las api de actors
+// const apiActorsRouter = require('./routes/api/actors')
+
+
+
+//Aquí creo la colección de mis recursos del ecommerce (APIs)
+app.use('/api/products',apiProductRouter);
+// app.use('/api/actors',apiActorsRouter);
+// app.use('/api/genres',apiGenresRouter);

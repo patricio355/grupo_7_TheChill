@@ -70,14 +70,12 @@
                         <div class="create-section">
                             <div class="generic-input-label">
                                 <label for="category"><h4>Categoría de producto</h4></label>
-                                <select name="category" id="category" value="<%= locals.oldData && oldData.category ? oldData.category : '' %>">
-                                    <option value="Deporte"  <%=locals.oldData && oldData.category==="Deporte" ? "selected" : "" %>>Deporte</option>
-                                    <option value="Interior" <%=locals.oldData && oldData.category==="Interior" ? "selected" : "" %>>Interior</option>
-                                    <option value="Jeans" <%=locals.oldData && oldData.category==="Jeans" ? "selected" : "" %>>Jeans</option>
-                                    <option value="Formal" <%=locals.oldData && oldData.category==="Formal" ? "selected" : "" %>>Formal</option>
-                                    <option value="Vestido" <%=locals.oldData && oldData.category==="Vestido" ? "selected" : "" %>>Vestido</option>
-                                    <option value="Remera" <%=locals.oldData && oldData.category==="Remera" ? "selected" : "" %>>Remeras</option>
-                                    <option value="Zapatilla" <%=locals.oldData && oldData.category==="Zapatilla" ? "selected" : "" %>>Zapatillas</option>
+                                <select name="categories" id="categories" multiple>
+                                    <% categories.forEach(category => { %>
+                                        <option value="<%= category.id %>" <%= (oldData.categories && oldData.categories.includes(category.id.toString())) ? 'selected' : '' %>>
+                                            <%= category.title %>
+                                        </option>
+                                    <% }); %>
                                 </select>
                             </div>
                         </div>

@@ -54,6 +54,8 @@ const validations=[
 
 adminRoutes.get("/admin",typeUserMiddleware, adminControllers.admin);
 adminRoutes.get('/admin/create',typeUserMiddleware, adminControllers.create);
+adminRoutes.get('/admin/create/categories', adminControllers.createCat);
+adminRoutes.post('/admin/create/categories', adminControllers.createCatSuccess);
 //adminRoutes.post("/", uploadFile.single("productImage"), adminControllers.store);
 adminRoutes.post("/admin/create",uploadFile.single("image"),validations, adminControllers.createProduct);
 

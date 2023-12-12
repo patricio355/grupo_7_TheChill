@@ -4,14 +4,11 @@
     <div class="nav">
       <div class="contentNav">
         <div class="menu">
-          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-            <title />
-            <g data-name="menu " id="menu_">
-              <path d="M29,6H3A1,1,0,0,0,3,8H29a1,1,0,0,0,0-2Z" />
-              <path d="M3,17H16a1,1,0,0,0,0-2H3a1,1,0,0,0,0,2Z" />
-              <path d="M25,24H3a1,1,0,0,0,0,2H25a1,1,0,0,0,0-2Z" />
-            </g>
-          </svg>
+            <button id="toggleButton" class="toggle" style="border-style: none; background-color: #002B5B;">
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
         </div>
         <div class="logo">
           <a href="/">THE CHILL.</a>
@@ -182,4 +179,23 @@
         <li>Ayuda</li>
       </ul>
     </div>
+    <script>
+      const openMenu = () => {
+        let menuButtons = document.getElementsByClassName("navbarCategories");
+        let menuButton = menuButtons[0];
+        // console.log(menuButton)
+        menuButton.style.left = (menuButton.style.left === "0px") ? "-100%" : "0px";
+      }
+      const animateMenu = () => {
+        let menuButtons = document.getElementsByClassName("toggle");
+        let menuButton = menuButtons[0];
+        console.log("a",menuButton)
+        menuButton.classList.toggle("active")
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('toggleButton').addEventListener('click', openMenu);
+        document.getElementById('toggleButton').addEventListener('click', animateMenu);
+      });
+    </script>
 </header>

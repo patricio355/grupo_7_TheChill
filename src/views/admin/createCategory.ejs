@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include ("../partials/head.ejs") %>
+        <title>Panel Administrador</title>
+        <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+    
+    <div class="admin-container">
+        <section class="admin-navbar">
+            <img src="/images/logoFinal.png" width="200px" alt="">
+            <div class="admin-title">
+                <p style="font-weight: 200; font-size: 28px;">PANEL ADMINISTRADOR - THE CHILL</p>
+            </div>
+            <div class="admin-icons">
+                <i class="fas fa-user"></i>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </section>
+        <section class="admin-navigate-menu">
+            <p>/home/products/create</p>
+        </section>
+        <section class="admin-create-section">
+            <div class="admin-create-title">
+                <a href="/admin"><button class="back-button" style="cursor: pointer;"><i class="fas fa-long-arrow-alt-left"></i></button></a>
+                <div class="title-create">
+                    <p>Volver a la lista de productos</p>
+                    <h3>Creando una nueva categoria de productos...</h3>
+                </div>
+            </div>
+            <form action="/admin/create/categories" method="post" class="admin-create-product">
+                <div class="admin-create-parent">
+                    <div class="create-description">
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <label for="categoryName"><h3>Nombre de categoria</h3></label>
+                                <input type="text" value="<%= locals.oldData && oldData.title ? oldData.title : '' %>"
+                                id="categoryName" 
+                                name="categoryName" 
+                                placeholder="Ingrese el nombre de la categoría..."                               
+                                >                             
+                                <%if(locals.errors && errors.title){ %>
+                                    <div class="text-danger" style="color: red;  font-size: 13px">
+                                        <%=errors.title.msg %>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="generic-input-label">
+                                <label for="categoryMetaTitle"><h4>MetaTitle de Categoria (SEO)</h4></label>
+                                <textarea type="text" id="categoryMetaTitle" name="categoryMetaTitle"
+                                    placeholder="Ingrese meta title..."
+                                    
+                                     ><%= locals.oldData && oldData.content ? oldData.content : '' %></textarea>
+                                    
+                                <%if(locals.errors && errors.content){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.content.msg %>
+                                        </div>
+                                <% } %>
+                            </div>
+                            <div class="generic-input-label">
+                                <label for="categoryDescription"><h4>Descripción de la categoría</h4></label>
+                                <textarea type="text" id="categoryDescription" name="categoryDescription"
+                                    placeholder="Ingrese descripción..."
+                                    
+                                     ><%= locals.oldData && oldData.content ? oldData.content : '' %></textarea>
+                                    
+                                <%if(locals.errors && errors.content){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.content.msg %>
+                                        </div>
+                                <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-details">                
+                        <div class="create-section">
+                            <div class="generic-input-label">
+                                <label for="categorySlugU"><h3>Slug para la URL</h3></label>
+                                <input type="text" value="<%= locals.oldData && oldData.title ? oldData.title : '' %>"
+                                id="categorySlugU" 
+                                name="categorySlugU" 
+                                placeholder="Ingrese el slug..."      
+                                oninput="autocompleteSlug()"                         
+                                >                             
+                                <%if(locals.errors && errors.title){ %>
+                                    <div class="text-danger" style="color: red;  font-size: 13px">
+                                        <%=errors.title.msg %>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="generic-input-label">
+                                <label for="categorySlug"><h4>Slug automatico</h4></label>
+                                <input type="text" id="categorySlug" name="categorySlug"
+                                    placeholder="Aquí aparecerá el slug generado..."
+                                    
+                                     ><%= locals.oldData && oldData.content ? oldData.content : '' %></input>
+                                    
+                                <%if(locals.errors && errors.content){ %>
+                                        <div class="text-danger"style="color: red; font-size: 13px">
+                                            <%=errors.content.msg %>
+                                        </div>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="admin-create-buttons">
+                            <a href="/"><button class="btn btn-success" type="submit">Añadir Categoría</button></a>
+                            <a href="/admin"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
+                            <a href="/"><button><i class="far fa-clock"></i></button></a>
+                            <a href=""><button><input class="reset-class" type="reset" value="Restablecer"></button></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <a href="/admin"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
+        </section>
+    </div>
+    <script>
+        function autocompleteSlug() {
+          const categoriaInput = document.getElementById('categorySlugU');
+          const slugInput = document.getElementById('categorySlug');
+          const categoriaValue = categoriaInput.value;
+          const slugValue = categoriaValue.toLowerCase().replace(/\s+/g, '-');
+          slugInput.value = slugValue;
+        }
+    </script>
+</body>
+
+</html>
