@@ -1,7 +1,7 @@
 <!-- NAVBAR -->
 <header>
-  <% console.log(locals.isLogged, locals.userLogged) %>
-    <div class="nav">
+  <% console.log("DATOSSSS",locals.isLogged, locals.userLogged) %>
+    <div class="nav" style="<% !locals.isLogged ? "padding-top: 9px;" : "" %>">
       <div class="contentNav">
         <div class="menu">
             <button id="toggleButton" class="toggle" style="border-style: none; background-color: #002B5B;">
@@ -72,6 +72,7 @@
                     <a href="/profile/<%= locals.userLogged.id %>">
                       Perfil
                     </a>
+                    
                   </li>
 
 

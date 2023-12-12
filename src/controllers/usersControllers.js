@@ -63,10 +63,10 @@ const usersControllers = {
       if (userFound){
         const okPassword = bcryptjs.compareSync(userToLogin.password, userFound.passwordHash )
           if(okPassword){
-            delete userFound.password;
-            delete userFound.confirmedPass;
-            req.session.userLogged = userFound;
-            res.cookie("userEmail",req.session.userLogged.email,{maxAge:(1000*60)*5});
+            delete userFound.dataValues.password;
+            delete userFound.dataValues.passwordHash;
+            req.session.userLogged = userFound.dataValues;
+            res.cookie("userEmail",req.session.userLogged,{maxAge:(1000*60)*5});
             // console.log(req.session);
             res.redirect("/");
           }else{
