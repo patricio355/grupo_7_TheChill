@@ -5,7 +5,7 @@ const cookies = require('cookie-parser')
 const path = require('path')
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware.js');
 // const multer = require('./middlewares/multerMiddleware');
-
+const cors = require('cors');
 app.use(express.urlencoded({extended: false}));
 
 // USANDO ARCHIVOS ESTATICOS
@@ -35,6 +35,8 @@ app.use( mainRoutes)
 app.use(usersRoutes)
 app.use(productRoutes)
 app.use(adminRoutes)
+
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 
 
