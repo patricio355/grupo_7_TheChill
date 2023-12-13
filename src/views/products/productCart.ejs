@@ -11,48 +11,61 @@
     <%- include ("../partials/navbar.ejs") %>
 
         <div class="container">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Producto</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Subtotal</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% cart_items.map(p=> { %>
-                    <% cart_items_add.map(extra=> { %>
-                        <a href="/productDetail/<%= p.id %>">
-                            <tr>
-                                <td class="producto"><img src="images/<%= p.image %>" alt="">
-                                    <p>
-                                        <%= p.title %>
-                                    </p>
-                                </td>
-                                <td class="precio">$<%= p.price %>
-                                </td>
-                                <div class="parte">
-                                    <td class="cantidad"> <label>
-                                            <p>
-                                                <button>+</button>
-                                                <input type="number" id="cantidad" min="1" max="10" disabled
-                                                    value="<%= extra.quantity %>"> 
-                                                <button>-</button>
-                                            </p>
-                                            </label></td>
-                                    <td class="subtotal">$80.000</td>
-                                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
-                                </div>
+            <div class="tablePrices">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Descuento</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% cart_item.map(p=> { %>
 
-                            </tr>
-                        </a>
-                        <% }) %>
-                        <% }) %>
-                </tbody>
-            </table>
+                            <a href="/productDetail/<%= p.Product.id %>">
+                                <tr>
+                                    <td class="producto"><img src="images/<%= p.Product.image %>" alt="">
+                                        <p>
+                                            <%= p.Product.title %>
+                                        </p>
+                                    </td>
+                                    <td class="precio">$<%= p.Product.price %>
+                                    </td>
+                                    <td class="precio"><%= p.Product.discount %>%
+                                    </td>
+                                    <div class="parte">
+                                        <td class="cantidad"> 
+                                            <label>
+                                                <div class="controlsProduct">
+                                                    <form action="/carrito/decrease/<%= p.Product.id %>" method="POST" style="display: flex;align-items: center;justify-content: center;" >
+                                                    <button type="submit" style="height: 20px;"><img src="/images/icons/boton-menos.png"
+                                                        style="height: 20px;width: auto;" alt=""></button>
+                                                    </form>
+                                                    <input type="number" id="cantidad" disabled
+                                                    style="border-style:none;border:solid 1px #b0b0b0;text-align: center;border-radius: 20px;"
+                                                    value="<%= p.quantity %>">
+                                                    <form action="/carrito/increase/<%= p.Product.id %>" method="POST" style="display: flex;align-items: center;justify-content: center;">
+                                                        <button type="submit" style="height: 20px;"><img src="/images/icons/boton-mas.png"
+                                                                style="height: 20px;width: auto;" alt=""></button>
+                                                        </form>
+                                                </div>
+                                            </label>
+                                        </td>
+                                        <td class="subtotal">$<%= p.Product.price*p.quantity %>
+                                        </td>
+                                        <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
+                                    </div>
 
+                                </tr>
+                            </a>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
 
 
             <div class="resumen">
@@ -62,14 +75,21 @@
                         <p>Cupón de descuento </p><button>+</button>
                     </div>
                     <div class="borde">
-                        <p>Subtotal: </p>
-                        <p>$8000</p>
+                        <p>Descuentos: </p>
+                        <p>$ <%= cart_item.reduce((total,p) => total + ((p.Product.discount/100)*p.Product.price*p.quantity),0); %></p>
                     </div>
                     <div class="borde">
                         <p>Total: </p>
-                        <p>$80.000</p>
+                        <p>$ <%= cart_item.reduce((total, p) => total + (p.quantity * p.Product.price), 0) - cart_item.reduce((total,p) => total + ((p.Product.discount/100)*p.Product.price*p.quantity),0); %></p>
                     </div>
-                    <p id="boton"><button id="pago">INICIAR PAGO</button></p>
+                    <div class="borde" style="width: 100%;display: flex; justify-content: center; align-items: center;">
+                        <form action="/carrito/test" method="POST" style="width: 100%;display: flex; justify-content: center; align-items: center;">
+                            <button id="pago" style="">INICIAR PAGO</button>
+                        </form>
+                    </div>
+                    
+                    <p id="boton" style="width:100%;background-color: aqua;" >
+                    </p>
 
 
                 </section>

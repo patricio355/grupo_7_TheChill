@@ -130,8 +130,6 @@ const adminControllers = {
             res.send(error);
         }
     },
-
-
     createProduct: async (req, res) => {
         //lo de express-validator
         const resultValidation = validationResult(req);

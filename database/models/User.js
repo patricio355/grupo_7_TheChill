@@ -47,7 +47,10 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     // Relación con la tabla Cart
-    User.hasOne(sequelize.models.Cart, { foreignKey: 'cartId' });
+    User.associate = (models) => {
+        User.hasOne(models.Cart, { foreignKey: 'cartId' });
+        User.hasMany(models.Order, { foreignKey: 'id' });
+    };
 
     return User;
 };

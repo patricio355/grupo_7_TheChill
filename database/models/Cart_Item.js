@@ -48,7 +48,8 @@ module.exports = (sequelize, DataTypes) => {
     // Relación con la tabla User y Product
     Cart_Item.associate = (models) => {
         Cart_Item.belongsTo(models.Cart, { foreignKey: 'cartId' });
-        Cart_Item.hasOne(models.Product, { foreignKey: 'id' });
+        Cart_Item.belongsTo(models.Product, { foreignKey: 'productId' });
+
     }
     return Cart_Item;
 }
