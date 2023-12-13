@@ -436,8 +436,8 @@ CREATE TABLE `cart_item` (
   PRIMARY KEY (`id`),
   KEY `cart_item_productId_foreign` (`productId`),
   KEY `cart_item_cartId_foreign` (`cartId`),
-  CONSTRAINT `cart_item_cartId_foreign` FOREIGN KEY (`cartId`) REFERENCES `cart` (`id`),
-  CONSTRAINT `cart_item_productId_foreign` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
+  CONSTRAINT `cart_item_cartId_foreign` FOREIGN KEY (`cartId`) REFERENCES `cart` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `cart_item_productId_foreign` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
