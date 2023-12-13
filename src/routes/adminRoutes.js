@@ -67,4 +67,6 @@ adminRoutes.post('/deleteA/:id', adminControllers.delete);
 
 
 
+
+
 module.exports = adminRoutes;

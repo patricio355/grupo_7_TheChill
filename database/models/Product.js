@@ -82,7 +82,8 @@ module.exports = (sequelize, DataTypes) => {
     Product.associate = (models) => {
         Product.belongsToMany(models.Category, {
             as:"categories",
-            through: 'product_category',            
+            through: 'product_category',    
+            onDelete: 'CASCADE',         
         }); 
     };
     return Product;

@@ -31,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
         Category.belongsToMany(models.Product, {
             through: 'product_category',
             timestamps:false,
-            as:"productos"
+            as:"productos",
+            onDelete: 'CASCADE', 
         });
     };
     return Category;

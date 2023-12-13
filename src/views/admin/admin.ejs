@@ -66,8 +66,9 @@
                 <div class="header-products">
                     <div class="buttons">
                         <a href="/admin/create"><button  style="cursor: pointer;" class="add-product"><i class="fas fa-plus-circle"></i> Añadir Nuevo </button></a>
-                        <button class="upload-product"><i class="fas fa-upload"></i> <i
-                                class="fas fa-chevron-right"></i></button>
+                        <a href="/admin/create/categories"><button  style="cursor: pointer;" class="add-categories"><i class="fas fa-plus-circle"></i> Nueva Categoria </button></a>
+                        <!-- <button class="upload-product"><i class="fas fa-upload"></i> <i
+                                class="fas fa-chevron-right"></i></button> -->
                     </div>
                     <div class="products-per-page">
                         <p>Resultados / pág.:</p>
@@ -77,13 +78,13 @@
                 <div class="custom-table">
                     <table class="blueTable">
                         <thead>
-                            <tr>
-                                <th>Imagen</th>
-                                <th>Titulo</th>
-                                <th>Precio</th>
-                                <th>Stock</th>
-                                <th>Opciones</th>
-                                <th>Ver</th>
+                            <tr 
+                            >
+                                <th style="text-align: center;">Imagen</th>
+                                <th style="text-align: center;">Titulo</th>
+                                <th style="text-align: center;">Precio</th>
+                                <th style="text-align: center;">Stock</th>
+                                <th style="text-align: center;">Opciones</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -97,18 +98,23 @@
                         </tfoot>
                         <tbody>
                             <% products.map(p => { %>
-                            <tr>
-                                <td style="text-align: center;"><img src="/images/<%= p.image %>" width="40px" alt=""></td>
-                                <td><%= p.title %></td>
-                                <td><%= p.price %>$</td>
-                                <td><%= p.quantity %></td>
-                                <td>
-                                    <a href="/edit/<%= p.id %>" style="color: black;"><i class="fas fa-edit"></i></a>
-                                    <form action="/deleteA/<%= p.id %>" method="POST">
-                                        <button type="submit"><i class="fas fa-trash"></i></button></form>
-                                </td>
-                                <td><a href="/productDetail/<%= p.id %>"><button><i class="fas fa-external-link-alt"></i></button></a></td>
-                            </tr>
+                                <a href="/edit/<%= p.id %>" style="height: 20px;">s
+                                <tr>
+                                    <td style="text-align: center;"><img src="/images/<%= p.image %>" width="40px" alt=""></td>
+                                    <td style="text-align: center;"><%= p.title %></td>
+                                    <td style="text-align: center;"><%= p.price %>$</td>
+                                    <td style="text-align: center;"><%= p.quantity %></td>
+                                    <td style="display: flex; width: 100%; align-items: center;justify-content: center;gap: 5px;">
+                                        <a class="buttonHoverEffect" href="/edit/<%= p.id %>" style="background-color: rgb(27, 180, 60); padding: 8px 10px; border-radius: 100%;  "><i class="fas fa-edit" style="font-size:16px;"></i></a>
+                                        <form id="deleteForm" action="/deleteA/<%= p.id %>" method="POST">
+                                            <button class="delete-button buttonHoverEffect" type="button" onclick="showConfirmationModal()">
+                                              <i class="fas fa-trash" style="color:white;font-size:15px;"></i>
+                                            </button>
+                                          </form>
+                                        <a class="buttonHoverEffect" href="/productDetail/<%= p.id %>" ><button style="background-color: rgb(36, 84, 227);cursor:pointer;border-style: none;padding: 8px 10px; border-radius: 100%;"><i class="fas fa-external-link-alt" style="color:white;font-size:15px;"></i></button></a>
+                                    </td>
+                                </tr>
+                            </a>
                             <% }) %>
                         </tbody>
                     </table>
@@ -117,6 +123,34 @@
             </div>
         </section>
     </div>
+    <!-- Modal de confirmación -->
+    <div id="overlay" onclick="closeConfirmationModal()"></div>
+    <div id="confirmationModal">
+        <p>¿Estás seguro de que quieres eliminar este producto?</p>
+        <button onclick="deleteProduct()">Sí</button>
+        <button onclick="closeConfirmationModal()">No</button>
+    </div>
+    <script>
+        function showConfirmationModal() {
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('overlay').classList.add('modal-visible');
+      document.getElementById('confirmationModal').style.display = 'block';
+      document.getElementById('confirmationModal').classList.add('modal-visible');
+    }
+
+    function closeConfirmationModal() {
+      document.getElementById('overlay').classList.remove('modal-visible');
+      document.getElementById('confirmationModal').classList.remove('modal-visible');
+      setTimeout(() => {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('confirmationModal').style.display = 'none';
+      }, 300); // Ajusta el tiempo de espera a la duración de la transición
+    }
+
+    function deleteProduct() {
+      document.getElementById('deleteForm').submit();
+    }
+      </script>
 </body>
 
 </html>

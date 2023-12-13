@@ -18,16 +18,14 @@ const { validationResult } = require("express-validator");
 const adminControllers = {
     admin: (req, res) => {
         db.Product.findAll({ raw: true }).then((result) => {
-            res.render("../views/admin/admin.ejs", { products: result , userData: req.session });
-        })
-            .catch((error) => res.send(error));
+            res.render("../views/admin/admin.ejs", { products: result, userData: req.session });
+        }).catch((error) => res.send(error));
     },
     createCat: (req, res) => {
         res.render("../views/admin/createCategory.ejs");
     },
     createCatSuccess: async (req, res) => {
         let newCategory = req.body;
-        console.log("La categoria essss", req)
         try {
             await db.Category.create({
                 title: newCategory.categoryName,
@@ -36,7 +34,7 @@ const adminControllers = {
                 content: newCategory.categoryDescription,
             });
 
-            res.redirect("/");
+            res.redirect("/admin");
         }
         catch (error) {
             res.send(error);
@@ -177,15 +175,21 @@ const adminControllers = {
                 );
                 // Obtener las categorías seleccionadas del formulario
 
-                
-                const selectedCategories = Array.isArray(req.body.category)
-                ? req.body.category
-                : [req.body.category];
-                
-                const categoria = await db.Category.findByPk(selectedCategories);
+                const selectedCategories = Array.isArray(req.body.categories)
+                    ? req.body.categories
+                    : [req.body.categories];
 
-                // Asociar las categorías al producto creado
-                await createdProduct.addCategory(categoria);
+                for (const categoryId of selectedCategories) {
+                    const categoria = await db.Category.findByPk(parseInt(categoryId));
+
+                    if (categoria) {
+                        // Asociar las categorías al producto creado
+                        await createdProduct.addCategory(categoria);
+                        console.log(`Categoría ${categoria.title} asociada al producto.`);
+                    } else {
+                        console.log(`No se encontró la categoría con ID ${categoryId}.`);
+                    }
+                }
 
                 res.redirect("/");
             }
@@ -248,84 +252,85 @@ const adminControllers = {
 
     edit: (req, res) => {
         const id = req.params.id;
-        db.Product.findByPk(id, {raw:true})
-        .then((result) => {
-            res.render("../views/admin/editProduct.ejs", { productToEdit: result });
-        })
-        .catch((error) => res.send(error));
+        db.Product.findByPk(id, { raw: true })
+            .then((result) => {
+                res.render("../views/admin/editProduct.ejs", { productToEdit: result });
+            })
+            .catch((error) => res.send(error));
     },
 
     updateProduct: async (req, res) => {
 
 
-        const resultValidation=validationResult(req);
-        if(resultValidation.errors.length > 0){
+        const resultValidation = validationResult(req);
+        if (resultValidation.errors.length > 0) {
             const id = req.params.id;
-            db.Product.findByPk(id, {raw:true})
-        .then((result) => {
-            const mergedData = {
-                ...result,
-                ...req.body,
-            };
-            res.render(path.join(__dirname,"../views/admin/editProduct.ejs"),{
-                
-                
-                errors:resultValidation.mapped(),
-                oldData: req.body,
-                productToEdit : mergedData,
-                
-            });
-        })
-        }else{
+            db.Product.findByPk(id, { raw: true })
+                .then((result) => {
+                    const mergedData = {
+                        ...result,
+                        ...req.body,
+                    };
+                    res.render(path.join(__dirname, "../views/admin/editProduct.ejs"), {
+
+
+                        errors: resultValidation.mapped(),
+                        oldData: req.body,
+                        productToEdit: mergedData,
+
+                    });
+                })
+        } else {
 
 
 
 
 
 
-        const productId = req.params.id;
-       // const productImage = req.file ? req.file.filename : "producto.png"; 
-       console.log(req.body);
-       let productImage;
-       if (req.file) {
-           productImage = req.file.filename;
-       } else {
-           productImage = productId.image;
-       }
+            const productId = req.params.id;
+            // const productImage = req.file ? req.file.filename : "producto.png"; 
+            console.log(req.body);
+            let productImage;
+            if (req.file) {
+                productImage = req.file.filename;
+            } else {
+                productImage = productId.image;
+            }
 
-       
-        try {
-            const editedProduct = await db.Product.update({
-                title: req.body.title,
-                image: productImage,
-                size: req.body.size,
-                content: req.body.content,
-                price: req.body.price,
-                brand: req.body.brand,
-                colour: req.body.colour,
-                gender: req.body.gender,
-                type: req.body.type,
-                model_name: req.body.model_name,
-                quantity: req.body.quantity,
-                discount: req.body.discount,
-                category: req.body.category
-                
-            }, {
-                where: {
-                    id: productId,
-                },
-            });
-    
-            res.redirect("/productDetail/"+ productId);
-        } catch (error) {
-            console.log(error);
-            res.send("Error al actualizar el producto");
+
+            try {
+                const editedProduct = await db.Product.update({
+                    title: req.body.title,
+                    image: productImage,
+                    size: req.body.size,
+                    content: req.body.content,
+                    price: req.body.price,
+                    brand: req.body.brand,
+                    colour: req.body.colour,
+                    gender: req.body.gender,
+                    type: req.body.type,
+                    model_name: req.body.model_name,
+                    quantity: req.body.quantity,
+                    discount: req.body.discount,
+                    category: req.body.category
+
+                }, {
+                    where: {
+                        id: productId,
+                    },
+                });
+
+                res.redirect("/productDetail/" + productId);
+            } catch (error) {
+                console.log(error);
+                res.send("Error al actualizar el producto");
+            }
+
         }
-        
-    }},
-    
-    
-    
+    },
+
+
+
 
     delete: (req, res) => {
         db.Product.destroy({
@@ -333,8 +338,8 @@ const adminControllers = {
                 id: req.params.id,
             },
         })
-        .then((result) => res.redirect("/admin"))
-        .catch((error) => console.log(error));
+            .then((result) => res.redirect("/admin"))
+            .catch((error) => console.log(error));
     },
 
     /*update: (req, res) => {

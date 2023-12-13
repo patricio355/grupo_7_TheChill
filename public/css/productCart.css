@@ -23,10 +23,10 @@ thead{
     color: #7e7d7d;
 }
 tbody{
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6)
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
 }
 .table {
-    background-color:#e4e4e4;
+    background-color:white;
     width: 70%;
     border-collapse: collapse;
     margin: 10;
@@ -34,7 +34,7 @@ tbody{
     table-layout: fixed;
 }
 .table tr td{
-    background-color: #cecece;
+    background-color: white;
 }
 .table tbody tr{
     border-bottom: solid 1px white;   
@@ -71,7 +71,7 @@ label input{
     padding-bottom: 10px; 
 }
 button{
-    background-color: #cecece;/*#ebe2e2*/
+    background-color: white;/*#ebe2e2*/
     border: transparent;
 }
 #pago{
@@ -90,9 +90,9 @@ button{
     width: 20%; 
 }
 .resumen section{
-    background-color: #cecece;
+    background-color: white;
     border: 1px solid #d3d0d0;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
     margin-left: 15px;  
     margin-top: 30px;
 }
@@ -140,7 +140,7 @@ button{
         margin-bottom: 0px;
         border-bottom: 8px solid white;
         display: block;
-        background-color: #cecece; /* #e4e4e4*/
+        background-color: white; /* #e4e4e4*/
     }
     .table th, .table td {
         font-size: 12px;

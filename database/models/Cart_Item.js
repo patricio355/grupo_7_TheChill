@@ -45,10 +45,10 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
     }
     );
-    // Relación con la tabla User
+    // Relación con la tabla User y Product
     Cart_Item.associate = (models) => {
         Cart_Item.belongsTo(models.Cart, { foreignKey: 'cartId' });
-        Cart_Item.hasOne(models.Product, { foreignKey: 'productId' });
+        Cart_Item.hasOne(models.Product, { foreignKey: 'id' });
     }
     return Cart_Item;
 }

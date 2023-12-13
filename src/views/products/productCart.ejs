@@ -1,87 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include ("../partials/head.ejs")  %>
-    <title>Carrito - THE CHILL</title>
-    <link rel="stylesheet" href="css/productCart.css">
+    <%- include ("../partials/head.ejs") %>
+        <title>Carrito - THE CHILL</title>
+        <link rel="stylesheet" href="css/productCart.css">
 </head>
+
 <body>
-  <%- include ("../partials/navbar.ejs") %>
-    
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="producto" ><img src="images/buzo.jpg" alt=""><p> Buzo Canguro Frisa Naruto.</p> </td>
-                    <td class="precio"  >$40.000</td>
-                   <div class="parte">
-                    <td  class="cantidad"  > <label ><p><button>+</button>
-                        <input type="number" id="cantidad" min="1" max="10" value="2"> <button>-</button> </p></label</td>
-                    <td  class="subtotal" >$80.000</td>
-                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
-                   </div>
+    <%- include ("../partials/navbar.ejs") %>
 
-                </tr>
-                <tr>
-                    <td class="producto" ><img src="images/buzo.jpg" alt=""><p> Buzo Canguro Frisa Naruto.</p> </td>
-                    <td class="precio"  >$40.000</td>
-                   <div class="parte">
-                    <td  class="cantidad"  > <label ><p><button>+</button>
-                        <input type="number" id="cantidad" min="1" max="10" value="2"> <button>-</button></p></label>
-                        </td>
-                    <td  class="subtotal" >$80.000</td>
-                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
-                   </div>
-                </tr>
-                <tr>
-                    <td class="producto" ><img src="images/buzo.jpg" alt=""><p> Buzo Canguro Frisa Naruto.</p> </td>
-                    <td class="precio"  >$40.000</td>
-                   <div class="parte">
-                    <td  class="cantidad"  > <label ><p><button>+</button>
-                        <input type="number" id="cantidad" min="1" max="10" value="1"> <button>-</button></p></label></td>
-                    <td  class="subtotal" >$40.000</td>
-                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
-                   </div>
-                </tr>
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart_items.map(p=> { %>
+                    <% cart_items_add.map(extra=> { %>
+                        <a href="/productDetail/<%= p.id %>">
+                            <tr>
+                                <td class="producto"><img src="images/<%= p.image %>" alt="">
+                                    <p>
+                                        <%= p.title %>
+                                    </p>
+                                </td>
+                                <td class="precio">$<%= p.price %>
+                                </td>
+                                <div class="parte">
+                                    <td class="cantidad"> <label>
+                                            <p>
+                                                <button>+</button>
+                                                <input type="number" id="cantidad" min="1" max="10" disabled
+                                                    value="<%= extra.quantity %>"> 
+                                                <button>-</button>
+                                            </p>
+                                            </label></td>
+                                    <td class="subtotal">$80.000</td>
+                                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
+                                </div>
 
-                <tr>
-                    <td class="producto" ><img src="images/buzo.jpg" alt=""><p> Buzo Canguro Frisa Naruto.</p> </td>
-                    <td class="precio"  >$40.000</td>
-                   <div class="parte">
-                    <td  class="cantidad"  > <label ><p><button>+</button>
-                        <input type="number" id="cantidad" min="1" max="10" value="1"> <button>-</button></p></label></td>
-                    <td  class="subtotal" >$40.000</td>
-                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
-                   </div>
-                </tr>
-            </tbody>
-        </table>
+                            </tr>
+                        </a>
+                        <% }) %>
+                        <% }) %>
+                </tbody>
+            </table>
 
-    
 
-    <div class="resumen">
-        <section >
-            <h3 >Resumen de compra</h3>
-            <div class="borde"><p >Cupón de descuento  </p><button>+</button></div>
-            <div class="borde"><p >Subtotal:  </p><p>$8000</p></div>
-            <div class="borde"><p >Total:  </p> <p>$80.000</p></div>
-            <p id="boton"><button id="pago">INICIAR PAGO</button></p>
-            
 
-        </section>
-    </div>
+            <div class="resumen">
+                <section>
+                    <h3>Resumen de compra</h3>
+                    <div class="borde">
+                        <p>Cupón de descuento </p><button>+</button>
+                    </div>
+                    <div class="borde">
+                        <p>Subtotal: </p>
+                        <p>$8000</p>
+                    </div>
+                    <div class="borde">
+                        <p>Total: </p>
+                        <p>$80.000</p>
+                    </div>
+                    <p id="boton"><button id="pago">INICIAR PAGO</button></p>
 
-    </div>
 
-    <%- include ("../partials/footer.ejs") %>
+                </section>
+            </div>
+
+        </div>
+
+        <%- include ("../partials/footer.ejs") %>
 </body>
+
 </html>

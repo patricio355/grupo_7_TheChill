@@ -181,8 +181,8 @@ CREATE TABLE `product_category` (
   PRIMARY KEY (`id`),
   KEY `product_category_productId_foreign` (`productId`),
   KEY `product_category_categoryId_foreign` (`categoryId`),
-  CONSTRAINT `product_category_categoryId_foreign` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`),
-  CONSTRAINT `product_category_productId_foreign` FOREIGN KEY (`productId`) REFERENCES `product` (`id`)
+  CONSTRAINT `product_category_categoryId_foreign` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `product_category_productId_foreign` FOREIGN KEY (`productId`) REFERENCES `product` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
