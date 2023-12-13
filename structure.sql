@@ -351,6 +351,7 @@ DROP TABLE IF EXISTS `user`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `cartId` bigint(20) unsigned NOT NULL,
   `first_name` varchar(100) NOT NULL,
   `avatar` varchar(50) DEFAULT NULL,
   `last_name` varchar(100) DEFAULT NULL,
@@ -362,7 +363,8 @@ CREATE TABLE `user` (
   `registeredAt` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
-  UNIQUE KEY `passwordHash` (`passwordHash`)
+  UNIQUE KEY `passwordHash` (`passwordHash`),
+  FOREIGN KEY (`cartId`) REFERENCES `cart` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -385,7 +387,6 @@ DROP TABLE IF EXISTS `cart`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cart` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `userId` bigint(20) unsigned NOT NULL,
   `sessionId` varchar(100) DEFAULT NULL,
   `token` varchar(100) DEFAULT NULL,
   `status` smallint(6) DEFAULT NULL,
@@ -400,8 +401,7 @@ CREATE TABLE `cart` (
   `createdAt` datetime DEFAULT NULL,
   `updatedAt` datetime DEFAULT NULL,
   `content` text DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

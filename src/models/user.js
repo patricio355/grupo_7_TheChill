@@ -38,7 +38,19 @@ const User = {
     create: async function (userData) {
       try {
         console.log(userData);
-        await db.User.create({
+    
+        const cart = await db.Cart.create({
+          sessionId: null,
+          token:null,
+          status:0, // 0:Nuevo,1:Checkout,2:Paid,3:Complete,4:Abandoned
+          mobile:null,
+          city:null,
+          province:null,
+          country:null,
+          content:null,
+        });
+        
+        const user = await db.User.create({
           first_name: userData.firstname,
           last_name: userData.lastname,
           gender: userData.gender,
@@ -48,10 +60,18 @@ const User = {
           avatar: userData.avatar,
           admin: false,
           registeredAt: new Date(),
+          cartId:cart.id,
         });
+    
+        await cart.update({ 
+          first_name:user.first_name,
+          last_name:user.last_name,          
+          email:user.email,
+         });
+    
       } catch (error) {
         console.error(error);
-        throw error; // Lanzar el error para manejarlo fuera de esta función si es necesario
+        throw error;
       }
     },
     // create: function (userData) {
