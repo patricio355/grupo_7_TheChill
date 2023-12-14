@@ -3,7 +3,7 @@ const path = require('path');
 const session = require("express-session");
 const {validationResult} = require("express-validator");
 const bcryptjs = require('bcryptjs');
-const User = require("../models/user.js");
+const User = require("../models/user");
 const exp = require('constants');
 let db = require('../../database/models');
 
@@ -12,24 +12,22 @@ const usersControllers = {
     register:(req,res)=>{
         res.render(path.join(__dirname,"../views/users/register.ejs"));
     },
-    processRegister: async (req, res) => {
-      try {
-        const resultValidation = validationResult(req);
-        
-        if (resultValidation.errors.length > 0) {
-          return res.render(path.join(__dirname, "../views/users/register.ejs"), {
-            errors: resultValidation.mapped(),
-            oldData: req.body,
-          });
-        }
+    processRegister: (req, res) => {
+      const resultValidation = validationResult(req);
     
-        const userInData = await db.User.findOne({
-          where: {
-            email: req.body.email,
-          },
+      if (resultValidation.errors.length > 0) {
+        return res.render(path.join(__dirname, "../views/users/register.ejs"), {
+          errors: resultValidation.mapped(),
+          oldData: req.body,
         });
+      }
     
-        if (userInData) {
+      db.User.findOne({
+        where: {
+          email: req.body.email,
+        },
+      }).then((userFound) => {
+        if (userFound) {
           return res.render(path.join(__dirname, "../views/users/register.ejs"), {
             errors: {
               email: {
@@ -42,19 +40,15 @@ const usersControllers = {
     
         const newUser = {
           ...req.body,
-          password: bcryptjs.hashSync(req.body.password, 10),
+          password: bcryptjs.hashSync(req.body.password,10),
           avatar: req.file ? req.file.filename : 'avatar.jpg',
         };
-    
-        await User.create(newUser);
-    
+        delete newUser.confirmedPass;
+        // console.log(newUser);
+        User.create(newUser);
+        })
         return res.redirect("/login");
-      } catch (error) {
-        console.error("Error en el registro:", error);
-        return res.status(500).send("Error en el servidor");
-      }
-    },
-    
+    },    
     login: (req,res)=>{
         res.render(path.join(__dirname,"../views/users/login.ejs"));
     },
@@ -65,13 +59,14 @@ const usersControllers = {
             email: req.body.email
         }
       }).then(userFound=>{
+        
       if (userFound){
         const okPassword = bcryptjs.compareSync(userToLogin.password, userFound.passwordHash )
           if(okPassword){
-            delete userFound.password;
-            delete userFound.confirmedPass;
-            req.session.userLogged = userFound;
-            res.cookie("userEmail",req.session.userLogged.email,{maxAge:(1000*60)*5});
+            delete userFound.dataValues.password;
+            delete userFound.dataValues.passwordHash;
+            req.session.userLogged = userFound.dataValues;
+            res.cookie("userEmail",req.session.userLogged,{maxAge:(1000*60)*5});
             // console.log(req.session);
             res.redirect("/");
           }else{

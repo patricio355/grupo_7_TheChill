@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 :root{
     --azul-bg-color: #002B5B;
     --azulclaro-bg-color: #0a5dbc;
@@ -10,7 +12,6 @@
     margin: 0;
     /* padding: 0; */
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 .admin-container{
@@ -18,6 +19,7 @@
     -webkit-box-shadow: 0px 3px 15px 6px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px 3px 15px 6px rgba(0,0,0,0.75);
 box-shadow: 0px 3px 15px 6px rgba(0,0,0,0.75);
+font-family:'Rubik', sans-serif;
 }
 .admin-container .admin-navbar .admin-icons{
     color: var(--crema-bg-color);
@@ -102,7 +104,150 @@ box-shadow: 0px 3px 15px 6px rgba(0,0,0,0.75);
     justify-content: center;
     width: 94%;
 }
+input::placeholder{
+    font-family:'Rubik', sans-serif;
+}
+button{
+    cursor: pointer;
+    opacity: 1.5;
+}
+textarea::placeholder{
+    font-family:'Rubik', sans-serif;
+}
+.buttonHoverEffect:hover{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.2);
+}
+.buttonHoverEffect{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1);
+}
+/* Estilos del modal */
+#confirmationModal .warningIco{
+    width: fit-content;
+    height: fit-content;
+    background-color: #ea54548a; 
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 18px;
+}
+#confirmationModal .warningIco img{
+    background-color: white;
+    border-radius: 100%;
+}
+#confirmationModal .buttonsC{
+    width: 100%;
+    display: flex;
+    justify-content:end;
+    margin-top: 20px;
+    height: 35px;
+    font-family:'Rubik', sans-serif;
+    font-weight: 400;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+#confirmationModal .buttonsC .warningButton{
+    background-color: #ea5454;
+    color: white;
+}
+#confirmationModal .buttonsC .warningButton:hover{
+    background-color: #b54242;
+}
+#confirmationModal .buttonsC button{
+    font-family:'Rubik', sans-serif;
+    width: 100%;
+    border-style: none;
+    background-color: none;
+    cursor:pointer;
+    border-radius: 5px;
+}
+#confirmationModal p{
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    color: #525252;
+}
+#confirmationModal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 20px;
+    /* padding-bottom: 20px; */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: fadeIn .3s ease-in-out forwards;
+    border-top: solid 8px #EA5455;
+  }
 
+
+  /* Fondo oscuro */
+  #overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn .3s ease-in-out forwards;
+  }
+
+  /* Animación de entrada */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Animación de salida */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  /* Animación de zoom */
+  @keyframes zoomIn {
+    from {
+      scale: 0;
+    }
+    to {
+      scale: 1;
+    }
+  }
+
+  /* Clase que muestra el modal */
+  .modal-visible {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
+
+  /* Botón de eliminación */
+  .delete-button {
+    background-color: rgb(227, 65, 36);
+    cursor: pointer;
+    border-style: none;
+    padding: 8px 10px;
+    border-radius: 100%;
+  }
 /* ESTILOS CONTENEDOR DE LA TABLA */
 .admin-main-section .admin-products{
     width: 80%;
@@ -125,6 +270,17 @@ box-shadow: 0px 3px 15px 6px rgba(0,0,0,0.75);
     border-radius: 5px;
 }
 .admin-main-section .admin-products .header-products .buttons .add-product .fas{
+    margin-left: 0px;
+    margin-right: 4px;
+}
+.admin-main-section .admin-products .header-products .buttons .add-categories{
+    background-color: var(--azulclaro-bg-color);
+    color: white;
+    padding: 9px 12px;
+    border-style: none;
+    border-radius: 5px;
+}
+.admin-main-section .admin-products .header-products .buttons .add-categories .fas{
     margin-left: 0px;
     margin-right: 4px;
 }
@@ -306,6 +462,7 @@ table.blueTable {
     border-style: none;
     background-color: var(--azulclaro-bg-color);
     color: white;
+    cursor: pointer;
 }
 @media(max-width:768px){
     .admin-create-parent{

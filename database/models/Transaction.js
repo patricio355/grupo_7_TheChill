@@ -42,5 +42,8 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
     }
     )
+    Transaction.associate = (models) => {
+        Transaction.hasOne(models.User, { foreignKey: 'id' });
+    };
     return Transaction;
 }

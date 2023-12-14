@@ -1,87 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <%- include ("../partials/head.ejs")  %>
-    <title>Carrito - THE CHILL</title>
-    <link rel="stylesheet" href="css/productCart.css">
+    <%- include ("../partials/head.ejs") %>
+        <title>Carrito - THE CHILL</title>
+        <link rel="stylesheet" href="css/productCart.css">
 </head>
+
 <body>
-  <%- include ("../partials/navbar.ejs") %>
-    
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Precio</th>
-                    <th>Cantidad</th>
-                    <th>Subtotal</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="producto" ><img src="images/buzo.jpg" alt=""><p> Buzo Canguro Frisa Naruto.</p> </td>
-                    <td class="precio"  >$40.000</td>
-                   <div class="parte">
-                    <td  class="cantidad"  > <label ><p><button>+</button>
-                        <input type="number" id="cantidad" min="1" max="10" value="2"> <button>-</button> </p></label</td>
-                    <td  class="subtotal" >$80.000</td>
-                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
-                   </div>
+    <%- include ("../partials/navbar.ejs") %>
 
-                </tr>
-                <tr>
-                    <td class="producto" ><img src="images/buzo.jpg" alt=""><p> Buzo Canguro Frisa Naruto.</p> </td>
-                    <td class="precio"  >$40.000</td>
-                   <div class="parte">
-                    <td  class="cantidad"  > <label ><p><button>+</button>
-                        <input type="number" id="cantidad" min="1" max="10" value="2"> <button>-</button></p></label>
-                        </td>
-                    <td  class="subtotal" >$80.000</td>
-                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
-                   </div>
-                </tr>
-                <tr>
-                    <td class="producto" ><img src="images/buzo.jpg" alt=""><p> Buzo Canguro Frisa Naruto.</p> </td>
-                    <td class="precio"  >$40.000</td>
-                   <div class="parte">
-                    <td  class="cantidad"  > <label ><p><button>+</button>
-                        <input type="number" id="cantidad" min="1" max="10" value="1"> <button>-</button></p></label></td>
-                    <td  class="subtotal" >$40.000</td>
-                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
-                   </div>
-                </tr>
+        <div class="container">
+            <div class="tablePrices">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Descuento</th>
+                            <th>Cantidad</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% cart_item.map(p=> { %>
 
-                <tr>
-                    <td class="producto" ><img src="images/buzo.jpg" alt=""><p> Buzo Canguro Frisa Naruto.</p> </td>
-                    <td class="precio"  >$40.000</td>
-                   <div class="parte">
-                    <td  class="cantidad"  > <label ><p><button>+</button>
-                        <input type="number" id="cantidad" min="1" max="10" value="1"> <button>-</button></p></label></td>
-                    <td  class="subtotal" >$40.000</td>
-                    <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
-                   </div>
-                </tr>
-            </tbody>
-        </table>
+                            <a href="/productDetail/<%= p.Product.id %>">
+                                <tr>
+                                    <td class="producto"><img src="images/<%= p.Product.image %>" alt="">
+                                        <p>
+                                            <%= p.Product.title %>
+                                        </p>
+                                    </td>
+                                    <td class="precio">$<%= p.Product.price %>
+                                    </td>
+                                    <td class="precio"><%= p.Product.discount %>%
+                                    </td>
+                                    <div class="parte">
+                                        <td class="cantidad"> 
+                                            <label>
+                                                <div class="controlsProduct">
+                                                    <form action="/carrito/decrease/<%= p.Product.id %>" method="POST" style="display: flex;align-items: center;justify-content: center;" >
+                                                    <button type="submit" style="height: 20px;"><img src="/images/icons/boton-menos.png"
+                                                        style="height: 20px;width: auto;" alt=""></button>
+                                                    </form>
+                                                    <input type="number" id="cantidad" disabled
+                                                    style="border-style:none;border:solid 1px #b0b0b0;text-align: center;border-radius: 20px;"
+                                                    value="<%= p.quantity %>">
+                                                    <form action="/carrito/increase/<%= p.Product.id %>" method="POST" style="display: flex;align-items: center;justify-content: center;">
+                                                        <button type="submit" style="height: 20px;"><img src="/images/icons/boton-mas.png"
+                                                                style="height: 20px;width: auto;" alt=""></button>
+                                                        </form>
+                                                </div>
+                                            </label>
+                                        </td>
+                                        <td class="subtotal">$<%= p.Product.price*p.quantity %>
+                                        </td>
+                                        <td class="eliminar"><button><i class="fa-solid fa-trash-can"></i></button></td>
+                                    </div>
 
-    
+                                </tr>
+                            </a>
+                            <% }) %>
+                    </tbody>
+                </table>
+            </div>
 
-    <div class="resumen">
-        <section >
-            <h3 >Resumen de compra</h3>
-            <div class="borde"><p >Cupón de descuento  </p><button>+</button></div>
-            <div class="borde"><p >Subtotal:  </p><p>$8000</p></div>
-            <div class="borde"><p >Total:  </p> <p>$80.000</p></div>
-            <p id="boton"><button id="pago">INICIAR PAGO</button></p>
-            
 
-        </section>
-    </div>
+            <div class="resumen">
+                <section>
+                    <h3>Resumen de compra</h3>
+                    <div class="borde">
+                        <p>Cupón de descuento </p><button>+</button>
+                    </div>
+                    <div class="borde">
+                        <p>Descuentos: </p>
+                        <p>$ <%= cart_item.reduce((total,p) => total + ((p.Product.discount/100)*p.Product.price*p.quantity),0); %></p>
+                    </div>
+                    <div class="borde">
+                        <p>Total: </p>
+                        <p>$ <%= cart_item.reduce((total, p) => total + (p.quantity * p.Product.price), 0) - cart_item.reduce((total,p) => total + ((p.Product.discount/100)*p.Product.price*p.quantity),0); %></p>
+                    </div>
+                    <div class="borde" style="width: 100%;display: flex; justify-content: center; align-items: center;">
+                        <form action="/carrito/test" method="POST" style="width: 100%;display: flex; justify-content: center; align-items: center;">
+                            <button id="pago" style="">INICIAR PAGO</button>
+                        </form>
+                    </div>
+                    
+                    <p id="boton" style="width:100%;background-color: aqua;" >
+                    </p>
 
-    </div>
 
-    <%- include ("../partials/footer.ejs") %>
+                </section>
+            </div>
+
+        </div>
+
+        <%- include ("../partials/footer.ejs") %>
 </body>
+
 </html>

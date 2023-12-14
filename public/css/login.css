@@ -33,6 +33,10 @@ a{
     display: flex;
     gap: 20px;
 }
+.inputError{
+    border-color: #EA5455;
+    transition: all 0.1s ease-in-out;
+}
 .user {
     display: flex;
     align-items: center;

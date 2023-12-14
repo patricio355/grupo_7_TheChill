@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include ("../partials/head.ejs")  %>
+  <link rel="stylesheet" href="css/index.css">
+  <title>Home - THE CHILL</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
+</head>
+
+<body>
+
+  <%- include ("../partials/navbar.ejs") %>
+
+ 
+<h3> <%= products.length %> Resultados para la busqueda de:  <%= text %></h3>
+<% if (products.length === 0 ) { %>
+<h1>No se encontraron coincidencias</h1>
+<% } %>
+
+  <script type="module">
+   
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.mjs'
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Crear y configurar el objeto Swiper
+  const swiper = new Swiper('.swiper', {
+   
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+
+    slidesPerView: 5,
+  
+   
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+  updateSlidesPerView();
+
+
+window.addEventListener('resize', function() {
+  updateSlidesPerView();
+});
+
+ 
+
+
+function updateSlidesPerView() {
+console.log("hola")
+  if (swiper) {
+    var windowWidth = window.innerWidth;
+
+    if (windowWidth <= 768) {
+      swiper.params.slidesPerView = 2;
+    } else if (windowWidth <= 1000) {
+      swiper.params.slidesPerView = 3;
+    } else {
+      swiper.params.slidesPerView = 5;
+    }
+
+    
+    swiper.update();
+  }
+  
+  
+
+
+}
+});
+  </script>
+
+
+
+<!-- Slider main container -->
+<div class="swiper">
+  <!-- Additional required wrapper -->
+  <div class="swiper-wrapper">
+    <!-- Slides -->
+    <% products.map(p => { %>
+    <div class="swiper-slide"> 
+      
+      <div class="card">
+        <a href="/productDetail/<%= p.id %>">
+          <img src="images/<%= p.image %>"  alt="imagenprod" />
+          <div class="detalle">
+            <p class="currentPrice">$ <%= p.price %></p>
+            <p><%= p.title %></p>
+            <div class="estrellas">
+              <div class="ima">
+                <img src="images/clasificacion.png" alt="" />
+                <p> 2589</p>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      </div>
+      <% }) %>
+   
+    
+  </div>
+  
+  <!-- If we need navigation buttons -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  
+</div>
+
+
+
+  <div class="cen">
+    <div class=" line"></div>
+  </div>
+
+  <h5 class="subtitulo">Basado en tu última visita</h5>
+
+ 
+
+  <div class="cen">
+    <div class=" line"></div>
+  </div>
+
+  <h5 class="subtitulo">Ofertas</h5>
+
+  
+  <%- include ("../partials/footer.ejs") %>
+  
+</body>
+
+</html>

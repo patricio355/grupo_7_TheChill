@@ -77,5 +77,11 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
     }
     )
+    Order.associate = (models) => {
+        Order.hasOne(models.Cart, { foreignKey: 'cartId' });
+        Order.belongsTo(models.User, { foreignKey: 'id' });
+        Order.hasMany(models.Order_Item, { foreignKey: 'orderId' });
+        // Order.hasMany(models.Transaction, { foreignKey: 'userId' });
+    };
     return Order;
 }

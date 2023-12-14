@@ -12,111 +12,181 @@
 <body>
 
     <%- include ("../partials/navbar.ejs") %>
-    <div class="admin-container">
-        <section class="admin-navbar">
-            <img src="/images/logoFinal.png" width="200px" alt="">
-            <div class="admin-title">
-                <p style="font-weight: 200; font-size: 28px;">PANEL ADMINISTRADOR - THE CHILL</p>
-            </div>
-            <div class="admin-icons">
-                <i class="fas fa-user"></i>
-                <i class="fas fa-chevron-right"></i>
-            </div>
-        </section>
-        <section class="admin-navigate-menu">
-        </section>
-        <section class="admin-main-section">
-            <div class="admin-user">
-                
-                   
-               
-                <div class="admin-name">
-                    <img src="/images/profilephotos/<%= userLogged.avatar %>" style="width: 100%; border-radius: 2%;"
-                    alt="">
-                    <div class="admin-username">
-                     <p></p>
-                    </div>
-                    
-                    <div class="admin-username">
-                        <p><%= userData.first_name %> <%= userData.last_name %></p>
-                        
-                    </div>
-                   
-                    <div class="admin-username">
-                        <p><%= userData.email %></p>
-                        
-                    </div>
-                    
+        <div class="admin-container">
+            <section class="admin-navbar">
+                <img src="/images/logoFinal.png" width="200px" alt="">
+                <div class="admin-title">
+                    <p style="font-weight: 200; font-size: 28px;">PANEL ADMINISTRADOR - THE CHILL</p>
                 </div>
-                <div class="admin-dropdown">
-                    <p>Datos del comprador</p>
+                <div class="admin-icons">
+                    <i class="fas fa-user"></i>
                     <i class="fas fa-chevron-right"></i>
                 </div>
-                <div class="admin-dropdown">
-                    <p>Negocio</p>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-                <div class="admin-dropdown">
-                    <p>Categorías</p>
-                    <i class="fas fa-chevron-right"></i>
-                </div>
-            </div>
+            </section>
+            <section class="admin-navigate-menu">
+            </section>
+            <section class="admin-main-section">
+                <div class="admin-user">
 
-            <div class="admin-products">
-                <div class="header-products">
-                    <div class="buttons">
-                        <a href="/admin/create"><button  style="cursor: pointer;" class="add-product"><i class="fas fa-plus-circle"></i> Añadir Nuevo </button></a>
-                        <button class="upload-product"><i class="fas fa-upload"></i> <i
-                                class="fas fa-chevron-right"></i></button>
+
+
+                    <div class="admin-name">
+                        <img src="/images/profilephotos/<%= userLogged.avatar %>"
+                            style="width: 100%; border-radius: 2%;" alt="">
+                        <div class="admin-username">
+                            <p></p>
+                        </div>
+
+                        <div class="admin-username">
+                            <p>
+                                <%= userLogged.first_name %>
+                                    <%= userLogged.last_name %>
+                            </p>
+
+                        </div>
+
+                        <div class="admin-username">
+                            <p>
+                                <%= userLogged.email %>
+                            </p>
+
+                        </div>
+
                     </div>
-                    <div class="products-per-page">
-                        <p>Resultados / pág.:</p>
-                        <input type="number" name="" id="" placeholder="5">
+                    <div class="admin-dropdown">
+                        <p>Datos del comprador</p>
+                        <i class="fas fa-chevron-right"></i>
                     </div>
-                </div>
-                <div class="custom-table">
-                    <table class="blueTable">
-                        <thead>
-                            <tr>
-                                <th>Imagen</th>
-                                <th>Titulo</th>
-                                <th>Precio</th>
-                                <th>Stock</th>
-                                <th>Opciones</th>
-                                <th>Ver</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <td colspan="6">
-                                    <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a
-                                            href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">&raquo;</a>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <% products.map(p => { %>
-                            <tr>
-                                <td style="text-align: center;"><img src="/images/<%= p.image %>" width="40px" alt=""></td>
-                                <td><%= p.title %></td>
-                                <td><%= p.price %>$</td>
-                                <td><%= p.quantity %></td>
-                                <td>
-                                    <a href="/edit/<%= p.id %>" style="color: black;"><i class="fas fa-edit"></i></a>
-                                    <form action="/deleteA/<%= p.id %>" method="POST">
-                                        <button type="submit"><i class="fas fa-trash"></i></button></form>
-                                </td>
-                                <td><a href="/productDetail/<%= p.id %>"><button><i class="fas fa-external-link-alt"></i></button></a></td>
-                            </tr>
-                            <% }) %>
-                        </tbody>
-                    </table>
+                    <div class="admin-dropdown">
+                        <p>Negocio</p>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="admin-dropdown">
+                        <p>Categorías</p>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
                 </div>
 
-            </div>
-        </section>
-    </div>
+                <div class="admin-products">
+                    <div class="header-products">
+                        <div class="buttons">
+                            <a href="/admin/create"><button style="cursor: pointer;" class="add-product"><i
+                                        class="fas fa-plus-circle"></i> Añadir Nuevo </button></a>
+                            <a href="/admin/create/categories"><button style="cursor: pointer;"
+                                    class="add-categories"><i class="fas fa-plus-circle"></i> Nueva Categoria
+                                </button></a>
+                            <!-- <button class="upload-product"><i class="fas fa-upload"></i> <i
+                                class="fas fa-chevron-right"></i></button> -->
+                        </div>
+                        <div class="products-per-page">
+                            <p>Resultados / pág.:</p>
+                            <input type="number" name="" id="" placeholder="5">
+                        </div>
+                    </div>
+                    <div class="custom-table">
+                        <table class="blueTable">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">Imagen</th>
+                                    <th style="text-align: center;">Titulo</th>
+                                    <th style="text-align: center;">Precio</th>
+                                    <th style="text-align: center;">Stock</th>
+                                    <th style="text-align: center;">Opciones</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="6">
+                                        <div class="links"><a href="#">&laquo;</a> <a class="active" href="#">1</a> <a
+                                                href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a
+                                                href="#">&raquo;</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                            <tbody>
+                                <% products.map(p=> { %>
+                                    <tr>
+                                        <td style="text-align: center;"><img src="/images/<%= p.image %>" width="40px"
+                                                alt=""></td>
+                                        <td style="text-align: center;">
+                                            <%= p.title %>
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <%= p.price %>$
+                                        </td>
+                                        <td style="text-align: center;">
+                                            <%= p.quantity %>
+                                        </td>
+                                        <td
+                                            style="display: flex; width: 100%; align-items: center;justify-content: center;gap: 5px;">
+                                            <a class="buttonHoverEffect" href="/edit/<%= p.id %>"
+                                                style="background-color: rgb(27, 180, 60); padding: 8px 10px; border-radius: 100%;  "><i
+                                                    class="fas fa-edit" style="font-size:16px;"></i></a>
+                                            <!-- Botón de eliminación -->
+                                            <form id="deleteForm " action="/deleteA/<%= p.id %>" method="POST">
+                                                <button class="delete-button buttonHoverEffect" type="button"
+                                                    onclick="showConfirmationModal()">
+                                                    <i class="fas fa-trash" style="color:white;font-size:15px;"></i>
+                                                </button>
+                                                <!-- Modal de confirmación -->
+                                                <div id="overlay" onclick="closeConfirmationModal()"></div>
+                                                <div id="confirmationModal">
+                                                    <div class="warningIco">
+                                                        <img src="/images/icons/advertencia.png" style="height: 40px;"
+                                                            alt="">
+                                                    </div>
+                                                    <p style="font-weight: 500;color: #920000;">¿Estás seguro de que quieres eliminar este producto?</p>
+                                                    <p style="font-size: 12px;">Una vez eliminado no podrá recuperar esos datos.</p>
+                                                    <div class="buttonsC">
+                                                        <button
+                                                        onclick="event.preventDefault();closeConfirmationModal()">Cancelar</button>
+                                                        <button class="warningButton" onclick="deleteProduct()">Eliminar</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <a class="buttonHoverEffect" href="/productDetail/<%= p.id %>"><button
+                                                    style="background-color: rgb(36, 84, 227);cursor:pointer;border-style: none;padding: 8px 10px; border-radius: 100%;"><i
+                                                        class="fas fa-external-link-alt"
+                                                        style="color:white;font-size:15px;"></i></button></a>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+        <!-- Modal de confirmación -->
+        <script>
+            function showConfirmationModal() {
+                document.getElementById('overlay').style.display = 'flex';
+                document.getElementById('overlay').classList.add('modal-visible');
+                document.getElementById('confirmationModal').style.display = 'flex';
+                document.getElementById('confirmationModal').classList.add('modal-visible');
+            }
+
+            function closeConfirmationModal() {
+                document.getElementById('overlay').classList.remove('modal-visible');
+                document.getElementById('overlay').style.animation = 'fadeOut 0.3s ease-in-out forwards';
+                document.getElementById('confirmationModal').classList.remove('modal-visible');
+                document.getElementById('confirmationModal').style.animation = 'fadeOut .3s ease-in-out forwards';
+                setTimeout(() => {
+                    document.getElementById('overlay').style.display = 'none';
+                    document.getElementById('confirmationModal').style.display = 'none';
+                }, 300);
+                setTimeout(() => {
+                    document.getElementById('overlay').style.animation = 'fadeIn .3s ease-in-out forwards';
+                    document.getElementById('confirmationModal').style.animation = 'fadeIn .3s ease-in-out forwards';
+                }, 1000);
+            }
+
+            function deleteProduct() {
+                document.getElementById('deleteForm').submit();
+            }
+        </script>
 </body>
 
 </html>
