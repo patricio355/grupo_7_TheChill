@@ -9,10 +9,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
         },
         metaTitle:{
+            type: DataTypes.STRING,
+        },
+        summary:{
             type: DataTypes.TEXT,
         },
         type:{
             type: DataTypes.SMALLINT,
+        },
+        slug:{
+            type: DataTypes.STRING,
         },
         sku:{
             type: DataTypes.STRING,
@@ -21,18 +27,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.FLOAT,
         },
         size:{
-            type: DataTypes.STRING,
-        },
-        brand:{
-            type: DataTypes.STRING,
-        },
-        category:{
-            type: DataTypes.STRING,
-        },
-        gender:{
-            type: DataTypes.STRING,
-        },
-        model_name:{
             type: DataTypes.STRING,
         },
         colour:{
