@@ -9,10 +9,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
         },
         metaTitle:{
+            type: DataTypes.STRING,
+        },
+        summary:{
             type: DataTypes.TEXT,
         },
         type:{
             type: DataTypes.SMALLINT,
+        },
+        slug:{
+            type: DataTypes.STRING,
         },
         sku:{
             type: DataTypes.STRING,
