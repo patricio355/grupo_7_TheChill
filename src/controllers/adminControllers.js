@@ -21,6 +21,65 @@ const adminControllers = {
             res.render("../views/admin/admin.ejs", { products: result, userData: req.session });
         }).catch((error) => res.send(error));
     },
+
+    adminUsers: (req, res) => {
+        db.User.findAll({ raw: true }).then((result) => {
+            res.render("../views/admin/adminUsuarios.ejs", { usuarios: result, userData: req.session });
+        }).catch((error) => res.send(error));
+
+
+    },
+
+    createUser:(req,res)=>{
+        res.render(path.join(__dirname,"../views/admin/createUser.ejs"));
+    },
+    processCreate: (req, res) => {
+        const resultValidation = validationResult(req);
+      
+        if (resultValidation.errors.length > 0) {
+          return res.render(path.join(__dirname, "../views/admin/createUser.ejs"), {
+            errors: resultValidation.mapped(),
+            oldData: req.body,
+          });
+        }
+      
+        db.User.findOne({
+          where: {
+            email: req.body.email,
+          },
+        }).then((userFound) => {
+          if (userFound) {
+            return res.render(path.join(__dirname, "../views/admin/createUser.ejs"), {
+              errors: {
+                email: {
+                  msg: "Este email ya está registrado",
+                },
+              },
+              oldData: req.body,
+            });
+          }
+      
+          const newUser = {
+            ...req.body,
+            password: bcryptjs.hashSync(req.body.password,10),
+            avatar: req.file ? req.file.filename : 'avatar.jpg',
+          };
+          delete newUser.confirmedPass;
+          // console.log(newUser);
+          User.create(newUser);
+          })
+          return res.redirect("/login");
+      },
+
+
+
+
+
+
+
+
+
+
     createCat: (req, res) => {
         res.render("../views/admin/createCategory.ejs");
     },

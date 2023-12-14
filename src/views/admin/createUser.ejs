@@ -1,0 +1,162 @@
+<html lang="en">
+
+<head>
+    <%- include ("../partials/head.ejs") %>
+        <title>Registrate! - The Chill</title>
+        <link rel="stylesheet" href="/css/register.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <%- include ("../partials/navbar.ejs") %>
+   
+        <!-- CONTENIDO PRINCIPAL DEL REGISTER -->
+        <main>
+            <section class="mainregister">
+                <article class="login">
+                    <div class="user">
+                        <div class="user-icon">
+                            <div class="user-bg">
+                                <img src="images/logoFinal.png" alt="">
+                            </div>
+                        </div>
+                        <form action="/admin/createUser" method="post" enctype="multipart/form-data" class="user-ingreso">
+                            <h1>Añadir usuario</h1>
+                            
+                            <div class="nombrePersona">
+                                <div class="user-input">
+                                    <label for="firstname">Nombre<span style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455;font-weight:bolder;">*</span></label>
+                                    <input type="text" name="firstname" id="firstname" placeholder="Juan Carlos"
+                                        class="<%= locals.errors && errors.firstname ? 'inputError' : null %>"
+                                        value="<%= locals.oldData ? oldData.firstname : null %>">
+                                    <div id="errorMessageContainerN"
+                                        style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                        <div id="errorMessageN"></div>
+                                    </div>
+                                    <% if (locals.errors && errors.firstname) { %>
+                                        <div
+                                            style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                            <%= errors.firstname.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <div class="user-input">
+                                    <label for="lastname">Apellido<span style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455;font-weight:bolder;">*</span></label>
+                                    <input type="text" name="lastname" id="lastname" placeholder="Pérez"
+                                        class="<%= locals.errors && errors.firstname ? 'inputError' : null %>"
+                                        value="<%= locals.oldData ? oldData.lastname : null %>">
+                                    <div id="errorMessageContainerLN"
+                                        style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                        <div id="errorMessageLN"></div>
+                                    </div>
+                                    <% if (locals.errors && errors.lastname) { %>
+                                        <div
+                                            style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                            <%= errors.lastname.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
+                            </div>
+                            <div class="nombrePersona">
+                                <div class="user-input">
+                                    <label for="gender">Genero<span style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455;font-weight:bolder;">*</span></label>
+                                    <input type="text" name="gender" id="gender" placeholder="Hombre..."
+                                        class="<%= locals.errors && errors.firstname ? 'inputError' : null %>"
+                                        value="<%= locals.oldData ? oldData.gender : null %>">
+                                    <div id="errorMessageContainerGen"
+                                        style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                        <div id="errorMessageGen"></div>
+                                    </div>
+                                    <% if (locals.errors && errors.gender) { %>
+                                        <div
+                                            style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                            <%= errors.gender.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <div class="user-input">
+                                    <label for="avatar">Avatar</label>
+                                    <input type="file" name="avatar" id="avatar" accept=".jpg, .jpeg, .png"
+                                        class="<%= locals.errors && errors.firstname ? 'inputError' : null %>">
+                                        <div id="errorMessageContainerAv"
+                                        style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                        <div id="errorMessageAv">
+                                        </div>
+                                    </div>
+                                    <% if (locals.errors && errors.avatar) { %>
+                                        <div
+                                            style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                            <%= errors.avatar.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
+                            </div>
+                            <div class="emailPerson">
+                                <div class="email-input">
+                                    <label for="email">E-mail<span style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455;font-weight:bolder;">*</span></label>
+                                    <input type="text" name="email" id="email" placeholder="example@gmail.com"
+                                        value="<%= locals.oldData ? oldData.email : null %>"
+                                        class="<%= locals.errors && errors.firstname ? 'inputError' : null %>">
+                                    <div id="errorMessageContainerE"
+                                        style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                        <div id="errorMessageE"></div>
+                                    </div>
+                                    <% if (locals.errors && errors.email) { %>
+                                        <div
+                                            style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                            <%= errors.email.msg %>
+                                        </div>
+                                        <% } %>
+                                </div>
+                                <div class="email-input">
+                                    <label for="mobile">Teléfono celular<span style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455;font-weight:bolder;">*</span></label>
+                                    <input type="text" name="mobile" id="mobile" placeholder="+54 9 388 454 8844">
+                                    <div id="errorMessageContainerT"
+                                        style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                        <div id="errorMessageT"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="password-input">
+                                <label for="pass">Contraseña<span style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455;font-weight:bolder;">*</span></label>
+                                <input type="password" name="password" id="pass" placeholder="password"
+                                    class="<%= locals.errors && errors.firstname ? 'inputError' : null %>">
+                                <div id="errorMessageContainerP"
+                                    style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                    <div id="errorMessageP"></div>
+                                </div>
+                                <% if (locals.errors && errors.password) { %>
+                                    <div style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                        <%= errors.password.msg %>
+                                    </div>
+                                    <% } %>
+                            </div>
+                            <div class="password-input">
+                                <label for="confirmedPass">Confirmar contraseña<span style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455;font-weight:bolder;">*</span></label>
+                                <input type="password" name="confirmedPass" id="confirmedPass" placeholder="password"
+                                    class="<%= locals.errors && errors.firstname ? 'inputError' : null %>">
+                                <div id="errorMessageContainerPR"
+                                    style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                    <div id="errorMessagePR"></div>
+                                </div>
+                                <% if (locals.errors && errors.confirmedPass) { %>
+                                    <div style="font-size: 13px; margin-top: -10px;margin-bottom: 10px;color: #EA5455;">
+                                        <%= errors.confirmedPass.msg %>
+                                    </div>
+                                    <% } %>
+                            </div>
+
+                            <button type="submit" class="ingresar">Agregar</button>
+
+                           
+                        </form>
+                    </div>
+                </article>
+            </section>
+        </main>
+
+        <%- include ("../partials/footer.ejs") %>
+            <script src="/js/userRegisterValidator.js"></script>
+</body>
+
+</html>
