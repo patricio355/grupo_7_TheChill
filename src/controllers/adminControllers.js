@@ -18,26 +18,27 @@ const { validationResult } = require("express-validator");
 const adminControllers = {
     admin: (req, res) => {
         db.Product.findAll({ raw: true }).then((result) => {
-            res.render("../views/admin/admin.ejs", { products: result, userData: req.session });
+            res.render("../views/admin/admin.ejs", { products: result, userData: req.session.userLogged });
         }).catch((error) => res.send(error));
     },
 
     adminUsers: (req, res) => {
         db.User.findAll({ raw: true }).then((result) => {
-            res.render("../views/admin/adminUsuarios.ejs", { usuarios: result, userData: req.session });
+            res.render("../views/admin/adminUsuarios.ejs", { usuarios: result, userData: req.session.userLogged });
+            
         }).catch((error) => res.send(error));
 
 
     },
 
     createUser:(req,res)=>{
-        res.render(path.join(__dirname,"../views/admin/createUser.ejs"));
+        res.render(path.join(__dirname,"../views/admin/createUser.ejs"),{userData: req.session.userLogged});
     },
     processCreate: (req, res) => {
         const resultValidation = validationResult(req);
       
         if (resultValidation.errors.length > 0) {
-          return res.render(path.join(__dirname, "../views/admin/createUser.ejs"), {
+          return res.render(path.join(__dirname, "../views/admin/createUser.ejs"),{userData: req.session.userLogged}, {
             errors: resultValidation.mapped(),
             oldData: req.body,
           });
@@ -49,7 +50,7 @@ const adminControllers = {
           },
         }).then((userFound) => {
           if (userFound) {
-            return res.render(path.join(__dirname, "../views/admin/createUser.ejs"), {
+            return res.render(path.join(__dirname, "../views/admin/createUser.ejs"),{userData: req.session.userLogged}, {
               errors: {
                 email: {
                   msg: "Este email ya está registrado",
@@ -81,7 +82,7 @@ const adminControllers = {
 
 
     createCat: (req, res) => {
-        res.render("../views/admin/createCategory.ejs");
+        res.render("../views/admin/createCategory.ejs",{userData: req.session.userLogged});
     },
     createCatSuccess: async (req, res) => {
         let newCategory = req.body;
@@ -103,7 +104,7 @@ const adminControllers = {
         const id = req.params.id;
         db.Product.findByPk(id, { raw: true })
             .then((result) => {
-                res.render("../views/admin/editProduct.ejs", { productToEdit: result });
+                res.render("../views/admin/editProduct.ejs", { productToEdit: result ,userData: req.session.userLogged});
             })
             .catch((error) => res.send(error));
     },
@@ -121,7 +122,8 @@ const adminControllers = {
                         errors: resultValidation.mapped(),
                         oldData: req.body,
                         productToEdit: mergedData,
-
+                        userData: req.session.userLogged,
+                        categories: categories,
                     });
                 })
         } else {
@@ -163,15 +165,6 @@ const adminControllers = {
             }
         }
     },
-    delete: (req, res) => {
-        db.Product.destroy({
-            where: {
-                id: req.params.id,
-            },
-        })
-            .then((result) => res.redirect("/admin"))
-            .catch((error) => console.log(error));
-    },
     create: async (req, res) => {
         // db.Category.findAll({ raw:true}).then((result)=>{
         //     res.render("../views/admin/createProduct.ejs",{products:result});
@@ -184,6 +177,7 @@ const adminControllers = {
             res.render(path.join(__dirname, '../views/admin/createProduct.ejs'), {
                 categories: categories, // Pasa las categorías al formulario
                 oldData: req.body,
+                userData: req.session.userLogged
             });
         } catch (error) {
             res.send(error);
@@ -198,6 +192,7 @@ const adminControllers = {
                 errors: resultValidation.mapped(),
                 oldData: req.body,
                 categories: categories,
+                userData: req.session.userLogged
             });
         } else {
             let productImage;
@@ -311,7 +306,7 @@ const adminControllers = {
         const id = req.params.id;
         db.Product.findByPk(id, { raw: true })
             .then((result) => {
-                res.render("../views/admin/editProduct.ejs", { productToEdit: result });
+                res.render("../views/admin/editProduct.ejs", { productToEdit: result ,userData: req.session.userLogged });
             })
             .catch((error) => res.send(error));
     },
@@ -330,7 +325,7 @@ const adminControllers = {
                     };
                     res.render(path.join(__dirname, "../views/admin/editProduct.ejs"), {
 
-
+                        userData: req.session.userLogged,
                         errors: resultValidation.mapped(),
                         oldData: req.body,
                         productToEdit: mergedData,
@@ -395,7 +390,17 @@ const adminControllers = {
                 id: req.params.id,
             },
         })
-            .then((result) => res.redirect("/admin"))
+            .then((result) => res.redirect("/admin"),{userData: req.session.userLogged})
+            .catch((error) => console.log(error));
+    },
+    deleteUser: (req, res) => {
+        db.User.destroy({
+            where: {
+                id: req.params.id,
+            },
+        })
+        console.log("entro")
+            .then((result) => res.redirect("/admin/users"),{userData: req.session.userLogged})
             .catch((error) => console.log(error));
     },
 

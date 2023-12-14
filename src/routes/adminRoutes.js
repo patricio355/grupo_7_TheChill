@@ -67,6 +67,7 @@ adminRoutes.post("/admin/create",uploadFile.single("image"),validations, adminCo
 adminRoutes.get('/edit/:id',typeUserMiddleware, adminControllers.edit);
 adminRoutes.post("/edit/:id",uploadFile.single("image"), validations , adminControllers.updateProduct);
 adminRoutes.post('/deleteA/:id', adminControllers.delete);
+adminRoutes.post('/delete/:id', adminControllers.deleteUser);
 //adminRoutes.post('/edit/:id',uploadFile.single("productImage") ,adminControllers.update);
 
 
