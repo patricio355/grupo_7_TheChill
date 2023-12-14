@@ -110,7 +110,7 @@
                                     <td style="display: flex; width: 100%; align-items: center;justify-content: center;gap: 5px;">
                                         <a class="buttonHoverEffect" href="/edit/<%= p.id %>" style="background-color: rgb(27, 180, 60); padding: 8px 10px; border-radius: 100%;  "><i class="fas fa-edit" style="font-size:16px;"></i></a>
                                         <!-- Botón de eliminación -->
-                                            <form id="deleteForm " action="/deleteA/<%= p.id %>" method="POST">
+                                            <form id="deleteFormu " action="/delete/<%= p.id %>" method="POST">
                                                 <button class="delete-button buttonHoverEffect" type="button" onclick="showConfirmationModal()">
                                                 <i class="fas fa-trash" style="color:white;font-size:15px;"></i>
                                                 </button>
@@ -154,7 +154,7 @@
     }
 
     function deleteProduct() {
-      document.getElementById('deleteForm').submit();
+      document.getElementById('deleteFormu').submit();
     }
       </script>
 </body>
