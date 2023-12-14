@@ -118,7 +118,7 @@ article h4 {
     max-width: 350px;
     padding-bottom: 30px;
 }
-form input {
+.user-ingreso input {
     border-color: #D9D9D9;
     padding-left: 10px;
     padding-top: 10px;
