@@ -46,6 +46,10 @@ const apiUserRoutes= require('./routes/api/apiUser.js');
 app.use('/api',apiUserRoutes);
 
 
+const apiCategoryRoutes= require('./routes/api/apiCategory.js');
+
+app.use('/api',apiCategoryRoutes);
+
 // app.use()
 
 // LEGACY NAVBAR

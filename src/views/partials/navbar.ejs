@@ -1,7 +1,7 @@
 <!-- NAVBAR -->
 <header>
   <% console.log("DATOSSSS",locals.isLogged, locals.userLogged) %>
-    <div class="nav" style="<%= locals.isLogged ? 'padding-top: 9px;' : '' %>">
+    <div class="nav" >
       <div class="contentNav">
         <div class="menu">
           <button id="toggleButton" class="toggle" style="border-style: none; background-color: #002B5B;">
@@ -19,30 +19,30 @@
                 <% if (!userData.admin) { %>
 
                   <li><a href="/">HOMBRE</a></li>
-                  <li><a href="/">MUJER</a></li>
-                  <li><a href="/">NIÑOS</a></li>
-                  <li><a href="/">DEPORTE</a></li>
-                  <li><a href="/">AYUDA</a></li>
-                  <li><a href="/">SOBRE THE CHILL</a></li>
-                  <% } else { %>
-
-                    <% } %>
-
-                      <% if (userData.admin) { %>
-
-                        <li><a href="/admin">GESTION DE PRODUCTOS</a></li>
-                        <li><a href="/admin">GESTION DE USUARIOS</a></li>
-                        <li><a href="/admin">PANEL DE ADMINISTRADOR</a></li>
-                        <% } %>
-                          <% } else { %>
-                            <li><a href="/">HOMBRE</a></li>
-                            <li><a href="/">MUJER</a></li>
-                            <li><a href="/">CONTACTO</a></li>
-                            <li><a href="/">SOBRE THE CHILL</a></li>
-                            <li><a href="/">AYUDA</a></li>
-                            <li><a href="/register">REGISTRARSE</a></li>
-                            <% } %>
-
+                  <li><a href="/">MUJER</a></li> 
+                  <li><a href="/">NIÑOS</a></li> 
+                  <li><a href="/">DEPORTE</a></li> 
+                  <li><a href="/">AYUDA</a></li> 
+                  <li><a href="/">SOBRE THE CHILL</a></li> 
+                <% } else { %>
+               
+                <% } %>
+            
+                <% if (userData.admin) { %>
+                  
+                  <li><a href="/admin">GESTION DE PRODUCTOS</a></li>
+                  <li><a href="/admin/users">GESTION DE USUARIOS</a></li>
+                  <li><a href="/admin">PANEL DE ADMINISTRADOR</a></li>
+                <% } %>
+              <% } else { %>
+                 <li><a href="/">HOMBRE</a></li> 
+                 <li><a href="/">MUJER</a></li> 
+                 <li><a href="/">CONTACTO</a></li> 
+                 <li><a href="/">SOBRE THE CHILL</a></li> 
+                 <li><a href="/">AYUDA</a></li> 
+                 <li><a href="/register">REGISTRARSE</a></li> 
+              <% } %>
+            
             </ul>
 
 
@@ -183,8 +183,17 @@
         <li>Ofertas</li>
         <li>Categorias</li>
         <li>Ayuda</li>
+        <li>
+        
+       <form action="/resultadoBusq" method="GET">
+          <input type="text" name="text" placeholder="Buscar..." style="padding: 1.5;">
+          <button type="submit">Buscar</button>
+        </form>
+
+        </li>
+
       </ul>
-    </div>
+   
     <script>
       const openMenu = () => {
         let menuButtons = document.getElementsByClassName("navbarCategories");
