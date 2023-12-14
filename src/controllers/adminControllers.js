@@ -122,8 +122,7 @@ const adminControllers = {
                         errors: resultValidation.mapped(),
                         oldData: req.body,
                         productToEdit: mergedData,
-                        userData: req.session.userLogged,
-                        categories: categories,
+
                     });
                 })
         } else {
