@@ -1,184 +1,260 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
+
 body {
-    font-family:'Times New Roman', Times, serif ;
+    font-family: 'Rubik', sans-serif;
+    background-color: #BEC1C9;
 }
+
 .container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: row;
+    /* justify-content: center; */
     padding-top: 10px;
     padding-bottom: 30px;
-    max-width: 1110px;
+    max-width: 1200px;
     margin: 0 auto;
 }
-thead{
-    background-color: white;
-    color: #7e7d7d;
-}
-tbody{
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6)
-}
-.table {
-    background-color:#e4e4e4;
-    width: 70%;
-    border-collapse: collapse;
-    margin: 10;
-    padding: 0;
-    table-layout: fixed;
-}
-.table tr td{
-    background-color: #cecece;
-}
-.table tbody tr{
-    border-bottom: solid 1px white;   
-}
-.table th, .table td {
-    font-size: 15px;
-    padding: 8px;
-    text-align: center; 
 
+.tablePrices {
+    /* background-color: #303030; */
+    width: 70%;
 }
-.producto{
-    display: flex;
-    justify-content: space-around;
+
+.resumen {
+    width: 30%;
+    background-color: #e8e9ec;
 }
-.producto p{
-    flex-grow: 3;
-    font-size: 10px;
-}
-.table thead th{ 
-    padding: 4px; 
-}
-td img{
-    width: 5vw;
-    height: 10vh;
-    align-items: end;  
-}
-label input{
-    width: 40px;
-}
-#borde{
-    border-bottom: solid 1px white ;/*#9e9e9e*/
-    padding-left: 10px;
-    padding-top: 20px;
-    padding-bottom: 10px; 
-}
-button{
-    background-color: #cecece;/*#ebe2e2*/
-    border: transparent;
-}
-#pago{
-    background-color: rgb(36, 74, 177);
-    padding: 5px 15px;
-    font-size: 15px;
-    color: white; 
-    font-weight: bold;  
-    width: 100%;
-    cursor:pointer;
-}
-#boton{
-    margin: 7px;
-}
-.resumen{   
-    width: 20%; 
-}
-.resumen section{
-    background-color: #cecece;
-    border: 1px solid #d3d0d0;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.6);
-    margin-left: 15px;  
+
+.resumen section {
+    /* border: 1px solid #d3d0d0; */
+    /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1); */
+    /* margin-left: 15px;   */
     margin-top: 30px;
+    height: max-content;
 }
-.resumen h3{
+
+.resumen h3 {
     text-align: center;
 }
-.resumen h3{
+
+.resumen h3 {
     text-align: center;
-    border-bottom: solid 1px white; /*#9e9e9e*/
+    border-bottom: solid 1px white;
+    /*#9e9e9e*/
     padding-left: 10px;
     padding-top: 15px;
     padding-right: 10px;
 }
-.producto{
+
+.producto {
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-.resumen .borde{
+.resumen .borde {
     display: flex;
     justify-content: space-between;
-    padding: 15px 10px;   
+    padding: 15px 10px;
     border-bottom: solid 1px white;
 
+
+}
+
+thead {
+    background-color: white;
+    font-weight: 100;
+    color: #303030;
+    /* box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1); */
+}
+
+tbody {
+    padding: 5px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10;
+    padding: 0;
+    table-layout: fixed;
+    background-color: white;
+}
+
+.table tr td {
+    background-color: white;
+}
+
+.table tbody tr {
+    border-bottom: solid 1px white;
+}
+
+.table th,
+.table td {
+    font-size: 10px;
+    padding: 8px;
+    text-align: center;
+
+}
+
+.producto {
+    display: flex;
+    justify-content: space-around;
+}
+
+.producto p {
+    flex-grow: 3;
+    font-size: 10px;
+}
+
+.table thead th {
+    padding: 4px;
+}
+
+td img {
+    width: 5vw;
+    height: 10vh;
+    align-items: end;
+}
+
+label input {
+    width: 40px;
+}
+
+#borde {
+    border-bottom: solid 1px white;
+    /*#9e9e9e*/
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+button {
+    background-color: white;
+    /*#ebe2e2*/
+    border: transparent;
+}
+
+#pago {
+    font-family: Rubik, sans-serif;
+    color: white;
+    background-color: rgb(36, 74, 177);
+    padding: 10px 15px;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+#pago:hover {
+    background-color: rgb(27, 55, 130);
+}
+
+#boton {
+    margin: 7px;
+}
+
+.controlsProduct {
+    display: flex;
+    height: 20px;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.controlsProduct a {
+    display: flex;
+    align-items: center;
+}
+
+.controlsProduct img {
+    height: 20px;
+    width: auto;
 }
 
 
 @media screen and (max-width: 600px) {
-    .container{
-        width:100%
+    .container {
+        width: 100%
     }
+
     .table {
         border: 5px;
-        width: 100%;   
+        width: 100%;
         margin: 10px;
     }
+
     .table caption {
         font-size: 22px;
     }
+
     .table thead {
-        display: none;
+        display: block;
+        width: max-content;
     }
+
     .table tbody tr {
         margin-bottom: 0px;
         border-bottom: 8px solid white;
-        display: block;
-        background-color: #cecece; /* #e4e4e4*/
+        display: flex;
+        align-items: center;
+        background-color: white;
+        /* #e4e4e4*/
     }
-    .table th, .table td {
+
+    .table th,
+    .table td {
         font-size: 12px;
     }
+
     .table td {
         text-align: left;
         border-left: none;
     }
-    .table img{
-        width: 15vw;  
+
+    .table img {
+        width: 5vw;
     }
-    table .precio{
+
+    table .precio {
         display: none;
     }
-    table .cantidad{
-        width: 50%;   
+
+    table .cantidad {
+        width: 50%;
     }
-    table .subtotal{
+
+    table .subtotal {
         width: 43%;
         font-size: 16px;
     }
-    tr .parte{
+
+    tr .parte {
         display: flex;
         flex-direction: row;
     }
-    label input{
+
+    label input {
         width: 30px;
     }
-    .producto p{
+
+    .producto p {
         font-size: 18px;
     }
+
     .resumen {
         width: 300px;
     }
-    .resumen section{
+
+    .resumen section {
         margin: 15px;
     }
-    .producto p{
+
+    .producto p {
         margin-left: 12px;
     }
 }

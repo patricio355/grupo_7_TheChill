@@ -22,6 +22,18 @@ module.exports = (sequelize, DataTypes) => {
         tableName: "category",
         timestamps: false,
     }
-    )
+    );
+    // Category.belongsToMany(sequelize.models.Product, {
+    //     through: "Product_Category",
+    //     foreignKey: "categoryId",  // Nombre de la clave foránea en la tabla ProductCategory que apunta a Product
+    // });
+    Category.associate =  (models) => {
+        Category.belongsToMany(models.Product, {
+            through: 'product_category',
+            timestamps:false,
+            as:"productos",
+            onDelete: 'CASCADE', 
+        });
+    };
     return Category;
 }

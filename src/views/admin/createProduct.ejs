@@ -10,7 +10,8 @@
 </head>
 
 <body>
-    
+    <%- include ("../partials/navbar.ejs") %>
+
     <div class="admin-container">
         <section class="admin-navbar">
             
@@ -24,7 +25,7 @@
             </div>
         </section>
         <section class="admin-navigate-menu">
-            <p>/home/products/create</p>
+        
         </section>
         <section class="admin-create-section">
             <div class="admin-create-title">
@@ -75,15 +76,13 @@
                         </div>
                         <div class="create-section">
                             <div class="generic-input-label">
-                                <label for="category"><h4>Categoría de producto<span style="font-size: 13px; margin-top: -10px; margin-bottom: 10px; color: #EA5455;font-weight:bolder;">*</span></h4></label>
-                                <select name="category" id="category" value="<%= locals.oldData && oldData.category ? oldData.category : '' %>">
-                                    <option value="Deporte"  <%=locals.oldData && oldData.category==="Deporte" ? "selected" : "" %>>Deporte</option>
-                                    <option value="Interior" <%=locals.oldData && oldData.category==="Interior" ? "selected" : "" %>>Interior</option>
-                                    <option value="Jeans" <%=locals.oldData && oldData.category==="Jeans" ? "selected" : "" %>>Jeans</option>
-                                    <option value="Formal" <%=locals.oldData && oldData.category==="Formal" ? "selected" : "" %>>Formal</option>
-                                    <option value="Vestido" <%=locals.oldData && oldData.category==="Vestido" ? "selected" : "" %>>Vestido</option>
-                                    <option value="Remera" <%=locals.oldData && oldData.category==="Remera" ? "selected" : "" %>>Remeras</option>
-                                    <option value="Zapatilla" <%=locals.oldData && oldData.category==="Zapatilla" ? "selected" : "" %>>Zapatillas</option>
+                                <label for="category"><h4>Categoría de producto</h4></label>
+                                <select name="categories" id="categories" multiple>
+                                    <% categories.forEach(category => { %>
+                                        <option value="<%= category.id %>" <%= (oldData.categories && oldData.categories.includes(category.id.toString())) ? 'selected' : '' %>>
+                                            <%= category.title %>
+                                        </option>
+                                    <% }); %>
                                 </select>
                                 <div id="errorMessageContainerCategory"
                                     style="font-size: 14px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
@@ -241,7 +240,7 @@
                         <div class="admin-create-buttons">
                             <a href="/"><button class="btn btn-success" type="submit">Añadir Producto</button></a>
                             <a href="/admin"><button style="background-color: #EA5455;">Descartar Cambios</button></a>
-                            <a href="/"><button><i class="far fa-clock"></i></button></a>
+                            <!-- <a href="/"><button><i class="far fa-clock"></i></button></a> -->
                             <a href=""><button><input class="reset-class" type="reset" value="Restablecer"></button></a>
                         </div>
                     </div>

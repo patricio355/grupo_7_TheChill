@@ -42,5 +42,8 @@ module.exports = (sequelize, DataTypes) => {
         timestamps: false,
     }
     )
+    Order_Item.associate = (models) => {
+        Order_Item.belongsTo(models.Order, { foreignKey: 'orderId' });
+    };
     return Order_Item;
 }

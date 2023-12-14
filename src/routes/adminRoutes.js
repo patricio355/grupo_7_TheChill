@@ -3,6 +3,8 @@ const adminRoutes = express.Router();
 const multer = require('multer')
 const path = require('path')
 
+const typeUserMiddleware = require ('../middlewares/typeUserMiddleware.js')
+
 const adminControllers = require("../controllers/adminControllers.js");
 
 //requerir body express-validator
@@ -50,16 +52,24 @@ const validations=[
 
 
 
-adminRoutes.get("/admin", adminControllers.admin);
-adminRoutes.get('/admin/create', adminControllers.create);
+adminRoutes.get("/admin",typeUserMiddleware, adminControllers.admin);
+adminRoutes.get("/admin/users",typeUserMiddleware, adminControllers.adminUsers);
+//crear us
+adminRoutes.get("/admin/createUser",typeUserMiddleware, adminControllers.createUser);
+adminRoutes.post("/admin/createUser",uploadFile.single("avatar"), validations, adminControllers.processCreate);
+adminRoutes.get('/admin/create',typeUserMiddleware, adminControllers.create);
+adminRoutes.get('/admin/create/categories', adminControllers.createCat);
+adminRoutes.post('/admin/create/categories', adminControllers.createCatSuccess);
 //adminRoutes.post("/", uploadFile.single("productImage"), adminControllers.store);
 adminRoutes.post("/admin/create",uploadFile.single("image"),validations, adminControllers.createProduct);
 
 //adminRoutes.get("/admin/edit", adminControllers.editProduct);
-adminRoutes.get('/edit/:id', adminControllers.edit);
+adminRoutes.get('/edit/:id',typeUserMiddleware, adminControllers.edit);
 adminRoutes.post("/edit/:id",uploadFile.single("image"), validations , adminControllers.updateProduct);
 adminRoutes.post('/deleteA/:id', adminControllers.delete);
 //adminRoutes.post('/edit/:id',uploadFile.single("productImage") ,adminControllers.update);
+
+
 
 
 

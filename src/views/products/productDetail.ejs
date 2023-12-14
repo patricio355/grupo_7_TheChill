@@ -29,7 +29,7 @@
 
     <main>
         <div class="descripcion">
-            <span>Puesto en venta en la categoria: Top > <%= product.title %> > <%= product.type %></span>
+            <span>Puesto en venta en la categoria: <%= product.category %>  > <%= product.title %>  </span>
         </div>
         <div class="contenedor-global">
             <div class="conteiner">
@@ -82,26 +82,49 @@
                 </div>
                 <div class="contenedor-compra">
                     <div class="conteiner-precio">
-                        <div class="row">
-                            <div class="cantidad">
-                                <label for="">Cantidad:</label>
-                                <span><%= product.quantity %></span>
-                            </div>
-                        </div>
+                       
                         <div class="row">
                             <div class="precio">
                                 <label for="">Precio:</label>
                                 <span>$<%= product.price %></span>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="cantidad">
+                                <label for="">Stock Disponible:</label>
+                                <span><%= product.quantity %></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="acciones">
-                            <button>Comprar ahora</button>
-                            <button>Agregar al carrito <i class="fa-sharp fa-solid fa-cart-shopping"></i></button>
+
+                            <% if (locals.userData) { %>
+                                <% if (!userData.admin) { %>
+                                    <button type="submit"> <a href="/edit/<%= product.id %>">Comprar ahora</a></button>
+                                    <form action="/carrito/add/<%= product.id %>" method="POST">
+                                        <button type="submit">sAgregar al carrito</button></form>
+                                 
+                                <% } else { %>
+                               
+                                <% } %>
+                            
+                                <% if (userData.admin) { %>
+                                  
+                            <button type="submit"> <a href="/edit/<%= product.id %>">Editar Producto</a></button>
                             <form action="/delete/<%= product.id %>" method="POST">
-                            <button type="submit">Eliminar</button></form>
-                            <a style="color: black;" href="/edit/<%= product.id %>">Editar</a>
+                                <button type="submit" style="background-color: brown; color: aliceblue;">Eliminar</button></form>
+                                
+                                  
+                                <% } %>
+                              <% } else { %>
+                                <button type="submit"> <a href="/edit/<%= product.id %>">Comprar ahora</a></button>
+                                <button type="submit"> <a href="/edit/<%= product.id %>">Agregar al carrito</a></button>
+                              <% } %>
+
+
+
+                           
                             
                         </div>
                         <a class="similar" href="#">Ver más producto similares</a>

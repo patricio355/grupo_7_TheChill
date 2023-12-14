@@ -5,7 +5,7 @@ const cookies = require('cookie-parser')
 const path = require('path')
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware.js');
 // const multer = require('./middlewares/multerMiddleware');
-
+const cors = require('cors');
 app.use(express.urlencoded({extended: false}));
 
 // USANDO ARCHIVOS ESTATICOS
@@ -36,9 +36,37 @@ app.use(usersRoutes)
 app.use(productRoutes)
 app.use(adminRoutes)
 
+app.use(cors({ origin: 'http://localhost:5173' }));
+
+
+
+//rutas 
+const apiUserRoutes= require('./routes/api/apiUser.js');
+
+app.use('/api',apiUserRoutes);
+
+
+const apiCategoryRoutes= require('./routes/api/apiCategory.js');
+
+app.use('/api',apiCategoryRoutes);
+
 // app.use()
 
 // LEGACY NAVBAR
 // app.get('/nav', (req,res)=>{
 //     res.render(path.join(__dirname,"/views/navbarFooter.ejs"));
 // });
+
+//Aquí llamo a la ruta de las api de products
+const apiProductRouter = require('./routes/api/apiProduct')
+//Aquí llamo a la ruta de las api de actors
+// const apiGenresRouter = require('./routes/api/genres')
+//Aquí llamo a la ruta de las api de actors
+// const apiActorsRouter = require('./routes/api/actors')
+
+
+
+//Aquí creo la colección de mis recursos del ecommerce (APIs)
+app.use('/api/products',apiProductRouter);
+// app.use('/api/actors',apiActorsRouter);
+// app.use('/api/genres',apiGenresRouter);

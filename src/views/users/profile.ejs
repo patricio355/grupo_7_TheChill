@@ -3,7 +3,7 @@
 <head>
   <%- include ("../partials/head.ejs") %>
     <title> Mi Perfil - The Chill</title>
-    <link rel="stylesheet" href="css\profile.css">
+    <link rel="stylesheet" href="/css/profile.css">
 </head>
 
 <body>
@@ -16,7 +16,11 @@
         <article class="login">
           <div class="userOptionsLogged">
             <ul>
+              <% if (!userData.admin) {%>
               <h1>Perfil de usuario</h1>
+              <% }else {%>
+                <h1>Perfil de administrador</h1>
+                <% }%>
               <li class="active"><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
                   width="34">
                   <path
@@ -25,7 +29,9 @@
               <li><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="34">
                   <path
                     d="m480-173.846-30.308-27.385q-97.923-89.461-162-153.153-64.077-63.693-101.154-112.347-37.077-48.654-51.807-88.038Q120-594.154 120-634q0-76.308 51.846-128.154Q223.692-814 300-814q52.769 0 99 27t81 78.538Q514.769-760 561-787t99-27q76.308 0 128.154 51.846Q840-710.308 840-634q0 39.846-14.731 79.231-14.73 39.384-51.807 88.038-37.077 48.654-100.769 112.347Q609-290.692 510.308-201.231L480-173.846ZM480-228q96-86.769 158-148.654 62-61.884 98-107.384t50-80.616q14-35.115 14-69.346 0-60-40-100t-100-40q-47.769 0-88.154 27.269-40.384 27.269-72.307 82.116h-39.078q-32.692-55.616-72.692-82.5Q347.769-774 300-774q-59.231 0-99.615 40Q160-694 160-634q0 34.231 14 69.346 14 35.116 50 80.616t98 107q62 61.5 158 149.038Zm0-273Z" />
-                </svg>Artículos favoritos</li>
+                
+                    <% if (!userData.admin) {%>
+                  </svg>Artículos favoritos</li>
               <li><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
                   <path
                     d="M264.615-120Q237-120 218.5-138.5 200-157 200-184.615v-430.77Q200-643 218.5-661.5 237-680 264.615-680H340v-20q0-58.308 40.846-99.154T480-840q58.308 0 99.154 40.846T620-700v20h75.385Q723-680 741.5-661.5 760-643 760-615.385v430.77Q760-157 741.5-138.5 723-120 695.385-120h-430.77Zm0-40h430.77q9.23 0 16.923-7.692Q720-175.385 720-184.615v-430.77q0-9.23-7.692-16.923Q704.615-640 695.385-640H620v100q0 8.538-5.731 14.269Q608.539-520 600-520t-14.269-5.731Q580-531.462 580-540v-100H380v100q0 8.538-5.731 14.269Q368.539-520 360-520t-14.269-5.731Q340-531.462 340-540v-100h-75.385q-9.23 0-16.923 7.692Q240-624.615 240-615.385v430.77q0 9.23 7.692 16.923Q255.385-160 264.615-160ZM380-680h200v-20q0-42.231-28.885-71.115Q522.231-800 480-800q-42.231 0-71.115 28.885Q380-742.231 380-700v20ZM240-160v-480 480Z" />
@@ -33,7 +39,9 @@
               <li><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="34">
                   <path
                     d="m405.384-120-14.461-115.692q-19.154-5.769-41.423-18.154-22.269-12.385-37.885-26.538L204.923-235l-74.616-130 92.231-69.539q-1.769-10.846-2.923-22.346-1.154-11.5-1.154-22.346 0-10.077 1.154-21.192t2.923-25.038L130.307-595l74.616-128.462 105.923 44.616q17.923-14.923 38.769-26.923 20.846-12 40.539-18.539L405.384-840h149.232l14.461 116.461q23 8.077 40.654 18.539 17.654 10.461 36.346 26.154l109-44.616L829.693-595l-95.308 71.846q3.308 12.385 3.692 22.731.385 10.346.385 20.423 0 9.308-.769 19.654-.77 10.346-3.539 25.038L827.923-365l-74.615 130-107.231-46.154q-18.692 15.693-37.615 26.923-18.923 11.231-39.385 17.77L554.616-120H405.384ZM440-160h78.231L533-268.308q30.231-8 54.423-21.961 24.192-13.962 49.269-38.269L736.462-286l39.769-68-87.539-65.769q5-17.077 6.616-31.423 1.615-14.346 1.615-28.808 0-15.231-1.615-28.808-1.616-13.577-6.616-29.884L777.769-606 738-674l-102.077 42.769q-18.154-19.923-47.731-37.346t-55.961-23.115L520-800h-79.769l-12.462 107.538q-30.231 6.462-55.577 20.808-25.346 14.346-50.423 39.423L222-674l-39.769 68L269-541.231q-5 13.462-7 29.231-2 15.769-2 32.769Q260-464 262-449q2 15 6.231 29.231l-86 65.769L222-286l99-42q23.538 23.769 48.885 38.115 25.346 14.347 57.115 22.347L440-160Zm38.923-220q41.846 0 70.923-29.077 29.077-29.077 29.077-70.923 0-41.846-29.077-70.923Q520.769-580 478.923-580q-42.077 0-71.039 29.077-28.961 29.077-28.961 70.923 0 41.846 28.961 70.923Q436.846-380 478.923-380ZM480-480Z" />
-                </svg>Configuraciones</li>
+                
+                    <%  } %>
+                  </svg>Configuraciones</li>
               <li><svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="34">
                   <path
                     d="M200-209.231v-40h64.615v-316.923q0-78.384 49.616-137.884Q363.846-763.539 440-778.154V-800q0-16.667 11.64-28.334Q463.28-840 479.91-840q16.629 0 28.359 11.666Q520-816.667 520-800v21.846q76.154 14.615 125.769 74.116 49.616 59.5 49.616 137.884v316.923H760v40H200Zm280-286.154Zm-.136 390.77q-26.71 0-45.595-18.981-18.884-18.981-18.884-45.635h129.23q0 26.846-19.02 45.731-19.021 18.885-45.731 18.885ZM304.615-249.231h350.77v-316.923q0-72.923-51.231-124.154-51.231-51.23-124.154-51.23t-124.154 51.23q-51.231 51.231-51.231 124.154v316.923Z" />
@@ -52,7 +60,7 @@
           <div class="user">
             <div class="mainProfile">
               <div class="imageProfile">
-                <img src="images/profilephotos/<%= userData.avatar %>" alt="img-del-Perfil">
+                <img src="/images/profilephotos/<%= userData.avatar %>" alt="img-del-Perfil">
                 <button class="buttonProfileEdit">
                   <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0,0,256,256">
                     <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
@@ -68,32 +76,32 @@
                   </svg>
                 </button>
               </div>
-              <h1> Hola <%= userData.firstname%>
-                  <%= userData.lastname%>
+              <h1> Hola <%= userData.first_name %>
+                  <%= userData.last_name%>
               </h1>
             </div>
-            <form action="" method="" class="formEditProfile">
+            <form action="/profile/edit/<%= userToEdit.id %>" method="POST" class="formEditProfile">
               <div class="groupInput">
                 <div class="singleInput">
-                  <label for="firstname">Nombre</label>
-                  <input type="text" name="firstname" value="<%= userData.firstname%>">
+                  <label for="first_name">Nombre</label>
+                  <input type="text" name="first_name" value="<%= userToEdit.first_name%>">
                 </div>
                 <div class="singleInput">
-                  <label for="lastname">Apellido</label>
-                  <input type="text" name="lastname" value="<%= userData.lastname %>">
+                  <label for="last_name">Apellido</label>
+                  <input type="text" name="last_name" value="<%= userToEdit.last_name %>">
                 </div>
               </div>
               <div class="groupInput">
                 <div class="singleInput">
                   <label for="email">Email</label>
-                  <input type="text" name="email" value="<%= userData.email %>">
+                  <input type="text" name="email" value="<%= userToEdit.email %>">
                 </div>
                 <div class="singleInput">
                   <label for="gender">Genero</label>
-                  <input type="text" name="gender" value="<%= userData.gender %>">
+                  <input type="text" name="gender" value="<%= userToEdit.gender %>">
                 </div>
               </div>
-              <div class="groupInput">
+              <!-- <div class="groupInput">
                 <div class="singleInput">
                   <label for="password">Contraseña</label>
                   <input type="text" name="password">
@@ -102,8 +110,11 @@
                   <label for="confirmedPass">Confirmar contraseña</label>
                   <input type="text" name="confirmedPass">
                 </div>
-              </div>
+              </div> -->
+              
+                <p>Sirve el guardar cambio pero me falta hacerle unos arreglos y validacion</p>
               <div class="buttonSubmitContainer">
+               
                 <button type="submit" class="ingresar">Guardar cambios</button>
               </div>
             </form>
