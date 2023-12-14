@@ -1,23 +1,23 @@
 <!-- NAVBAR -->
 <header>
   <% console.log("DATOSSSS",locals.isLogged, locals.userLogged) %>
-    <div class="nav" >
+    <div class="nav" style="<%= locals.isLogged ? "padding-top:9px" : "" %>">
       <div class="contentNav">
         <div class="menu">
-            <button id="toggleButton" class="toggle" style="border-style: none; background-color: #002B5B;">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
+          <button id="toggleButton" class="toggle" style="border-style: none; background-color: #002B5B;">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
         <div class="logo">
           <a href="/">THE CHILL.</a>
           <div class="navbarOptions">
-           
+
             <ul class="navbarCategories">
               <% if (locals.userData) { %>
                 <% if (!userData.admin) { %>
-                  
+
                   <li><a href="/">HOMBRE</a></li>
                   <li><a href="/">MUJER</a></li> 
                   <li><a href="/">NIÑOS</a></li> 
@@ -51,17 +51,43 @@
           </div>
         </div>
         <div class="userOptions">
+          <form id="deleteFormm" action="/resultadoBusq" method="GET">
+            <button class="delete-buttonn buttonHoverEffect" type="button"
+                onclick="showConfirmationModall()">
+                <i class="fas fa-search" style="color:white;font-size:15px;"></i>
+                <div class="initSession">
+                  <p  style="font-size: 14px;font-family:'Poppins', sans-serif;">Buscar</p>
+                </div>
+            </button>
+            <!-- Modal de confirmación -->
+            <div id="overlayy" onclick="closeConfirmationModall()"></div>
+            <div id="confirmationModall">
+                <div class="warningIco">
+                    <img src="/images/icons/buscando.png" style="height: 40px;"
+                        alt="">
+                </div>
+                <p style="font-weight: 500;color: #002B5B;">Introduce una búsqueda...</p>
+                <!-- <p style="font-size: 12px;">Aquí puedes introducir tus busquedas</p> -->
+                <div class="buttonsC">
+                  <input type="text" name="text" placeholder="Buscar..." style="padding: 1.5;">
+                    <!-- <button
+                    onclick="event.preventDefault();closeConfirmationModal()">Cancelar</button> -->
+                    <button type="submit" class="warningButton" onclick="deleteProductt()"><i class="fas fa-search" style="color:white;font-size:15px;"></i></button>
+                </div>
+            </div>
+        </form>
           <% if(locals.isLogged){ %>
-          
+
             <a href="" class="linkProfile">
               <div class="userLogged menu-dropdown">
                 <img src="/images/profilephotos/<%= locals.userLogged.avatar %>" style="padding: 1px 0;margin: 2px;"
                   alt="">
-                 <p> <% if (locals.userData && userData.admin) {%>
+                <p>
+                  <% if (locals.userData && userData.admin) {%>
                     Adm
-                    
-                      <% }%>
-                <%= locals.userLogged.first_name %>
+
+                    <% }%>
+                      <%= locals.userLogged.first_name %>
                 </p>
                 <svg style="margin-left: -10px;padding-top:3px;" xmlns="http://www.w3.org/2000/svg" height="20"
                   viewBox="0 -960 960 960" width="10">
@@ -72,7 +98,7 @@
                     <a href="/profile/<%= locals.userLogged.id %>">
                       Perfil
                     </a>
-                    
+
                   </li>
 
 
@@ -83,39 +109,40 @@
                       <li><a href="/profile/<%= locals.userLogged.id %>">Configuraciones</a></li>
                       <li><a href="/profile">Notificaciones</a></li>
                       <form action="../logout" method="get" class="logoutButtonNav">
-                        <li><button type="submit">Cerrar Sesión</button></li>
+                        <li><button style="font-family: 'Poppins', sans-serif;" type="submit">Cerrar Sesión</button>
+                        </li>
                       </form>
-                   
-                    <% } else { %>
-                   
-                    <% } %>
-                
-                    <% if (userData.admin) { %>
-                      
-                      <li><a href="/profile/<%= locals.userLogged.id %>">Configuraciones</a></li>
-                      <li><a href="/">Notificaciones</a></li>
-                      <li><a href="/">Negocio</a></li>
-                      <li><a href="/">Estadisticas</a></li>
-                      <form action="../logout" method="get" class="logoutButtonNav">
-                        <li><button type="submit">Cerrar Sesión</button></li>
-                      </form>
-                      
-                    <% } %>
-                  <% } else { %>
-                    <li><a href="/profile">Favoritos</a></li>
-                    <li><a href="/carrito">Mi carrito</a></li>
-                    <li><a href="/profile/<%= locals.userLogged.id %>">Configuraciones</a></li>
-                    <li><a href="/profile">Notificaciones</a></li>
-                    <form action="../logout" method="get" class="logoutButtonNav">
-                      <li><button type="submit">Cerrar Sesión</button></li>
-                    </form>
-                  <% } %>
-                 
+
+                      <% } else { %>
+
+                        <% } %>
+
+                          <% if (userData.admin) { %>
+
+                            <li><a href="/profile/<%= locals.userLogged.id %>">Configuraciones</a></li>
+                            <li><a href="/">Notificaciones</a></li>
+                            <li><a href="/">Negocio</a></li>
+                            <li><a href="/">Estadisticas</a></li>
+                            <form action="../logout" method="get" class="logoutButtonNav">
+                              <li><button type="submit">Cerrar Sesión</button></li>
+                            </form>
+
+                            <% } %>
+                              <% } else { %>
+                                <li><a href="/profile">Favoritos</a></li>
+                                <li><a href="/carrito">Mi carrito</a></li>
+                                <li><a href="/profile/<%= locals.userLogged.id %>">Configuraciones</a></li>
+                                <li><a href="/profile">Notificaciones</a></li>
+                                <form action="../logout" method="get" class="logoutButtonNav">
+                                  <li><button type="submit">Cerrar Sesión</button></li>
+                                </form>
+                                <% } %>
+
                 </ul>
               </div>
             </a>
             <% }else{%>
-              <a href="/login">
+              <a href="/login" class="logoutState">
                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                   <title />
                   <g id="about">
@@ -124,49 +151,52 @@
                       d="M17,18H15A11,11,0,0,0,4,29a1,1,0,0,0,1,1H27a1,1,0,0,0,1-1A11,11,0,0,0,17,18ZM6.06,28A9,9,0,0,1,15,20h2a9,9,0,0,1,8.94,8Z" />
                   </g>
                 </svg>
+                <div class="initSession">
+                  <p  style="font-size: 14px;">Iniciar Sesión</p>
+                </div>
               </a>
               <% } %>
 
-              <% if (locals.userData) { %>
-                <% if (!userData.admin) { %>
-                  <a href="/carrito">
-                    <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                      <rect fill="none" height="256" width="256" />
-                      <path d="M184,184H69.8L41.9,30.6A8,8,0,0,0,34.1,24H16" fill="none" stroke="#fff"
-                        stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                      <circle cx="80" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="16" />
-                      <circle cx="184" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="16" />
-                      <path d="M62.5,144H188.1a15.9,15.9,0,0,0,15.7-13.1L216,64H48" fill="none" stroke="#fff"
-                        stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                    </svg>
-                  </a>
-            
-                <% } else { %>
-               
-                <% } %>
-            
-                <% if (userData.admin) { %>
-                  
-                 
-                  
-                <% } %>
-              <% } else { %>
-                <a href="/carrito">
-                  <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-                    <rect fill="none" height="256" width="256" />
-                    <path d="M184,184H69.8L41.9,30.6A8,8,0,0,0,34.1,24H16" fill="none" stroke="#fff"
-                      stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                    <circle cx="80" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
-                      stroke-linejoin="round" stroke-width="16" />
-                    <circle cx="184" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
-                      stroke-linejoin="round" stroke-width="16" />
-                    <path d="M62.5,144H188.1a15.9,15.9,0,0,0,15.7-13.1L216,64H48" fill="none" stroke="#fff"
-                      stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
-                  </svg>
-                </a>
-              <% } %>
+                <% if (locals.userData) { %>
+                  <% if (!userData.admin) { %>
+                    <a href="/carrito">
+                      <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                        <rect fill="none" height="256" width="256" />
+                        <path d="M184,184H69.8L41.9,30.6A8,8,0,0,0,34.1,24H16" fill="none" stroke="#fff"
+                          stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                        <circle cx="80" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="16" />
+                        <circle cx="184" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
+                          stroke-linejoin="round" stroke-width="16" />
+                        <path d="M62.5,144H188.1a15.9,15.9,0,0,0,15.7-13.1L216,64H48" fill="none" stroke="#fff"
+                          stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                      </svg>
+                    </a>
+
+                    <% } else { %>
+
+                      <% } %>
+
+                        <% if (userData.admin) { %>
+
+
+
+                          <% } %>
+                            <% } else { %>
+                              <a href="/carrito">
+                                <svg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                                  <rect fill="none" height="256" width="256" />
+                                  <path d="M184,184H69.8L41.9,30.6A8,8,0,0,0,34.1,24H16" fill="none" stroke="#fff"
+                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                                  <circle cx="80" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="16" />
+                                  <circle cx="184" cy="204" fill="none" r="20" stroke="#fff" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="16" />
+                                  <path d="M62.5,144H188.1a15.9,15.9,0,0,0,15.7-13.1L216,64H48" fill="none"
+                                    stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16" />
+                                </svg>
+                              </a>
+                              <% } %>
 
 
         </div>
@@ -180,14 +210,15 @@
         <li>Ayuda</li>
         <li>
         
-       <form action="/resultadoBusq" method="GET">
+       <!-- <form action="/resultadoBusq" method="GET">
           <input type="text" name="text" placeholder="Buscar..." style="padding: 1.5;">
           <button type="submit">Buscar</button>
-        </form>
+        </form> -->
 
         </li>
 
       </ul>
+      
    
     <script>
       const openMenu = () => {
@@ -199,7 +230,7 @@
       const animateMenu = () => {
         let menuButtons = document.getElementsByClassName("toggle");
         let menuButton = menuButtons[0];
-        console.log("a",menuButton)
+        console.log("a", menuButton)
         menuButton.classList.toggle("active")
       }
 
@@ -208,4 +239,33 @@
         document.getElementById('toggleButton').addEventListener('click', animateMenu);
       });
     </script>
+<!-- Modal de confirmación -->
+<script>
+  function showConfirmationModall() {
+      document.getElementById('overlayy').style.display = 'flex';
+      document.getElementById('overlayy').classList.add('modal-visible');
+      document.getElementById('confirmationModall').style.display = 'flex';
+      document.getElementById('confirmationModall').classList.add('modal-visible');
+  }
+
+  function closeConfirmationModall() {
+      document.getElementById('overlayy').classList.remove('modal-visible');
+      document.getElementById('overlayy').style.animation = 'fadeOut 0.3s ease-in-out forwards';
+      document.getElementById('confirmationModall').classList.remove('modal-visible');
+      document.getElementById('confirmationModall').style.animation = 'fadeOut .3s ease-in-out forwards';
+      setTimeout(() => {
+          document.getElementById('overlayy').style.display = 'none';
+          document.getElementById('confirmationModall').style.display = 'none';
+      }, 300);
+      setTimeout(() => {
+          document.getElementById('overlayy').style.animation = 'fadeIn .3s ease-in-out forwards';
+          document.getElementById('confirmationModall').style.animation = 'fadeIn .3s ease-in-out forwards';
+      }, 1000);
+  }
+
+  function deleteProductt() {
+      document.getElementById('deleteFormm').submit();
+  }
+</script>
+    
 </header>

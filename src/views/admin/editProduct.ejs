@@ -69,35 +69,18 @@
                         </div>
                         <div class="create-section">
                             <div class="generic-input-label">
-                                <!-- <label for="category"><h4>Categoría de producto</h4></label>
-                                <select value="<%= productToEdit.type%>" name="category" id="category">
-                                    <option value="Deporte">Deporte</option>
-                                    <option value="Interior">Interior</option>
-                                    <option value="Jeans">Jeans</option>
-                                    <option value="Formal">Formal</option>
-                                    <option value="Vestido">Vestido</option>
-                                    <option value="Remera">Remeras</option>
-                                    <option value="Zapatilla">Zapatillas</option>
-                                </select> -->
-                                <label for="category">
-                                    <h4>Categoría de producto</h4>
-                                </label>
-                                <select name="category" id="category">
-                                    <option value="Deporte" <%=productToEdit.category==="Deporte" ? "selected" : "" %>
-                                        >Deporte</option>
-                                    <option value="Interior" <%=productToEdit.category==="Interior" ? "selected" : "" %>
-                                        >Interior</option>
-                                    <option value="Jeans" <%=productToEdit.category==="Jeans" ? "selected" : "" %>>Jeans
-                                    </option>
-                                    <option value="Formal" <%=productToEdit.category==="Formal" ? "selected" : "" %>
-                                        >Formal</option>
-                                    <option value="Vestido" <%=productToEdit.category==="Vestido" ? "selected" : "" %>
-                                        >Vestido</option>
-                                    <option value="Remera" <%=productToEdit.category==="Remera" ? "selected" : "" %>
-                                        >Remeras</option>
-                                    <option value="Zapatilla" <%=productToEdit.category==="Zapatilla" ? "selected" : ""
-                                        %>>Zapatillas</option>
+                                <label for="category"><h4>Categoría de producto</h4></label>
+                                <select name="categories" id="categories" multiple>
+                                    <% categories.forEach(category => { %>
+                                        <option value="<%= category.id %>" <%= (oldData.categories && oldData.categories.includes(category.id.toString())) ? 'selected' : '' %>>
+                                            <%= category.title %>
+                                        </option>
+                                    <% }); %>
                                 </select>
+                                <div id="errorMessageContainerCategory"
+                                    style="font-size: 14px; margin-top: -10px; margin-bottom: 10px; color: #EA5455; opacity: 0; transition: opacity 0.5s ease;">
+                                <div id="errorMessageCategory"></div>
+                                    </div>
                             </div>
                         </div>
                         <div class="create-section">

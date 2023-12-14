@@ -1,10 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 * {
     margin: 0;
     /* padding: 0; */
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+
+}
+button{
+    cursor: pointer;
 }
 
 a {
@@ -18,14 +22,208 @@ a {
     --crema-bg-color: #E4DCCF;
     --color-letras: #686868;
 }
+/* Botón de eliminación */
+.delete-buttonn {
+    background-color: #002B5B;
+    cursor: pointer;
+    border-style: none;
+    border-radius: 100%;
+  }
+.delete-buttonn .fas{
+    font-size: 12px;
+  }
+/* Estilos del modal */
+#confirmationModall .warningIco{
+    width: fit-content;
+    height: fit-content;
+    background-color: #002a5b73; 
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 18px;
+}
+#confirmationModall input{
+    border-style: none;
+    /* border-radius: 5px; */
+    padding: 10px 15px;
+    border: solid 1px #666;
+    border-top-left-radius: 20px; /* Redondea la esquina superior izquierda */
+    border-bottom-left-radius: 20px; /* Redondea la esquina inferior izquierda */
+    font-family: "Rubik",sans-serif;
+}
+#confirmationModall .warningIco img{
+    background-color: white;
+    border-radius: 100%;
+}
+#confirmationModall .buttonsC{
+    width: 100%;
+    display: flex;
+    justify-content:end;
+    margin-top: 20px;
+    height: 35px;
+    font-family:'Rubik', sans-serif;
+    font-weight: 400;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 30px;
+    /* gap: 10px; */
+}
+#confirmationModall .buttonsC .warningButton{
+    background-color: #002B5B;
+    color: white;
+}
+#confirmationModall .buttonsC .warningButton:hover{
+    background-color: #002B5B;
+}
+#confirmationModall .buttonsC button{
+    font-family:'Rubik', sans-serif;
+    width: 100%;
+    border-style: none;
+    background-color: none;
+    cursor:pointer;
+    padding-right: 10px;
+    border-top-right-radius: 20px; /* Redondea la esquina superior derecha */
+            border-bottom-right-radius: 20px; /* Redondea la esquina inferior derecha */
+    /* border-radius: 5px; */
+}
+#confirmationModall p{
+    font-size: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+    color: #525252;
+}
+#confirmationModall {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 20px;
+    /* padding-bottom: 20px; */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    animation: fadeIn .3s ease-in-out forwards;
+    border-top: solid 8px #002B5B;
+  }
+
+
+  /* Fondo oscuro */
+  #overlayy {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn .3s ease-in-out forwards;
+  }
+
+  /* Animación de entrada */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Animación de salida */
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  /* Animación de zoom */
+  @keyframes zoomIn {
+    from {
+      scale: 0;
+    }
+    to {
+      scale: 1;
+    }
+  }
+
+  /* Clase que muestra el modal */
+  .modal-visible {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out forwards;
+  }
 
 .nav {
+    font-family: 'Poppins', sans-serif;
     background-color: var(--azul-bg-color);
     height: 60px;
     padding-top: 14px;
     padding-left: 12px;
     padding-right: 12px;
+}
+.logoutState{
+    position: relative;
+    padding-left: 10px;
+}
+.initSession{
+    font-weight: 400;
+    font-size: 15.5px;
+    color: #ffffff;
+    cursor: pointer;
+    position: relative;
+    margin-left: 5px;
+    margin-right: 5px;
+    display: inline-flex;
+    align-items: center;
+    padding-bottom: 2px;
+}
+/* .logoutState:hover ~ .initSession{
+    transition: all 0.3s ease-in-out;
 
+}
+.logoutState:hover:before ~ .initSession{
+    transform: scaleX(1);
+}
+.logoutState:before ~ .initSession{
+    content: "";
+    position: absolute;
+    bottom: -0px;
+    height: 2.5px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 50px;
+    transform: scaleX(0);
+    transition: transform 0.2s linear;
+}
+.logoutState:hover ~ .initSession{
+    transform: scaleX(1)
+} */
+.initSession:hover {
+    /* font-weight: 600; */
+    transition: all 0.3s ease-in-out;
+}
+.initSession:before {
+    content: "";
+    position: absolute;
+    bottom: -0px;
+    height: 2.5px;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 50px;
+    transform: scaleX(0);
+    transition: transform 0.2s linear;
+}
+.initSession:hover:before {
+    transform: scaleX(1);
 }
 
 /* BARRA DE CATEGORIAS INFERIOR */
@@ -37,6 +235,8 @@ a {
     padding-right: 12px;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
     position: relative;
+    font-family: 'Poppins', sans-serif;
+
 }
 
 .navCategories .menuCategories {
@@ -279,12 +479,17 @@ a {
 }
 
 @media (max-width: 768px) {
-    .nav .contentNav .logo{
+    .nav .contentNav .logo {
         display: block;
     }
+    .initSession{
+        display: none;
+    }
+
     .nav {
         padding-top: 9px;
     }
+
     .nav .navbarOptions {
         /* display: flex;k */
         /* flex-direction: column; */
@@ -342,7 +547,7 @@ a {
         border-radius: 0px;
         margin-bottom: 6px;
         margin-left: -7px;
-        
+
     }
 
     .toggle span {

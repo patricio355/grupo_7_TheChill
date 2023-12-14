@@ -100,16 +100,18 @@ const adminControllers = {
             res.send(error);
         }
     },
-    edit: (req, res) => {
+    edit: async (req, res) => {
         const id = req.params.id;
+        const categories = await db.Category.findAll();
         db.Product.findByPk(id, { raw: true })
             .then((result) => {
-                res.render("../views/admin/editProduct.ejs", { productToEdit: result ,userData: req.session.userLogged});
+                res.render("../views/admin/editProduct.ejs", { productToEdit: result, categories:categories ,userData: req.session.userLogged});
             })
             .catch((error) => res.send(error));
     },
     updateProduct: async (req, res) => {
         const resultValidation = validationResult(req);
+        const categories = await db.Category.findAll();
         if (resultValidation.errors.length > 0) {
             const id = req.params.id;
             db.Product.findByPk(id, { raw: true })
@@ -122,8 +124,8 @@ const adminControllers = {
                         errors: resultValidation.mapped(),
                         oldData: req.body,
                         productToEdit: mergedData,
-                        userData: req.session.userLogged
-
+                        userData: req.session.userLogged,
+                        categories: categories,
                     });
                 })
         } else {
@@ -150,14 +152,27 @@ const adminControllers = {
                     model_name: req.body.model_name,
                     quantity: req.body.quantity,
                     discount: req.body.discount,
-                    category: req.body.category
-
                 }, {
                     where: {
                         id: productId,
                     },
                 });
 
+                const selectedCategories = Array.isArray(req.body.categories)
+                    ? req.body.categories
+                    : [req.body.categories];
+
+                for (const categoryId of selectedCategories) {
+                    const categoria = await db.Category.findByPk(parseInt(categoryId));
+
+                    if (categoria) {
+                        // Asociar las categorías al producto creado
+                        await createdProduct.addCategory(categoria);
+                        console.log(`Categoría ${categoria.title} asociada al producto.`);
+                    } else {
+                        console.log(`No se encontró la categoría con ID ${categoryId}.`);
+                    }
+                }
                 res.redirect("/");
             } catch (error) {
                 console.log(error);
@@ -183,8 +198,6 @@ const adminControllers = {
             res.send(error);
         }
     },
-
-
     createProduct: async (req, res) => {
         //lo de express-validator
         const resultValidation = validationResult(req);

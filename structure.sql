@@ -73,8 +73,7 @@ CREATE TABLE `order` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
   `content` text DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

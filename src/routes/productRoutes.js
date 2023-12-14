@@ -12,6 +12,9 @@ const authMiddleware = require ('../middlewares/authMiddleware.js')
 productRoutes.get('/productDetail/:id', productControllers.detail);
 productRoutes.post('/delete/:id', productControllers.deleteDetail);
 productRoutes.get('/carrito',authMiddleware, productControllers.productCart);
+productRoutes.post('/carrito/test',authMiddleware, productControllers.createOrder);
+productRoutes.post('/carrito/decrease/:id',authMiddleware, productControllers.decreaseCartItem);
+productRoutes.post('/carrito/increase/:id',authMiddleware, productControllers.increaseCartItem);
 
 // Funcionalidad carrito
 productRoutes.post('/carrito/add/:id',authMiddleware, productControllers.createCartItem);

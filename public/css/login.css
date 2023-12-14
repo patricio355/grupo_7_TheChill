@@ -112,7 +112,8 @@ article h4 {
     max-width: 350px;
     padding-bottom: 30px;
 }
-form input {
+
+.user-ingreso input {
     border-color: #D9D9D9;
     padding-left: 10px;
     padding-top: 10px;
@@ -172,7 +173,7 @@ input:focus{
 label{
     opacity: 0.9;
 }
-
+    
 @media(max-width:767px){
     .user{
         flex-direction: column-reverse;

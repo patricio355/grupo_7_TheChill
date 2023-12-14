@@ -9,10 +9,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
         },
         metaTitle:{
+            type: DataTypes.STRING,
+        },
+        summary:{
             type: DataTypes.TEXT,
         },
         type:{
             type: DataTypes.SMALLINT,
+        },
+        slug:{
+            type: DataTypes.STRING,
         },
         sku:{
             type: DataTypes.STRING,
@@ -85,6 +91,8 @@ module.exports = (sequelize, DataTypes) => {
             through: 'product_category',    
             onDelete: 'CASCADE',         
         }); 
+        Product.hasMany(models.Cart_Item, { foreignKey: 'productId' });
+        Product.hasMany(models.Order_Item, { foreignKey: 'productId' });
     };
     return Product;
 }
